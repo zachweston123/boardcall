@@ -3,58 +3,282 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Support — Boardcall</title>
+<title>Boardcall Support</title>
 <style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 48px 24px 96px;
-    line-height: 1.6;
-    color: #1c1c1c;
-    background: #F7F5F0;
+  :root {
+    --bg: #F7F5F0;
+    --bg-card: #FFFFFF;
+    --fg: #0B0F14;
+    --fg-muted: #4B5560;
+    --accent: #1F6F78;
+    --border: rgba(11, 15, 20, 0.12);
+    --border-strong: rgba(11, 15, 20, 0.2);
+    --fire: #E8734A;
+    --fun: #1F6F78;
   }
   @media (prefers-color-scheme: dark) {
-    body { color: #eee; background: #0B0F14; }
-    a { color: #4fb8c2; }
+    :root {
+      --bg: #0B0F14;
+      --bg-card: #121821;
+      --fg: #F7F5F0;
+      --fg-muted: #9AA5B1;
+      --accent: #3D9AA3;
+      --border: rgba(247, 245, 240, 0.12);
+      --border-strong: rgba(247, 245, 240, 0.2);
+      --fun: #3D9AA3;
+    }
   }
-  a { color: #1F6F78; }
-  h1 { font-size: 1.7rem; margin-bottom: 4px; }
-  h2 { font-size: 1.15rem; margin-top: 2.2em; }
-  .sub { color: #888; margin-bottom: 2.5em; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header.page-head { margin-bottom: 28px; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 38px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle { color: var(--fg-muted); font-size: 17px; margin: 0; max-width: 52ch; }
+  h2 {
+    font-size: 21px;
+    margin: 44px 0 16px;
+    letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 14px; color: var(--fg); }
+  p.muted { color: var(--fg-muted); }
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { opacity: 0.85; }
+  strong { font-weight: 600; }
+
+  .contact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin: 8px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .contact-card .label { font-size: 14px; color: var(--fg-muted); margin-bottom: 4px; }
+  .contact-card .email { font-size: 18px; font-weight: 600; }
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn:hover { opacity: 0.9; }
+
+  .faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .faq-item h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .faq-item h3 .q-mark {
+    color: var(--accent);
+    flex: none;
+  }
+  .faq-item p { margin: 0; color: var(--fg-muted); font-size: 15px; }
+  .faq-item p + p { margin-top: 8px; }
+  .faq-item strong { color: var(--fg); }
+
+  .pricing-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 10px 0 6px;
+  }
+  .price-pill {
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+  .price-pill .amount { font-weight: 700; font-size: 17px; }
+  .price-pill .period { color: var(--fg-muted); font-size: 13px; }
+  .renew-note { font-size: 13px; color: var(--fg-muted); margin: 10px 0 0; }
+
+  .attribution {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--fg-muted);
+    margin: 8px 0;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: 14px;
+  }
+  footer a { color: var(--fg-muted); }
 </style>
 </head>
 <body>
-<h1>Support</h1>
-<p class="sub">Need help with Boardcall? Start here.</p>
+<div class="wrap">
 
-<h2>Contact</h2>
-<p>Email <a href="mailto:zachweston5@gmail.com">zachweston5@gmail.com</a> — we read every message
-and typically reply within a couple of days.</p>
+  <header class="page-head">
+    <span class="eyebrow">Boardcall</span>
+    <h1>Support</h1>
+    <p class="subtitle">Boardcall reads today's swell, wind, and tide at your surf spot and gives you a
+    plain-English briefing plus the one board from your own quiver that fits — no account required, no
+    setup beyond picking your boards and a spot.</p>
+  </header>
 
-<h2>Common questions</h2>
+  <h2>Get help</h2>
+  <div class="contact-card">
+    <div>
+      <div class="label">Bug reports, questions, anything at all</div>
+      <div class="email">zachweston5@gmail.com</div>
+    </div>
+    <a class="btn" href="mailto:zachweston5@gmail.com">Email support</a>
+  </div>
+  <p class="muted">Boardcall is built by one person, not a support team, so replies are personal but may
+  take a day or two. Including your device type and iOS version helps if you're reporting a bug.</p>
 
-<p><strong>Why does today's briefing look generic or say the forecast is unavailable?</strong><br>
-If our briefing service is unreachable, Boardcall automatically falls back to a locally written
-briefing built from the same forecast data — you'll never see a blank screen or an error. Pull down
-to refresh once you're back online for the full AI-written version.</p>
+  <h2>Frequently asked questions</h2>
 
-<p><strong>How do I add or edit a board?</strong><br>
-Open the Quiver tab and tap the + button. You can search a built-in catalog of production boards to
-prefill dimensions, or enter your own — every value stays editable afterward.</p>
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> Why does my briefing read differently some mornings — is it not using AI?</h3>
+    <p>Every briefing is normally written by an AI service, using your day's conditions and boards. If
+    that call fails for any reason — no connection, a server hiccup, or you've used up your free AI
+    briefings for the week — Boardcall instantly writes a solid briefing itself instead, using the exact
+    same underlying numbers and board pick. You'll never see an error screen either way.</p>
+    <p>AI-written briefings carry a small sparkle mark so you can always tell which kind you're
+    reading; a briefing without one is just as accurate, only written from a template rather than by AI.</p>
+  </div>
 
-<p><strong>How do I change my home spot?</strong><br>
-Settings › Your Breaks. You can favorite up to three spots; tap the star to set which one drives
-Today and Forecast.</p>
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> Why did my board pick change from yesterday?</h3>
+    <p>The pick is based on today's actual conditions — wave size, period, and wind — measured against
+    the volume and type of every board in your quiver. Nothing about your boards changed; the surf did,
+    so a different one can be the better fit today.</p>
+  </div>
 
-<p><strong>What does Boardcall Pro unlock?</strong><br>
-One thing: it removes the weekly limit on Claude-written briefings. Everything else — your full
-quiver, the map, and every spot in the catalog — is free, with no cap, whether or not you subscribe.</p>
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> Does Boardcall work without an internet connection?</h3>
+    <p>Boardcall needs a connection to fetch the day's wave, wind, and tide data. If you've opened the
+    app recently, it'll show your last cached conditions (cached for up to an hour). Without a
+    connection and without anything cached yet, you'll need to get online to see today's briefing.</p>
+  </div>
 
-<p><strong>How do I cancel my subscription?</strong><br>
-Subscriptions are managed entirely by Apple. On your iPhone: Settings › [your name] › Subscriptions
-› Boardcall.</p>
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> How do I change my spot or notification time, or turn notifications off?</h3>
+    <p>Tap the gear icon on Today to open <strong>Settings</strong>. Spot selection and your daily
+    notification time both live there. To stop the daily reminder, turn off the reminder toggle in
+    Settings — you can also turn off notifications for Boardcall entirely in iOS Settings →
+    Notifications → Boardcall.</p>
+  </div>
 
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> How do I add, edit, or delete a board?</h3>
+    <p>Open the <strong>Quiver</strong> tab. Tap the + button to add a board, tap an existing board to
+    edit its dimensions, type, volume, or fin setup, or swipe to delete it.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> What does "Sign in with Apple" in Settings do?</h3>
+    <p>Nothing yet — it's entirely optional and doesn't unlock any feature. It's there so a future
+    version of Boardcall that syncs across your devices won't need to ask you to sign in a second time.
+    Whatever it stores stays on your device only; use it or skip it, the app works exactly the same
+    either way.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> What does Boardcall Pro unlock, and what does it cost?</h3>
+    <p>Everything in Boardcall is free with one exception. The free version includes your full board
+    quiver with no limits, up to three saved spots, the six-day forecast, the spot map covering the
+    whole catalog, and <strong>5 AI-written briefings per week</strong>. After that weekly cap, Today
+    still shows a complete, accurate briefing — it's just written locally instead of by AI, as described
+    above.</p>
+    <p><strong>Boardcall Pro</strong> removes that cap for unlimited AI-written briefings every day.</p>
+    <div class="pricing-row">
+      <div class="price-pill"><span class="amount">$4.99</span> <span class="period">/ month</span></div>
+      <div class="price-pill"><span class="amount">$39</span> <span class="period">/ year</span></div>
+    </div>
+    <p class="renew-note">Boardcall Pro is an auto-renewable subscription. It's charged to your Apple ID
+    at confirmation of purchase and renews automatically for the same length and price shown above
+    unless you turn off auto-renew at least 24 hours before the current period ends — see below for how
+    to cancel.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> How do I restore a purchase?</h3>
+    <p>Open <strong>Settings → Subscription</strong> in the app and tap <strong>Restore Purchases</strong>.
+    Since Apple handles all billing, this reconnects Boardcall to your existing subscription under the
+    Apple ID you purchased with — Boardcall itself keeps no purchase records of its own.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> How do I cancel my subscription?</h3>
+    <p>All billing for Boardcall Pro is handled by Apple, so cancellation happens in iOS Settings, not
+    inside Boardcall: go to <strong>Settings → [your name] → Subscriptions → Boardcall Pro → Cancel
+    Subscription</strong>. You'll keep Pro access through the end of the period you already paid for,
+    per Apple's standard subscription terms.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3><span class="q-mark">Q.</span> Does Boardcall use my location?</h3>
+    <p>No. Boardcall never requests or uses location services. Every spot in the app — on Today,
+    Forecast, or the Map tab — comes from a built-in catalog you choose from.</p>
+  </div>
+
+  <h2>Data sources</h2>
+  <div class="attribution">
+    Wave and wind data from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo.com</a>
+    (CC BY 4.0). Tide predictions from <a href="https://tidesandcurrents.noaa.gov" target="_blank" rel="noopener">NOAA CO-OPS</a>.
+  </div>
+
+  <h2>Privacy</h2>
+  <p>Boardcall requires no account to use and stores almost everything only on your device. Full details
+  are in the <a href="https://zachweston123.github.io/boardcall/privacy">Boardcall Privacy Policy</a>.</p>
+
+  <footer>
+    <p>Boardcall is developed by an individual, Zach Weston, not a company.</p>
+    <p><a href="https://zachweston123.github.io/boardcall/privacy">Privacy Policy</a> · <a href="mailto:zachweston5@gmail.com">zachweston5@gmail.com</a></p>
+  </footer>
+
+</div>
 </body>
 </html>

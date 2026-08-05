@@ -3,91 +3,336 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — Boardcall</title>
+<title>Boardcall Privacy Policy</title>
 <style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 48px 24px 96px;
-    line-height: 1.6;
-    color: #1c1c1c;
-    background: #F7F5F0;
+  :root {
+    --bg: #F7F5F0;
+    --bg-card: #FFFFFF;
+    --fg: #0B0F14;
+    --fg-muted: #4B5560;
+    --accent: #1F6F78;
+    --border: rgba(11, 15, 20, 0.12);
+    --border-strong: rgba(11, 15, 20, 0.2);
   }
   @media (prefers-color-scheme: dark) {
-    body { color: #eee; background: #0B0F14; }
-    a { color: #4fb8c2; }
+    :root {
+      --bg: #0B0F14;
+      --bg-card: #121821;
+      --fg: #F7F5F0;
+      --fg-muted: #9AA5B1;
+      --accent: #3D9AA3;
+      --border: rgba(247, 245, 240, 0.12);
+      --border-strong: rgba(247, 245, 240, 0.2);
+    }
   }
-  a { color: #1F6F78; }
-  h1 { font-size: 1.7rem; margin-bottom: 4px; }
-  h2 { font-size: 1.15rem; margin-top: 2.2em; }
-  .updated { color: #888; font-size: 0.9rem; margin-bottom: 2.5em; }
-  ul { padding-left: 1.2em; }
-  li { margin-bottom: 0.5em; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header.page-head {
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 38px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    color: var(--fg-muted);
+    font-size: 16px;
+    margin: 0;
+  }
+  h2 {
+    font-size: 21px;
+    margin: 44px 0 14px;
+    padding-top: 4px;
+    letter-spacing: -0.005em;
+  }
+  h3 {
+    font-size: 16px;
+    margin: 24px 0 8px;
+    color: var(--fg);
+  }
+  p { margin: 0 0 14px; color: var(--fg); }
+  p.muted, li.muted { color: var(--fg-muted); }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { opacity: 0.85; }
+  strong { font-weight: 600; }
+  .summary-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 24px 8px;
+    margin: 8px 0 8px;
+  }
+  .summary-card h2 {
+    margin-top: 0;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+  .summary-card ul { padding-left: 20px; }
+  .data-block {
+    border-left: 3px solid var(--accent);
+    padding: 2px 0 2px 16px;
+    margin: 0 0 22px;
+  }
+  .data-block h3 { margin-top: 0; }
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    color: var(--fg-muted);
+    margin-bottom: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+    font-size: 15px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th { color: var(--fg-muted); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .table-wrap { overflow-x: auto; }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: 14px;
+  }
+  footer a { color: var(--fg-muted); }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.92em;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+  }
 </style>
 </head>
 <body>
-<h1>Privacy Policy</h1>
-<p class="updated">Last updated August 5, 2026</p>
+<div class="wrap">
 
-<p>Boardcall is a surf-briefing app. This page explains what data the app touches and, just as
-important, what it doesn't.</p>
+  <header class="page-head">
+    <span class="eyebrow">Boardcall</span>
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">Effective August 5, 2026</p>
+  </header>
 
-<h2>No account required</h2>
-<p>Boardcall works fully without creating an account, signing in, or providing an email address.
-Your surfer profile, your boards, and your favorite spots are stored only on your device.</p>
+  <p>Boardcall ("the app," "we," "us") is a surf-briefing app for iPhone, built and maintained by an
+  independent developer, Zach Weston. This policy describes, plainly, what the app does with data —
+  what stays on your phone, what leaves it, who it goes to, and why. There is no legal team behind this
+  app and no reason to hide anything, so this is meant to be read, not skimmed past.</p>
 
-<h2>What stays on your device</h2>
-<ul>
-  <li>Your profile (skill level, weight, height)</li>
-  <li>Your boards (dimensions, type, fin setup)</li>
-  <li>Your favorite spots</li>
-  <li>How many AI-written briefings you've used this week</li>
-</ul>
-<p>None of this leaves your phone except as described below.</p>
+  <div class="summary-card">
+    <h2>The short version</h2>
+    <ul>
+      <li>No account or sign-up is required to use any part of Boardcall. Settings has one optional
+      Sign in with Apple button, described below — you never need to use it.</li>
+      <li>Your profile, your boards, and your chosen surf spots are stored only on your iPhone.</li>
+      <li>Boardcall never uses your location. You choose spots from a built-in list — there is no GPS
+      access anywhere in the app.</li>
+      <li>Each morning's briefing text is written by a third-party AI service (Anthropic's Claude),
+      reached through our own small server. That request includes the day's conditions and your boards,
+      but the content itself is not logged or stored by our server.</li>
+      <li>Our server does keep one small, anonymous thing: a randomly generated ID plus a daily count,
+      used only to stop abuse of the AI briefing feature. It cannot be tied back to you as a person.</li>
+      <li>If you subscribe to Boardcall Pro, Apple handles the entire purchase and payment. We never see
+      your card details or billing information.</li>
+      <li>We do not use analytics, advertising trackers, or crash-reporting tools of any kind.</li>
+    </ul>
+  </div>
 
-<h2>Sign in with Apple (optional)</h2>
-<p>Boardcall offers an optional Sign in with Apple button. It doesn't unlock anything today — it
-exists so a future sync feature won't require signing in twice. If you use it, Apple shares your
-name and a unique identifier with the app. That information is stored on your device only and is
-never sent to us, to a server, or to anyone else. You can remove it at any time from Settings ›
-Account › Sign Out.</p>
+  <h2>What data Boardcall collects, and by whom</h2>
+  <p>Different parts of the app handle data differently. Rather than a single blanket statement, here is
+  exactly what happens in each case:</p>
 
-<h2>Daily briefings</h2>
-<p>When you open Today or Forecast, Boardcall sends the surf conditions and your ranked boards —
-no name, no account, no precise location — to our server, which asks Anthropic's Claude API to
-write a plain-English briefing. That request is not stored after the response is generated. An
-anonymous, randomly generated device identifier is used only to apply a fair-use limit on these
-requests; it identifies a device, not a person.</p>
+  <div class="data-block">
+    <span class="tag">Stored only on your device</span>
+    <h3>Your profile, boards, spots, and app settings</h3>
+    <p>Boardcall keeps a private file on your iPhone — one only Boardcall can read — containing: your
+    surfer profile (skill level, weight, height, and your chosen notification time), the boards in your
+    quiver (nickname, brand/model, dimensions, volume, type, and fin setup), up to three saved surf
+    spots (chosen from our built-in catalog — never your GPS coordinates), whether you've completed
+    onboarding, a randomly generated device identifier (explained below), and a running weekly count of
+    how many AI-written briefings you've used. Boardcall also caches recent wave, wind, and tide data on
+    your device for up to 60 minutes per spot, purely to avoid re-fetching it needlessly.</p>
+    <p class="muted">None of this is uploaded to iCloud or synced anywhere by us. (If you use Apple's own
+    device backup features, that backup is between you and Apple, not something Boardcall controls.)
+    Deleting the app deletes all of it, permanently, from your device.</p>
+  </div>
 
-<h2>Location</h2>
-<p>Boardcall does not use location services. Spots are chosen from a fixed, built-in list — the app
-never reads your device's location.</p>
+  <div class="data-block">
+    <span class="tag">Optional, on-device only</span>
+    <h3>Sign in with Apple</h3>
+    <p>Settings includes an optional Sign in with Apple button. Nothing in the app requires it — every
+    feature works fully whether you use it or not. If you do sign in, Apple shares your Apple-assigned
+    account identifier with the app, and — only the very first time you ever authorize Boardcall — your
+    name, if you choose to share it. That information is stored in the same private on-device file as
+    everything else above and is never sent to our server, to Anthropic, or anywhere else. It doesn't
+    unlock any feature today; it exists only so that a possible future sync feature won't have to ask
+    you to sign in a second time. You can sign out at any time from the same Settings screen, which
+    removes it from your device immediately.</p>
+  </div>
 
-<h2>Subscriptions</h2>
-<p>Boardcall Pro purchases are handled entirely by Apple through StoreKit. We never see your
-payment details.</p>
+  <div class="data-block">
+    <span class="tag">Sent to our server, not stored</span>
+    <h3>The daily briefing request</h3>
+    <p>When you open Today or Forecast, the app sends a request to our own small server (built on
+    Supabase, a cloud-hosting platform) containing the day's surf conditions at your chosen spot (wave
+    size, swell period, wind, tide, temperature), your skill level and weight, and your boards as ranked
+    by the app's own on-device physics engine. Our server forwards this to Anthropic's Claude — a
+    third-party AI service — to write the plain-English briefing, and returns the result to the app.
+    That content is not written to any database by our server. Per Anthropic's own API terms, this data
+    is not used to train their models and is not retained beyond what's needed to process the request.
+    On failure, our server only logs a generic error code, never the data itself.</p>
+  </div>
 
-<h2>Third-party weather data</h2>
-<p>Wave and wind forecasts come from <a href="https://open-meteo.com">Open-Meteo.com</a> (CC BY
-4.0). Tide predictions come from NOAA CO-OPS. Both are public, unauthenticated APIs — the only
-information sent to them is the coordinates of a fixed spot from our built-in list, never anything
-about you.</p>
+  <div class="data-block">
+    <span class="tag">Sent to our server AND stored</span>
+    <h3>The anonymous rate-limit counter</h3>
+    <p>Alongside that request, the app sends a random identifier that was generated on your device the
+    first time you opened Boardcall — not your Apple ID, name, email address, advertising ID, or any
+    other identifier Apple or anyone else assigns you. Our server stores that random ID together with
+    the date and a count, and nothing else at the application level, purely to enforce a daily limit and
+    prevent abuse of the AI briefing feature. This is the only application-level record our
+    infrastructure retains, and our backend is built to delete it after 30 days. It cannot be linked back
+    to you as a person — it identifies a device-generated random number, not an individual.</p>
+    <p class="muted">Separately, our hosting provider may retain standard technical request logs (such as
+    IP address) for a limited time as part of normal server operation, the way any web server does. We
+    don't access or use those logs for anything beyond troubleshooting an outage.</p>
+  </div>
 
-<h2>What we don't do</h2>
-<ul>
-  <li>No analytics or crash-reporting SDKs</li>
-  <li>No advertising or ad trackers</li>
-  <li>No selling or sharing your data with third parties</li>
-  <li>No data collected from children — Boardcall isn't directed at children under 13</li>
-</ul>
+  <div class="data-block">
+    <span class="tag">Handled entirely by Apple</span>
+    <h3>Boardcall Pro subscription payments</h3>
+    <p>If you subscribe to Boardcall Pro, the purchase, payment, and ongoing subscription management
+    happen entirely through Apple's StoreKit system. We never see your card number, billing address, or
+    Apple ID. To determine whether Pro features should be unlocked, the app asks Apple's own StoreKit
+    APIs, live, whether you currently hold an active entitlement — we do not keep our own record of your
+    purchase or subscription status on any server we control.</p>
+  </div>
 
-<h2>Changes</h2>
-<p>If this policy changes, the update will be posted here with a new date at the top.</p>
+  <h2>Third parties Boardcall talks to, and why</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Who</th><th>What they receive</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Open-Meteo<br><span class="muted">marine-api.open-meteo.com, api.open-meteo.com</span></td>
+        <td>A fixed catalog spot's coordinates (never your device's real location) and the wave/wind
+        variables the app requests.</td>
+        <td>Free, keyless marine and weather forecast data. Used under Open-Meteo's CC BY 4.0
+        license.</td>
+      </tr>
+      <tr>
+        <td>NOAA CO-OPS<br><span class="muted">api.tidesandcurrents.noaa.gov</span></td>
+        <td>A fixed tide-station ID and a date range, plus a static application-identifier parameter
+        that NOAA requires of every API caller to identify the calling app (it still reads our old
+        internal code name, "Quiver," from before the app was renamed to Boardcall) — not you.</td>
+        <td>Free tide-prediction data from the U.S. government.</td>
+      </tr>
+      <tr>
+        <td>Anthropic<br><span class="muted">Claude API, a third-party AI service</span></td>
+        <td>The day's conditions, your skill level and weight, and your ranked boards — sent only from
+        our own server, never directly from your phone.</td>
+        <td>Writes the plain-English briefing and board-pick explanation you see on Today.</td>
+      </tr>
+      <tr>
+        <td>Apple / StoreKit</td>
+        <td>Standard StoreKit purchase and entitlement traffic, handled entirely by Apple's own
+        framework. If you use Sign in with Apple, your Apple account identifier (and, on first use only,
+        your name if shared) — handled entirely by Apple, and never forwarded by us to anyone.</td>
+        <td>Processes Boardcall Pro subscription purchases and confirms your active entitlement; powers
+        the optional Sign in with Apple button in Settings.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">One more note for completeness: opening the Map tab fetches live conditions for the
+  spots in our built-in catalog from Open-Meteo and NOAA, the same way described above and using each
+  spot's fixed catalog coordinates — never your device's location — and without including any of your
+  profile or board data in those particular requests.</p>
 
-<h2>Contact</h2>
-<p>Questions about this policy: <a href="mailto:zachweston5@gmail.com">zachweston5@gmail.com</a></p>
+  <h2>Location</h2>
+  <p>Boardcall does not use Core Location, does not request location permission, and has no way to know
+  where your device physically is. Every surf spot in the app — on Today, Forecast, or the Map tab — is
+  a fixed point chosen from a built-in catalog, never a GPS reading.</p>
 
+  <h2>Children's privacy</h2>
+  <p>Boardcall carries a 4+ age rating and contains no objectionable content. No account, sign-up, or
+  personal information is required to use any feature of the app. The one optional exception — Sign in
+  with Apple in Settings — is off by default, is never required to complete onboarding or use any part
+  of the app, and stores its result only on your device as described above. We do not knowingly collect
+  personal data from children. If you believe a child has provided us information beyond what's
+  described in this policy, contact us at the email below and we'll look into it.</p>
+
+  <h2>Your rights and how to delete your data</h2>
+  <p>Because almost everything Boardcall touches lives only on your device, deleting the app deletes
+  your profile, your boards, your saved spots, and all cached data completely — there is no separate
+  server-side copy of any of that to request or delete.</p>
+  <p>The one thing that does exist on our server is the anonymous rate-limit record described above: a
+  random device ID, a date, and a count. We have no way to trace that record back to you as a person,
+  and our backend is built to delete it automatically after 30 days regardless of whether you ask.</p>
+  <p>If you still have questions or concerns about your data, email us — see Contact below.</p>
+
+  <h2>Security</h2>
+  <p>All network requests the app makes, to every service listed above, use HTTPS encryption in transit.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If Boardcall's data practices change, we'll update this page and change the effective date at the
+  top to match. Because the app has no accounts, email addresses, or push notifications tied to a
+  server, there is no separate mechanism for notifying you of changes beyond this page itself — material
+  changes will be described here directly.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy or how Boardcall handles data: <a href="mailto:zachweston5@gmail.com">zachweston5@gmail.com</a>.</p>
+
+  <footer>
+    <p>Boardcall is developed by an individual, Zach Weston, not a company.</p>
+    <p><a href="https://zachweston123.github.io/boardcall/support">Boardcall Support</a> · <a href="mailto:zachweston5@gmail.com">zachweston5@gmail.com</a></p>
+  </footer>
+
+</div>
 </body>
 </html>
