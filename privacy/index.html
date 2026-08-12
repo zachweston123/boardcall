@@ -156,7 +156,7 @@
   <header class="page-head">
     <span class="eyebrow">Boardcall</span>
     <h1>Privacy Policy</h1>
-    <p class="subtitle">Effective August 5, 2026</p>
+    <p class="subtitle">Effective August 12, 2026</p>
   </header>
 
   <p>Boardcall ("the app," "we," "us") is a surf-briefing app for iPhone, built and maintained by an
@@ -174,7 +174,8 @@
       access anywhere in the app.</li>
       <li>Each morning's briefing text is written by a third-party AI service (Anthropic's Claude),
       reached through our own small server. That request includes the day's conditions and your boards,
-      but the content itself is not logged or stored by our server.</li>
+      but our server does not log or store it. Anthropic holds it for up to 30 days on their own
+      systems as an anti-abuse measure.</li>
       <li>Our server does keep one small, anonymous thing: a randomly generated ID plus a daily count,
       used only to stop abuse of the AI briefing feature. It cannot be tied back to you as a person.</li>
       <li>If you subscribe to Boardcall Pro, Apple handles the entire purchase and payment. We never see
@@ -196,7 +197,8 @@
     spots (chosen from our built-in catalog — never your GPS coordinates), whether you've completed
     onboarding, a randomly generated device identifier (explained below), and a running weekly count of
     how many AI-written briefings you've used. Boardcall also caches recent wave, wind, and tide data on
-    your device for up to 60 minutes per spot, purely to avoid re-fetching it needlessly.</p>
+    your device for up to 60 minutes per spot, along with the most recent briefing text for that spot,
+    purely to avoid re-fetching and re-generating it needlessly.</p>
     <p class="muted">None of this is uploaded to iCloud or synced anywhere by us. (If you use Apple's own
     device backup features, that backup is between you and Apple, not something Boardcall controls.)
     Deleting the app deletes all of it, permanently, from your device.</p>
@@ -223,9 +225,16 @@
     size, swell period, wind, tide, temperature), your skill level and weight, and your boards as ranked
     by the app's own on-device physics engine. Our server forwards this to Anthropic's Claude — a
     third-party AI service — to write the plain-English briefing, and returns the result to the app.
-    That content is not written to any database by our server. Per Anthropic's own API terms, this data
-    is not used to train their models and is not retained beyond what's needed to process the request.
-    On failure, our server only logs a generic error code, never the data itself.</p>
+    That content is not written to any database by our server, and on failure our server only logs a
+    generic error code, never the data itself.</p>
+    <p>Per Anthropic's own API terms, this data is not used to train their models. Anthropic does hold
+    the request and the briefing on their own systems for up to 30 days as an anti-abuse measure, and
+    longer if a request is flagged for review under their usage policies. That retention is theirs, not
+    ours — we never write it to a database and we have no access to what they hold.</p>
+    <p class="muted">Worth knowing: if you give a board a nickname, that nickname is part of what gets
+    sent, because it's how the briefing refers to the board. It's free text you typed, so it's the one
+    field in the request that could contain anything you put there — a plain description like "the
+    yellow one" is all it's designed for.</p>
   </div>
 
   <div class="data-block">
@@ -236,8 +245,9 @@
     other identifier Apple or anyone else assigns you. Our server stores that random ID together with
     the date and a count, and nothing else at the application level, purely to enforce a daily limit and
     prevent abuse of the AI briefing feature. This is the only application-level record our
-    infrastructure retains, and our backend is built to delete it after 30 days. It cannot be linked back
-    to you as a person — it identifies a device-generated random number, not an individual.</p>
+    infrastructure retains. We delete these records once they are more than 30 days old. It cannot be
+    linked back to you as a person — it identifies a device-generated random number, not an
+    individual.</p>
     <p class="muted">Separately, our hosting provider may retain standard technical request logs (such as
     IP address) for a limited time as part of normal server operation, the way any web server does. We
     don't access or use those logs for anything beyond troubleshooting an outage.</p>
@@ -300,12 +310,14 @@
   a fixed point chosen from a built-in catalog, never a GPS reading.</p>
 
   <h2>Children's privacy</h2>
-  <p>Boardcall carries a 4+ age rating and contains no objectionable content. No account, sign-up, or
-  personal information is required to use any feature of the app. The one optional exception — Sign in
-  with Apple in Settings — is off by default, is never required to complete onboarding or use any part
-  of the app, and stores its result only on your device as described above. We do not knowingly collect
-  personal data from children. If you believe a child has provided us information beyond what's
-  described in this policy, contact us at the email below and we'll look into it.</p>
+  <p>Boardcall is a surf-forecasting tool for surfers and is not designed for or directed to children.
+  Our <a href="https://zachweston123.github.io/boardcall/terms">Terms of Use</a> ask that you be at
+  least 13 to use it. The app contains no objectionable content, and no account, sign-up, or personal
+  information is required to use any feature. The one optional exception — Sign in with Apple in
+  Settings — is off by default, is never required to complete onboarding or use any part of the app,
+  and stores its result only on your device as described above. We do not knowingly collect personal
+  data from children under 13. If you believe a child has provided us information beyond what's
+  described in this policy, contact us at the email below and we'll delete it.</p>
 
   <h2>Your rights and how to delete your data</h2>
   <p>Because almost everything Boardcall touches lives only on your device, deleting the app deletes
@@ -313,11 +325,23 @@
   server-side copy of any of that to request or delete.</p>
   <p>The one thing that does exist on our server is the anonymous rate-limit record described above: a
   random device ID, a date, and a count. We have no way to trace that record back to you as a person,
-  and our backend is built to delete it automatically after 30 days regardless of whether you ask.</p>
+  and we delete these records once they are more than 30 days old, whether or not you ask.</p>
+  <p>We do not sell your personal information, and we do not share it for cross-context behavioural
+  advertising. There are no advertisers, data brokers, or analytics companies involved in this app at
+  all.</p>
   <p>If you still have questions or concerns about your data, email us — see Contact below.</p>
 
   <h2>Security</h2>
-  <p>All network requests the app makes, to every service listed above, use HTTPS encryption in transit.</p>
+  <p>All network requests the app makes, to every service listed above, use HTTPS encryption in transit.
+  The rate-limit table described above is not readable by the public: it is reachable only by our own
+  server function, using credentials that never leave it.</p>
+
+  <h2>Where this data is handled</h2>
+  <p>Boardcall is run from the United States, and the services it depends on — our server host, the AI
+  provider, and the weather and tide sources — process data on servers in the United States. If you use
+  the app from outside the US, the briefing request described above is handled there. Given how little
+  is involved — no account, no name, no email, no location, and a random ID rather than an identifier
+  tied to you — this is the whole of the international picture.</p>
 
   <h2>Changes to this policy</h2>
   <p>If Boardcall's data practices change, we'll update this page and change the effective date at the
