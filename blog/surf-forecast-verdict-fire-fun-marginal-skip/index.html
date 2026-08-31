@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fire, Fun, Marginal, Skip: Why Boardcall Answers in a Verdict — Boardcall</title>
+<meta name="description" content="Why the app returns a capped, plain-language verdict instead of a raw numeric score.">
+<link rel="canonical" href="https://zachweston123.github.io/boardcall/blog/surf-forecast-verdict-fire-fun-marginal-skip/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Boardcall",
+  "url": "https://zachweston123.github.io/boardcall/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Fire, Fun, Marginal, Skip: Why Boardcall Answers in a Verdict",
+  "description": "Why the app returns a capped, plain-language verdict instead of a raw numeric score.",
+  "datePublished": "2026-08-30",
+  "author": {
+    "@type": "Organization",
+    "name": "Boardcall"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Boardcall",
+    "url": "https://zachweston123.github.io/boardcall/"
+  },
+  "mainEntityOfPage": "https://zachweston123.github.io/boardcall/blog/surf-forecast-verdict-fire-fun-marginal-skip/"
+}
+</script>
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --bg-card: #FFFFFF;
+    --fg: #0B0F14;
+    --fg-muted: #4B5560;
+    --accent: #1F6F78;
+    --border: rgba(11, 15, 20, 0.12);
+    --border-strong: rgba(11, 15, 20, 0.2);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0B0F14;
+      --bg-card: #121821;
+      --fg: #F7F5F0;
+      --fg-muted: #9AA5B1;
+      --accent: #3D9AA3;
+      --border: rgba(247, 245, 240, 0.12);
+      --border-strong: rgba(247, 245, 240, 0.2);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  .back-link {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--fg-muted);
+    text-decoration: none;
+    margin-bottom: 24px;
+  }
+  .back-link:hover { color: var(--accent); }
+  header.page-head {
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 38px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    color: var(--fg-muted);
+    font-size: 17px;
+    margin: 0;
+    max-width: 58ch;
+  }
+  h2 {
+    font-size: 21px;
+    margin: 44px 0 14px;
+    padding-top: 4px;
+    letter-spacing: -0.005em;
+  }
+  h3 {
+    font-size: 16px;
+    margin: 24px 0 8px;
+    color: var(--fg);
+  }
+  p { margin: 0 0 14px; color: var(--fg); }
+  p.muted { color: var(--fg-muted); }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { opacity: 0.85; }
+  strong { font-weight: 600; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.92em;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: 14px;
+  }
+  footer a { color: var(--fg-muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="https://zachweston123.github.io/boardcall/blog/">&larr; Boardcall Blog</a>
+
+  <header class="page-head">
+    <span class="eyebrow">Boardcall Guide</span>
+    <h1>Fire, Fun, Marginal, Skip: Why Boardcall Answers in a Verdict</h1>
+    <p class="subtitle">Why the app returns a capped, plain-language verdict instead of a raw numeric
+    score.</p>
+  </header>
+
+  <article>
+    <p>Most surf forecasts hand you a wall of numbers — wave height in feet, period in seconds, wind
+    speed and direction, tide state — and leave the interpretation to you. That's real information, but
+    it isn't a decision. Standing in a kitchen deciding whether to load a board into the car, nobody
+    wants to reconcile twelve numbers against their own experience. They want an answer.</p>
+    <p>Boardcall, an iOS app whose App Store subtitle is simply "Which board to bring today," answers
+    with one of four words: fire, fun, marginal, or skip. That's the entire verdict — no score out of
+    ten, no percentage, no star rating. The app's own design goal is a six-second read: glance at the
+    screen and know whether to go and what to grab. A number invites interpretation. A word like
+    "marginal" doesn't — it means only if you're keen, and there's nothing left to translate.</p>
+
+    <h2>What actually decides the word</h2>
+    <p>The board pick — which surfboard actually gets recommended — comes out of a deterministic
+    pipeline that runs the same way every time. The verdict word is a separate question: Boardcall's
+    briefing can be written by a plain, template-based writer that computes the verdict directly from
+    the same conditions, or by a language model that's handed those same numbers and writes the verdict
+    itself as part of the prose. Either way, the board pick underneath doesn't depend on which one
+    wrote the words — that part never involves an AI.</p>
+    <p>First, the app converts the raw offshore swell reading — height, period, direction — into an
+    estimate of the actual breaking wave face height at a specific spot, weighted by how exposed that
+    spot is to open-ocean swell and how well the swell direction lines up with the way the coastline
+    faces. From there it computes a target board volume for that surfer, based on their weight and
+    stated skill level, adjusted further for the period and size of the swell. One detail worth calling
+    out because it runs against intuition: both very small, weak swell and very large swell push the
+    target volume <em>up</em>, not down — small waves need more float to catch at all, and big waves
+    need more paddle power to get into them early. It isn't a straight line from "smaller wave, smaller
+    board."</p>
+    <p>Every board the surfer owns is then scored against that target — split evenly between how well
+    its volume fits and how well its shape category fits the day's conditions — with small, capped
+    adjustments for details like fin setup, and an optional nudge based on a surfer's own logged
+    sessions that is capped so it can never override the top-scoring pick. All of that happens before a
+    single sentence of prose gets written.</p>
+
+    <h2>What the AI is, and isn't, allowed to do</h2>
+    <p>When a language model writes the briefing, it's handed the pipeline's output — the computed face
+    height, the target-volume math, the ranked boards — and its job is to write two or three
+    plain-English sentences, a headline, and the handful of short fields that make up the briefing,
+    including the verdict word and a one-line reason for the board it names. It's allowed to name a
+    different board than the deterministic top pick, but only if it states a reason; it isn't allowed
+    to invent one. The style is enforced explicitly — no emoji, no exclamation marks, at most one
+    number in the whole briefing, and a banned-phrase list ("Get out there," "Dawn patrol," "Send it,"
+    "stoked") that would otherwise make it read like marketing instead of an answer. The model is also
+    barred from calling its own pick "top-ranked," "first," or "best" — the surfer never sees a
+    ranking, so referring to one would describe the machinery instead of giving a straight answer.</p>
+
+    <h2>The part that isn't a suggestion</h2>
+    <p>The design decision worth dwelling on is what happens on a day flagged as beyond what a given
+    surfer, at their own stated skill level, should be paddling into. On that day, the verdict is held
+    to "marginal" at best — and for the single most serious case the rule accounts for, a
+    beginner-level surfer facing real size over a shallow reef, it's held all the way down to "skip."
+    Either way, it is not permitted to read "fire" or "fun," regardless of what the AI-generated text
+    around it says. That rule sits between the model's output and the screen as a separate,
+    non-generative check. It doesn't rely on the model reading the conditions correctly or staying in
+    character. A language model can misjudge tone or simply generate an overly upbeat pass on a given
+    try; a hard limit on the verdict can't be written around by a good sentence.</p>
+    <p>That's a narrow, unglamorous piece of engineering, and it generalizes past surfing. Any product
+    that lets a generative model produce advice with a real physical consequence attached — go or don't
+    go — benefits from separating what the model is free to write from what claim the output is
+    actually allowed to make. The prose can vary. The limit shouldn't.</p>
+
+    <h2>Where the real edge is, stated plainly</h2>
+    <p>Boardcall isn't the first app to suggest a board for a given spot. Surf Forecast: Quiver, a
+    separate app in the same App Store weather category, already does per-spot board recommendations.
+    What's different here is that Boardcall models a surfer's actual quiver by real dimensions and
+    volume rather than issuing a generic size-based suggestion, and wraps that pick in a briefing
+    that's constrained the way described above — honest about risk even on a day that reads well on
+    paper.</p>
+    <p>It's also honest about its own limits: it collects an anonymous device identifier to limit abuse
+    of the AI-generation feature, and each AI-written briefing sends that day's conditions along with
+    the surfer's skill, weight, and ranked boards to generate the prose — that's real data leaving the
+    device, not "nothing." The spot catalog covers 193 surf breaks, not an exhaustive global list. And
+    the underlying board-matching and safety logic isn't a paid feature — it runs the same way for
+    every surfer; what a paid tier changes is only how often the AI-written version of the briefing
+    gets generated.</p>
+  </article>
+
+  <footer>
+    <p>Boardcall is developed by an individual, Zach Weston, not a company.</p>
+    <p><a href="https://zachweston123.github.io/boardcall/blog/">More from the Boardcall Blog</a> ·
+    <a href="https://zachweston123.github.io/boardcall/privacy/">Privacy Policy</a> ·
+    <a href="mailto:zachweston5@gmail.com">zachweston5@gmail.com</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

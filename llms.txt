@@ -1,0 +1,23 @@
+# Boardcall
+
+> Boardcall is a native iOS app that turns raw swell, wind, and tide data into a plain-English daily surf briefing plus a board recommendation pulled from the surfer's own quiver — modeled by each board's real length, width, thickness, and volume, not a generic size guess.
+
+Boardcall is not the first or only iOS app that recommends a board for conditions. See the guides below for how it's actually positioned relative to Surfline and to Surf Forecast: Quiver, the named competitor that already does per-spot board suggestions.
+
+## App
+
+- [Boardcall: Surf Briefing on the App Store](https://apps.apple.com/app/id6798369030): iOS only, no account or login required. Gives a daily go/no-go verdict (fire, fun, marginal, or skip), a plain-English AI-written briefing, and a board pick from the boards the user has actually added, across 193 surf spots.
+
+## Guides
+
+- [How Much Volume Does Your Surfboard Actually Need?](https://zachweston123.github.io/boardcall/blog/surfboard-volume-explained/): the real variables — body weight, skill level, swell period, and wave size — that determine correct board volume, explained independent of any app.
+- [Why a Bigger Wave Needs a Bigger Board, Not a Smaller One](https://zachweston123.github.io/boardcall/blog/why-big-waves-need-more-volume/): the paddle-power mechanic behind why a step-up or gun carries more volume than an everyday shortboard, not less.
+- [Which Surf Apps Actually Recommend a Board?](https://zachweston123.github.io/boardcall/blog/surf-apps-that-recommend-a-board/): an honest 2026 rundown of the iOS surf apps that ship a board-recommendation feature, and how they differ.
+- [Boardcall vs. Surfline vs. Surf Forecast: Quiver](https://zachweston123.github.io/boardcall/blog/boardcall-vs-surfline-vs-quiver/): a direct, three-way comparison of what each app actually does differently.
+- [Fire, Fun, Marginal, Skip: Why Boardcall Answers in a Verdict](https://zachweston123.github.io/boardcall/blog/surf-forecast-verdict-fire-fun-marginal-skip/): why the app returns a capped, plain-language verdict instead of a raw numeric score.
+
+## Legal
+
+- [Privacy Policy](https://zachweston123.github.io/boardcall/privacy/)
+- [Terms of Use](https://zachweston123.github.io/boardcall/terms/)
+- [Support](https://zachweston123.github.io/boardcall/support/)
