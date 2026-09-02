@@ -10,24 +10,24 @@ Boardcall is not the first or only iOS app that recommends a board for condition
 
 ## Guides
 
-- [How Much Volume Does Your Surfboard Actually Need?](https://zachweston123.github.io/boardcall/blog/surfboard-volume-explained/): the real variables — body weight, skill level, swell period, and wave size — that determine correct board volume, explained independent of any app.
-- [Why a Bigger Wave Needs a Bigger Board, Not a Smaller One](https://zachweston123.github.io/boardcall/blog/why-big-waves-need-more-volume/): the paddle-power mechanic behind why a step-up or gun carries more volume than an everyday shortboard, not less.
-- [Which Surf Apps Actually Recommend a Board?](https://zachweston123.github.io/boardcall/blog/surf-apps-that-recommend-a-board/): an honest 2026 rundown of the iOS surf apps that ship a board-recommendation feature, and how they differ.
-- [Boardcall vs. Surfline vs. Surf Forecast: Quiver](https://zachweston123.github.io/boardcall/blog/boardcall-vs-surfline-vs-quiver/): a direct, three-way comparison of what each app actually does differently.
-- [Fire, Fun, Marginal, Skip: Why Boardcall Answers in a Verdict](https://zachweston123.github.io/boardcall/blog/surf-forecast-verdict-fire-fun-marginal-skip/): why the app returns a capped, plain-language verdict instead of a raw numeric score.
-- [What a Surfboard Recommendation App Should Actually Do](https://zachweston123.github.io/boardcall/guides/surfboard-recommendation-app.html): what separates a real board-matching engine from a one-time buying quiz.
-- [Which Surfboard Should I Ride Today?](https://zachweston123.github.io/boardcall/guides/which-surfboard-should-i-ride-today.html): the actual decision framework — wave face, period, wind, and board volume — surfers use to pick a board for a given day.
-- [Surfboard Volume Chart by Weight and Skill Level](https://zachweston123.github.io/boardcall/guides/surfboard-volume-chart-by-weight-and-skill-level.html): a practical volume lookup by body weight and skill level, and how wave size/period shift the target.
-- [Signs Your Surfboard Has the Wrong Volume](https://zachweston123.github.io/boardcall/guides/signs-your-surfboard-has-wrong-volume.html): the diagnostic signs a board is over- or under-volumed for the surfer riding it.
-- [Is It Safe for a Beginner to Surf Overhead Waves?](https://zachweston123.github.io/boardcall/guides/is-it-safe-for-beginners-to-surf-overhead-waves.html): real risk factors and skill thresholds for overhead surf.
-- [How Do I Know If the Waves Are Too Big for Me?](https://zachweston123.github.io/boardcall/guides/how-do-i-know-if-the-waves-are-too-big-for-me.html): a practical framework for judging whether conditions exceed your own level.
-- [Wave Height Guide: Feet to Body Parts](https://zachweston123.github.io/boardcall/guides/wave-height-guide-feet-to-body-parts.html): the standard surf-size vocabulary (ankle high through double overhead) mapped to real face-height feet.
-- [Surf Forecast App With No Account Required](https://zachweston123.github.io/boardcall/guides/surf-forecast-app-no-account.html): what data an accountless surf app actually stores, and what Boardcall specifically keeps on-device vs. sends to a server.
-- [Free Surfline Alternative: What You Actually Get for $0](https://zachweston123.github.io/boardcall/guides/free-surfline-alternative.html): a feature-by-feature breakdown of what Surfline paywalls vs. what's genuinely free, including in Boardcall.
-- [How Cold Is Too Cold to Surf Without a Wetsuit?](https://zachweston123.github.io/boardcall/guides/how-cold-is-too-cold-to-surf-without-a-wetsuit.html): real water-temperature-to-wetsuit-thickness thresholds and hypothermia risk signs.
+- [How Much Volume Does Your Surfboard Actually Need?](https://boardcall.app/blog/surfboard-volume-explained/): the real variables — body weight, skill level, swell period, and wave size — that determine correct board volume, explained independent of any app.
+- [Why a Bigger Wave Needs a Bigger Board, Not a Smaller One](https://boardcall.app/blog/why-big-waves-need-more-volume/): the paddle-power mechanic behind why a step-up or gun carries more volume than an everyday shortboard, not less.
+- [Which Surf Apps Actually Recommend a Board?](https://boardcall.app/blog/surf-apps-that-recommend-a-board/): an honest 2026 rundown of the iOS surf apps that ship a board-recommendation feature, and how they differ.
+- [Boardcall vs. Surfline vs. Surf Forecast: Quiver](https://boardcall.app/blog/boardcall-vs-surfline-vs-quiver/): a direct, three-way comparison of what each app actually does differently.
+- [Fire, Fun, Marginal, Skip: Why Boardcall Answers in a Verdict](https://boardcall.app/blog/surf-forecast-verdict-fire-fun-marginal-skip/): why the app returns a capped, plain-language verdict instead of a raw numeric score.
+- [What a Surfboard Recommendation App Should Actually Do](https://boardcall.app/guides/surfboard-recommendation-app.html): what separates a real board-matching engine from a one-time buying quiz.
+- [Which Surfboard Should I Ride Today?](https://boardcall.app/guides/which-surfboard-should-i-ride-today.html): the actual decision framework — wave face, period, wind, and board volume — surfers use to pick a board for a given day.
+- [Surfboard Volume Chart by Weight and Skill Level](https://boardcall.app/guides/surfboard-volume-chart-by-weight-and-skill-level.html): a practical volume lookup by body weight and skill level, and how wave size/period shift the target.
+- [Signs Your Surfboard Has the Wrong Volume](https://boardcall.app/guides/signs-your-surfboard-has-wrong-volume.html): the diagnostic signs a board is over- or under-volumed for the surfer riding it.
+- [Is It Safe for a Beginner to Surf Overhead Waves?](https://boardcall.app/guides/is-it-safe-for-beginners-to-surf-overhead-waves.html): real risk factors and skill thresholds for overhead surf.
+- [How Do I Know If the Waves Are Too Big for Me?](https://boardcall.app/guides/how-do-i-know-if-the-waves-are-too-big-for-me.html): a practical framework for judging whether conditions exceed your own level.
+- [Wave Height Guide: Feet to Body Parts](https://boardcall.app/guides/wave-height-guide-feet-to-body-parts.html): the standard surf-size vocabulary (ankle high through double overhead) mapped to real face-height feet.
+- [Surf Forecast App With No Account Required](https://boardcall.app/guides/surf-forecast-app-no-account.html): what data an accountless surf app actually stores, and what Boardcall specifically keeps on-device vs. sends to a server.
+- [Free Surfline Alternative: What You Actually Get for $0](https://boardcall.app/guides/free-surfline-alternative.html): a feature-by-feature breakdown of what Surfline paywalls vs. what's genuinely free, including in Boardcall.
+- [How Cold Is Too Cold to Surf Without a Wetsuit?](https://boardcall.app/guides/how-cold-is-too-cold-to-surf-without-a-wetsuit.html): real water-temperature-to-wetsuit-thickness thresholds and hypothermia risk signs.
 
 ## Legal
 
-- [Privacy Policy](https://zachweston123.github.io/boardcall/privacy/)
-- [Terms of Use](https://zachweston123.github.io/boardcall/terms/)
-- [Support](https://zachweston123.github.io/boardcall/support/)
+- [Privacy Policy](https://boardcall.app/privacy/)
+- [Terms of Use](https://boardcall.app/terms/)
+- [Support](https://boardcall.app/support/)

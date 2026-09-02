@@ -37,4 +37,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://zachweston123.github.io/boardcall/sitemap.xml
+Sitemap: https://boardcall.app/sitemap.xml
