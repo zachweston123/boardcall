@@ -4,9 +4,36 @@
 
 Boardcall is not the first or only iOS app that recommends a board for conditions. See the guides below for how it's actually positioned relative to Surfline and to Surf Forecast: Quiver, the named competitor that already does per-spot board suggestions.
 
+## Site
+
+- [Boardcall — Surf Forecast App That Picks Your Board](https://boardcall.app/): the marketing homepage. Screenshots, a plain-English walkthrough of how the board pick is calculated, and an FAQ (also summarized below).
+
 ## App
 
-- [Boardcall: Surf Briefing on the App Store](https://apps.apple.com/app/id6798369030): iOS only, no account or login required. Gives a daily go/no-go verdict (fire, fun, marginal, or skip), a plain-English AI-written briefing, and a board pick from the boards the user has actually added, across 243 surf spots worldwide.
+- [Boardcall: Surf Briefing on the App Store](https://apps.apple.com/app/id6798369030): free iOS app for iPhone and iPad, no account or login required. Every morning it reads swell, wind, and tide at the surfer's chosen spot and writes a plain-English briefing with a go/no-go verdict — fire, fun, marginal, or skip — plus a board pick from the boards the user has actually added, across 263 built-in surf spots worldwide.
+
+## Key facts
+
+- Platform: iOS (iPhone and iPad), free to download.
+- No account, login, signup, or password anywhere in the app; boards, spots, and profile are stored on-device, not in an account.
+- 263 built-in surf spots worldwide: the full US coastline, Puerto Rico, the US Virgin Islands, Guam, American Samoa, a Great Lakes cluster, and 40+ countries internationally. No GPS or location tracking — the user picks from the built-in list.
+- 258 real surfboard models in a built-in catalog, sourced from actual manufacturer dimensions and volumes, across longboard, mid-length, fish, groveler, shortboard, step-up, gun, and soft-top — or the user can enter their own board's exact dimensions.
+- Board pick logic: a deterministic physics calculation (length × width × thickness → volume, adjusted for board shape, matched against wave face height, swell period, wind, skill level, and body weight) decides the recommended board. An AI model (Claude) can write the plain-English explanation of that pick, but the pick itself is never the AI's call.
+- Briefings: a free, unlimited, deterministic (non-AI) plain-English briefing is available every day at no cost. Boardcall Pro ($6.99/mo or $54.99/yr) raises the weekly cap on richer AI-written briefing prose from 4/week to unlimited, and adds a weekly AI "coach" note on patterns from the user's own logged sessions. Nothing else is gated behind Pro.
+- Safety gate: a beginner or intermediate surfer's daily verdict is automatically capped (it will never show "fire") when conditions exceed the skill level the user has entered.
+- Data sources: wave and wind data from Open-Meteo; tide data from NOAA CO-OPS (US spots only — international and Great Lakes spots do not have tide data).
+- Differentiator vs. plain surf-report/forecast apps (Surfline, generic marine-forecast apps): those report conditions and stop, leaving the surfer to decide; Boardcall closes the loop by naming the one specific board from the surfer's own quiver to bring, and why.
+
+## FAQ
+
+- **Is Boardcall free to use?** Yes — Boardcall is free to download, with unlimited daily briefings, the full board-pick engine across your whole quiver, the worldwide spot map, and the six-day forecast all included. Boardcall Pro ($6.99/mo or $54.99/yr) only raises the weekly cap on richer AI-written briefings from 4/week to unlimited and adds a weekly AI coaching note based on your own logged sessions.
+- **Does Boardcall require an account or login?** No. There's no signup, login, or password — your boards, spots, and profile are stored on your device, not in an account.
+- **How does Boardcall decide which surfboard to bring?** It calculates real volume for every board in your quiver from length × width × thickness (adjusted for shape), matches it against today's wave face height, period, and wind plus your skill level and body weight, and names the one board that fits best — an AI model then writes the plain-English explanation.
+- **What surfboard volume do I need for my weight and skill level?** It depends on both — heavier and less experienced surfers generally need more volume — but wave size and period shift that target by another 10–45%, which is why a single fixed number is only a starting point.
+- **Is Boardcall a good alternative to Surfline?** For checking conditions and getting a board recommendation, yes — Boardcall's free tier includes unlimited briefings, the full worldwide spot map, and board picks with no paywall, though it doesn't include Surfline's live surf-cam network.
+- **What does "chest high" or "waist high" actually mean in feet?** Roughly: knee-to-waist is 2–3 ft face height, waist-to-chest is 3–4 ft, and chest-to-shoulder is 4–5 ft. Boardcall reports every forecast in these plain-English terms instead of a bare number.
+- **Is it safe for a beginner to surf overhead waves?** Generally no — overhead waves (roughly 5 ft+ face height) call for real experience and strong paddle power. Boardcall's safety gate automatically caps that day's verdict and warns beginners when conditions exceed their stated skill level.
+- **How cold does the water need to be before I need a wetsuit?** Most surfers want at least a spring suit below about 75°F and a full wetsuit well before 65°F, with real hypothermia risk climbing fast under 50°F. Boardcall reads actual water temperature at your spot and gives a direct wetsuit call.
 
 ## Guides
 

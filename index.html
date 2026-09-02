@@ -32,21 +32,37 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  "name": "Boardcall: Surf Briefing",
-  "operatingSystem": "iOS 17.0 or later",
-  "applicationCategory": "WeatherApplication",
-  "applicationSubCategory": "SportsApplication",
-  "offers": [
-    { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
-    { "@type": "Offer", "price": "6.99", "priceCurrency": "USD", "name": "Boardcall Pro (monthly)" },
-    { "@type": "Offer", "price": "54.99", "priceCurrency": "USD", "name": "Boardcall Pro (yearly)" }
-  ],
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "3" },
-  "description": "Boardcall reads swell, wind and tide every morning and tells you which board from your own quiver to bring, with a plain verdict: fire, fun, marginal, or skip.",
-  "url": "https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030",
-  "downloadUrl": "https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030",
-  "screenshot": "https://boardcall.app/assets/images/01-today-captioned.png"
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "Boardcall: Surf Briefing",
+      "operatingSystem": "iOS 17.0 or later",
+      "applicationCategory": "WeatherApplication",
+      "applicationSubCategory": "SportsApplication",
+      "offers": [
+        { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+        { "@type": "Offer", "price": "6.99", "priceCurrency": "USD", "name": "Boardcall Pro (monthly)" },
+        { "@type": "Offer", "price": "54.99", "priceCurrency": "USD", "name": "Boardcall Pro (yearly)" }
+      ],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "3" },
+      "description": "Boardcall reads swell, wind and tide every morning and tells you which board from your own quiver to bring, with a plain verdict: fire, fun, marginal, or skip.",
+      "url": "https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030",
+      "downloadUrl": "https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030",
+      "screenshot": "https://boardcall.app/assets/images/01-today-captioned.png"
+    },
+    {
+      "@type": "Organization",
+      "name": "Boardcall",
+      "url": "https://boardcall.app/",
+      "logo": "https://boardcall.app/assets/images/icon-512.png",
+      "sameAs": ["https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030"]
+    },
+    {
+      "@type": "WebSite",
+      "name": "Boardcall",
+      "url": "https://boardcall.app/"
+    }
+  ]
 }
 </script>
 <meta name="google-site-verification" content="hwl840Zd-x2qb6ZgiS7aD-vK4AbXbhy5F4vVGtMKKHU" />
@@ -156,8 +172,9 @@
         <a href="#how-it-works" class="btn btn--ghost">See how it works</a>
       </div>
       <div class="badges">
+        <span class="badge" aria-label="5.0 out of 5 on the App Store">★ 5.0 on the App Store</span>
         <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Free, no account</span>
-        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>243 spots worldwide</span>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>263 spots worldwide</span>
         <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>No location tracking</span>
       </div>
     </div>
@@ -172,7 +189,7 @@
   <div class="wrap text-center">
     <span class="eyebrow">Get Boardcall</span>
     <h2>One download. No account. Every board pick, every spot, free.</h2>
-    <p class="lede center">Boardcall is free on the App Store for iPhone and iPad — no subscription, no ads, no account required. Add your boards once, pick a home break from 243 spots worldwide, and get your first briefing in under a minute.</p>
+    <p class="lede center">Boardcall is free on the App Store for iPhone and iPad — no subscription, no ads, no account required. Add your boards once, pick a home break from 263 spots worldwide, and get your first briefing in under a minute.</p>
     <div class="btn-row" style="justify-content:center; margin-top:28px;">
       <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg>
@@ -195,7 +212,7 @@
       <figure class="shot" role="listitem"><img src="assets/images/02-boardpick-captioned-web.png" alt="Board pick screen showing the recommended surfboard from the user's own quiver with the reason why" loading="lazy"></figure>
       <figure class="shot" role="listitem"><img src="assets/images/03-forecast-captioned-web.png" alt="Six-day surf forecast with a different recommended board for each day" loading="lazy"></figure>
       <figure class="shot" role="listitem"><img src="assets/images/04-quiver-captioned-web.png" alt="Quiver screen listing the user's own surfboards with real dimensions and volume" loading="lazy"></figure>
-      <figure class="shot" role="listitem"><img src="assets/images/05-map-captioned-web.png" alt="Worldwide map of 243 surf spots ranked by current conditions" loading="lazy"></figure>
+      <figure class="shot" role="listitem"><img src="assets/images/05-map-captioned-web.png" alt="Worldwide map of 263 surf spots ranked by current conditions" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -212,12 +229,12 @@
       <div class="step">
         <div class="step__num">1</div>
         <h3>Add your quiver</h3>
-        <p>Enter your boards' length, width, thickness, and type — or pick a real model from 216 built-in boards with sourced dimensions. No surfboard volume calculator or spreadsheet needed — Boardcall works it out for every board as you build your quiver.</p>
+        <p>Enter your boards' length, width, thickness, and type — or pick a real model from 258 built-in boards with sourced dimensions. No surfboard volume calculator or spreadsheet needed — Boardcall works it out for every board as you build your quiver.</p>
       </div>
       <div class="step">
         <div class="step__num">2</div>
         <h3>Pick your spot</h3>
-        <p>Choose from 243 real surf spots — the full US coastline plus Great Lakes, Puerto Rico, and marquee breaks across ~30 countries. No GPS, no location permission.</p>
+        <p>Choose from 263 real surf spots — the full US coastline plus Great Lakes, Puerto Rico, and marquee breaks across 40+ countries. No GPS, no location permission.</p>
       </div>
       <div class="step">
         <div class="step__num">3</div>
