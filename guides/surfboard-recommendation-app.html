@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Surfboard Recommendation App: What It Should Do | Boardcall</title>
+<meta name="description" content="A real surfboard recommendation app matches your actual board's volume to today's waves — not a quiz. See how Boardcall's engine works, free to download.">
+<link rel="canonical" href="https://zachweston123.github.io/boardcall/guides/surfboard-recommendation-app.html">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Boardcall">
+<meta property="og:title" content="Surfboard Recommendation App: What It Should Do | Boardcall">
+<meta property="og:description" content="A real surfboard recommendation app matches your actual board's volume to today's waves — not a quiz. See how Boardcall's engine works, free to download.">
+<meta property="og:url" content="https://zachweston123.github.io/boardcall/guides/surfboard-recommendation-app.html">
+<meta property="og:image" content="https://zachweston123.github.io/boardcall/assets/images/og-icon-1200.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Surfboard Recommendation App: What It Should Do | Boardcall">
+<meta name="twitter:description" content="A real surfboard recommendation app matches your actual board's volume to today's waves — not a quiz. See how Boardcall's engine works, free to download.">
+
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/images/icon-180.png">
+<meta name="theme-color" content="#0B0F14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "What a Surfboard Recommendation App Should Actually Do",
+      "description": "A real surfboard recommendation app matches your actual board's volume to today's waves \u2014 not a quiz. See how Boardcall's engine works, free to download.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Boardcall"
+      },
+      "mainEntityOfPage": "https://zachweston123.github.io/boardcall/guides/surfboard-recommendation-app.html"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is there an app that recommends a surfboard based on the boards you already own?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Boardcall ranks the boards you actually enter into your quiver \u2014 by real length \u00d7 width \u00d7 thickness \u2192 volume, not a generic size chart \u2014 against today's wave height, period, wind, and your skill level, and names the one to bring, plus why."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much surfboard volume do I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As a rough baseline, multiply your body weight in kilograms by about 0.9\u20131.0 if you're a beginner, 0.55\u20130.65 if you're intermediate, 0.40\u20130.45 if you're advanced, or 0.33\u20130.38 if you're an expert \u2014 then add volume for small, weak surf or for overhead-plus waves, and use slightly less for clean, mid-size conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do bigger waves need a bigger or smaller surfboard?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bigger, counter-intuitively. Catching a wave early enough to be safe and in control takes paddle power, and paddle power comes from volume \u2014 which is why a dedicated big-wave gun carries more volume than an everyday shortboard, even though it's narrower and thinner."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a href="../index.html" class="nav__brand"><img src="../assets/images/icon-512.png" alt="Boardcall icon"> Boardcall</a>
+    <nav class="nav__links">
+      <a href="../index.html#how-it-works">How it works</a>
+      <a href="../index.html#screenshots">Screenshots</a>
+      <a href="../index.html#guides">Guides</a>
+      <a href="https://zachweston123.github.io/boardcall/blog/">Blog</a>
+      <a href="../index.html#faq">FAQ</a>
+      <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary btn--sm">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="article-hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="../index.html">Boardcall</a> &rsaquo; <a href="../index.html#guides">Guides</a> &rsaquo; What a Surfboard Recommendation App Should Actually Do</p>
+    <span class="eyebrow">Guide</span>
+    <h1>What a Surfboard Recommendation App Should Actually Do</h1>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="wrap article-body">
+    <p>If you're searching for a <strong>surfboard recommendation app</strong>, there's a good chance you've already tried the generic kind — answer five quiz questions about your height and experience, get told to buy a "7'2\" funboard," and never hear from the app again once you actually own boards. That's not a recommendation. That's a shopping quiz wearing a surf app's clothing.</p>
+<p>A surfboard recommendation app that's actually useful day to day has to answer a different question: given the boards you already own, and what the ocean is doing at your break this morning, which one should you grab? Answering that well takes two things a static quiz can't provide — real volume math run against your real quiver, and real, current wave, wind, and tide data, not a one-time guess made the day you installed the app.</p>
+<p>Below is the actual math and the actual guidance: how surfboard volume is calculated, why bigger waves need more volume rather than less, and how to read wetsuit thickness for real water temperatures. Then we'll show exactly how Boardcall runs all of it against your own quiver, automatically, every morning.</p>
+
+    <h2>Why Generic "What Surfboard Should I Get" Quizzes Miss the Point</h2>
+<p>Most things that call themselves a surfboard recommendation app are really a one-time buying quiz. You answer a handful of questions — height, weight, experience level — and it spits out a single suggestion, usually just a length and a board type, meant to help you shop for your next board. Once you own it, the app has nothing left to say to you.</p><p>That's a different job from what most surfers need on any given day: it's not "what board should I buy," it's "which of the boards I already own should I paddle out on this morning." Answering that second question well requires two things a static quiz can't provide:</p><ul><li><strong>Your boards' real dimensions</strong> — not a generic "shortboard" or "longboard" label, but the actual length, width, and thickness of the specific boards in your garage, converted into real volume.</li><li><strong>Today's actual conditions</strong> — wave face height, swell period, and wind at your specific break, not a one-time snapshot from whenever you downloaded the app.</li></ul><p>Without both, a "recommendation" is really just a guess dressed up as a calculation.</p>
+
+<h2>The Volume Math Behind a Real Surfboard Recommendation</h2>
+<p>Surfboard volume — measured in liters — is the single number that most determines whether a board will actually work for you in a given wave, more than length or a "shortboard vs. longboard" label alone. Two 6'0" boards can differ by 8+ liters depending on width and thickness, and that difference is often the entire reason one paddles into everything and the other doesn't.</p><p>You can estimate any board's volume yourself. Multiply length × width × thickness (all in inches) to get a rough "box" volume in cubic inches, convert to liters, then apply a shape factor to account for rails, rocker, and deck contour — a board is never a solid rectangular block, so the raw box number always overstates the real volume:</p><table><tr><th>Board type</th><th>Typical shape factor</th></tr><tr><td>Soft-top</td><td>0.60</td></tr><tr><td>Longboard</td><td>0.58</td></tr><tr><td>Mid-length</td><td>0.55</td></tr><tr><td>Fish</td><td>0.54</td></tr><tr><td>Groveler</td><td>0.53</td></tr><tr><td>Shortboard</td><td>0.50</td></tr><tr><td>Step-up</td><td>0.49</td></tr><tr><td>Gun</td><td>0.47</td></tr></table><p>Worked example — a 6'0" × 19.5" × 2.5" shortboard: 72 × 19.5 × 2.5 = 3,510 cubic inches. Convert to liters (× 0.0163871) and you get roughly 57.5 "box" liters. Apply the 0.50 shortboard shape factor and you land at about 28.8 liters — which lines up almost exactly with real-world stamped volumes on boards of that size.</p><p>Run the same math on a 9'0" × 22.75" × 3.0" longboard: about 120.8 box liters × 0.58 = roughly 70 liters, again right in line with what longboard shapers actually stamp on a board that size.</p>
+
+<h2>How Much Volume You Actually Need — and the Big-Wave Paradox</h2>
+<p>Once you know a board's volume, the next question is how much you need. A reasonable rule of thumb, used widely in surf coaching, ties target volume to your body weight and skill level:</p><table><tr><th>Skill level</th><th>Rough target volume</th><th>Example at 75kg (165lb)</th></tr><tr><td>Beginner</td><td>bodyweight (kg) × ~0.9–1.0</td><td>68–75 L</td></tr><tr><td>Intermediate</td><td>bodyweight (kg) × ~0.55–0.65</td><td>41–49 L</td></tr><tr><td>Advanced</td><td>bodyweight (kg) × ~0.40–0.45</td><td>30–34 L</td></tr><tr><td>Expert</td><td>bodyweight (kg) × ~0.33–0.38</td><td>25–28 L</td></tr></table><p>That baseline then has to move with the conditions, and this is where a lot of surfers get it backwards. It's intuitive that small, weak surf needs more volume — extra foam helps you catch anything at all when there's not much push. What's counter-intuitive is that <strong>big waves need more volume too</strong>, not less. Getting into a wave early, before it's too steep and fast to catch, takes paddle power — and paddle power comes from volume. That's exactly why a dedicated big-wave gun is a bigger board than your everyday shortboard, not a smaller one, even though it's also narrower and less maneuverable.</p><p>Roughly, here's how board type maps to wave size once you factor that in:</p><table><tr><th>Conditions</th><th>Works well</th><th>Struggles</th></tr><tr><td>Small & weak (knee-high or under, short period)</td><td>Longboard, soft-top, fish</td><td>Shortboard, step-up, gun</td></tr><tr><td>Small & clean (long-period groundswell)</td><td>Fish, groveler, mid-length</td><td>Gun, step-up</td></tr><tr><td>Waist to chest high</td><td>Shortboard, fish, mid-length</td><td>Longboard, gun</td></tr><tr><td>Overhead</td><td>Step-up, shortboard</td><td>Longboard, soft-top</td></tr><tr><td>Well overhead / double overhead+</td><td>Gun, step-up</td><td>Everything else</td></tr></table><p>Swell period matters as much as height here. A 2-foot wave at a 16-second period carries far more energy and pushes far harder than a 2-foot wave at an 8-second period — which is why wave height alone, without period, is an incomplete picture of what a board actually needs to handle.</p>
+
+<h2>Wetsuit Thickness by Water Temperature</h2>
+<p>The right board doesn't matter much if you're too cold to stay out and use it. Wetsuit thickness is usually written as two numbers in millimeters — torso / limb thickness (e.g. "4/3") — and the right choice comes down to water temperature, not air temperature:</p><table><tr><th>Water temp</th><th>Suit</th></tr><tr><td>75°F+ (24°C+)</td><td>Boardshorts or a rash guard — no wetsuit needed</td></tr><tr><td>70–75°F (21–24°C)</td><td>Rash guard, or a 2mm top/spring suit for longer sessions</td></tr><tr><td>65–70°F (18–21°C)</td><td>2/2mm or 3/2mm spring suit or shorty</td></tr><tr><td>62–65°F (17–18°C)</td><td>3/2mm full suit</td></tr><tr><td>58–63°F (14–17°C)</td><td>4/3mm full suit, boots optional</td></tr><tr><td>52–58°F (11–14°C)</td><td>4/3mm or 5/4mm full suit, hood optional, boots recommended</td></tr><tr><td>44–52°F (7–11°C)</td><td>5/4mm or 6/5mm hooded full suit, boots and gloves</td></tr><tr><td>Below 44°F (below 7°C)</td><td>6/5/4mm hooded suit with boots and gloves, or drysuit territory</td></tr></table><p>These ranges overlap on purpose — a lean surfer runs colder than a heavier one in the same water, and a long session in wind always feels colder than a short one at the same temperature. Treat them as a starting point, not a rule.</p>
+
+    <div class="callout">
+      <span class="eyebrow">How Boardcall handles this</span>
+      <p>Boardcall is built to run exactly the calculation walked through above, automatically, every morning — using your boards, not a generic size chart. When you set up your quiver, you enter your boards' length, width, and thickness (or their stamped volume if you know it), either by hand or from a built-in catalog of 216 real surfboard models with manufacturer-sourced dimensions across longboard, mid-length, fish, groveler, shortboard, step-up, gun, and soft-top. Boardcall runs the same length × width × thickness → volume math, adjusted for shape, against every board you actually own.</p>
+<p>Each morning, Boardcall pulls real swell and wind data from Open-Meteo — plus tide data from NOAA CO-OPS at its US spots — for whichever of its 243 built-in surf spots you've chosen, covering the full US coastline, the Great Lakes, and roughly 30 countries worldwide from Mexico and Costa Rica to Portugal, Indonesia, and Japan. It runs that day's actual wave face height, swell period, and wind against your quiver, your skill level, and your body weight. A deterministic physics engine — the same length/width/thickness math, the same volume-to-skill-and-conditions logic described above — ranks your boards and picks the one that fits, with a safety gate that automatically caps the verdict (it will never show "fire") when conditions are beyond what you've told it about your ability. An AI model then writes the plain-English explanation: no chart of twelve raw numbers, just a verdict — fire, fun, marginal, or skip — the board to grab, and why.</p>
+<p>Boardcall is free to download on iPhone and iPad, with no account, login, or password required — your quiver and profile stay on your device. The free tier is genuinely generous: every board pick, the full worldwide spot map, all 243 breaks, the six-day forecast with a recommended board for each day, and unlimited daily briefings from Boardcall's own free deterministic writer. Boardcall Pro ($6.99/mo or $54.99/yr) only raises the weekly cap on AI-written prose briefings from 4 a week to unlimited, and adds a weekly AI coach note on patterns from your own logged sessions.</p>
+      <p style="margin-top:20px; font-weight:700; color:var(--ink);">Download Boardcall free and see which of your own boards it picks for today's surf.</p>
+      <div class="btn-row">
+        <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary btn--sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg> Download Boardcall — Free</a>
+      </div>
+    </div>
+
+    <div class="mini-faq">
+      <h2>Quick answers</h2>
+      <div class="qa"><h3>Is there an app that recommends a surfboard based on the boards you already own?</h3><p>Yes. Boardcall ranks the boards you actually enter into your quiver — by real length × width × thickness → volume, not a generic size chart — against today's wave height, period, wind, and your skill level, and names the one to bring, plus why.</p></div>
+<div class="qa"><h3>How much surfboard volume do I need?</h3><p>As a rough baseline, multiply your body weight in kilograms by about 0.9–1.0 if you're a beginner, 0.55–0.65 if you're intermediate, 0.40–0.45 if you're advanced, or 0.33–0.38 if you're an expert — then add volume for small, weak surf or for overhead-plus waves, and use slightly less for clean, mid-size conditions.</p></div>
+<div class="qa"><h3>Do bigger waves need a bigger or smaller surfboard?</h3><p>Bigger, counter-intuitively. Catching a wave early enough to be safe and in control takes paddle power, and paddle power comes from volume — which is why a dedicated big-wave gun carries more volume than an everyday shortboard, even though it's narrower and thinner.</p></div>
+    </div>
+
+    <div class="callout" style="background:transparent;"><span class="eyebrow">Further reading</span><p>For a deeper look at this from a different angle, see <a href="https://zachweston123.github.io/boardcall/blog/surf-apps-that-recommend-a-board/"><strong>Which Surf Apps Actually Recommend a Board?</strong></a> on the Boardcall blog.</p></div>
+
+    <div class="related">
+      <span class="eyebrow">Keep reading</span>
+      <div class="cards">
+        <a class="card" href="which-surfboard-should-i-ride-today.html"><span class="card__kicker">Guide</span><h3>Which Surfboard Should I Ride Today? A Surfer's Actual Decision Framework</h3><p>Which surfboard should I ride today? Use the actual wave face, period, wind and board volume method surfers re&hellip;</p></a>
+<a class="card" href="surfboard-volume-chart-by-weight-and-skill-level.html"><span class="card__kicker">Guide</span><h3>Surfboard Volume Chart by Weight and Skill Level</h3><p>Use our surfboard volume chart by weight and skill level, then learn why wave size and period shift your targe&hellip;</p></a>
+<a class="card" href="signs-your-surfboard-has-wrong-volume.html"><span class="card__kicker">Guide</span><h3>Signs Your Surfboard Has Too Much or Too Little Volume</h3><p>The real signs your surfboard has too much or too little volume, plus how to calculate the exact volume you ne&hellip;</p></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Your next surf check should take six seconds.</h2>
+      <p class="lede center" style="color:rgba(255,255,255,0.85);">Free on the App Store. No account, no login, no location tracking — just your boards, your spot, and a straight answer every morning.</p>
+      <div class="btn-row" style="justify-content:center; margin-top:24px;">
+        <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg> Download Boardcall — Free</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__col" style="max-width:280px;">
+        <div class="footer__brand"><img src="../assets/images/icon-512.png" alt="Boardcall icon"> Boardcall</div>
+        <p style="font-size:14.5px; margin:0;">The surf forecast app that tells you which board to bring. Free on iPhone and iPad.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Product</h4>
+        <a href="../index.html#how-it-works">How it works</a>
+        <a href="../index.html#screenshots">Screenshots</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="https://zachweston123.github.io/boardcall/blog/">Blog</a>
+        <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030">Download</a>
+      </div>
+      <div class="footer__col">
+        <h4>Guides</h4>
+        <a href="surfboard-recommendation-app.html">What a Surfboard Recommendation App Should Actually Do</a>
+<a href="which-surfboard-should-i-ride-today.html">Which Surfboard Should I Ride Today? A Surfer's Actual Decision Framework</a>
+<a href="surfboard-volume-chart-by-weight-and-skill-level.html">Surfboard Volume Chart by Weight and Skill Level</a>
+<a href="signs-your-surfboard-has-wrong-volume.html">Signs Your Surfboard Has Too Much or Too Little Volume</a>
+<a href="is-it-safe-for-beginners-to-surf-overhead-waves.html">Is It Safe for a Beginner to Surf Overhead Waves?</a>
+<a href="how-do-i-know-if-the-waves-are-too-big-for-me.html">How Do I Know If the Waves Are Too Big for Me?</a>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="https://zachweston123.github.io/boardcall/privacy">Privacy Policy</a>
+        <a href="https://zachweston123.github.io/boardcall/terms">Terms of Use</a>
+        <a href="https://zachweston123.github.io/boardcall/support">Support</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Boardcall. Not affiliated with Apple Inc.</span>
+      <span class="attribution">Wave and wind data from Open-Meteo (CC BY 4.0). Tide predictions from NOAA CO-OPS.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

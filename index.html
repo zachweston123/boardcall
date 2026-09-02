@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boardcall — Surf Forecast App That Picks Your Board</title>
+<meta name="description" content="Boardcall is a free surf forecast app for iPhone that reads swell, wind, and tide every morning and tells you which board from your own quiver to bring — in plain English, with a verdict. No account required.">
+<link rel="canonical" href="https://zachweston123.github.io/boardcall/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boardcall">
+<meta property="og:title" content="Boardcall — The Surf Forecast App That Picks Your Board">
+<meta property="og:description" content="A plain-English surf briefing every morning, and the one board from your own quiver that fits today's conditions. Free on iPhone and iPad.">
+<meta property="og:url" content="https://zachweston123.github.io/boardcall/">
+<meta property="og:image" content="https://zachweston123.github.io/boardcall/assets/images/og-icon-1200.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Boardcall — The Surf Forecast App That Picks Your Board">
+<meta name="twitter:description" content="A plain-English surf briefing every morning, and the one board from your own quiver that fits today's conditions.">
+<meta name="twitter:image" content="https://zachweston123.github.io/boardcall/assets/images/og-icon-1200.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon-32.png">
+<link rel="apple-touch-icon" href="assets/images/icon-180.png">
+<meta name="theme-color" content="#0B0F14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Boardcall: Surf Briefing",
+  "operatingSystem": "iOS 17.0 or later",
+  "applicationCategory": "WeatherApplication",
+  "applicationSubCategory": "SportsApplication",
+  "offers": [
+    { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+    { "@type": "Offer", "price": "6.99", "priceCurrency": "USD", "name": "Boardcall Pro (monthly)" },
+    { "@type": "Offer", "price": "54.99", "priceCurrency": "USD", "name": "Boardcall Pro (yearly)" }
+  ],
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "3" },
+  "description": "Boardcall reads swell, wind and tide every morning and tells you which board from your own quiver to bring, with a plain verdict: fire, fun, marginal, or skip.",
+  "url": "https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030",
+  "downloadUrl": "https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030",
+  "screenshot": "https://zachweston123.github.io/boardcall/assets/images/01-today-captioned.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Boardcall free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 Boardcall is free to download, with unlimited daily briefings, the full board-pick engine across your whole quiver, the worldwide spot map, and the six-day forecast all included. Boardcall Pro ($6.99/mo or $54.99/yr) only raises the weekly cap on richer AI-written briefings from 4/week to unlimited and adds a weekly AI coaching note based on your own logged sessions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Boardcall require an account or login?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There's no signup, login, or password \u2014 your boards, spots, and profile are stored on your device, not in an account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Boardcall decide which surfboard to bring?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It calculates real volume for every board in your quiver from length x width x thickness (adjusted for shape), matches it against today's wave face height, period, and wind plus your skill level and body weight, and names the one board that fits best \u2014 an AI model then writes the plain-English explanation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What surfboard volume do I need for my weight and skill level?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on both \u2014 heavier and less experienced surfers generally need more volume \u2014 but wave size and period shift that target by another 10-45%, which is why a single fixed number is only a starting point."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Boardcall a good alternative to Surfline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For checking conditions and getting a board recommendation, yes \u2014 Boardcall's free tier includes unlimited briefings, the full worldwide spot map, and board picks with no paywall, though it doesn't include Surfline's live surf-cam network."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 'chest high' or 'waist high' actually mean in feet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roughly: knee-to-waist is 2-3 ft face height, waist-to-chest is 3-4 ft, and chest-to-shoulder is 4-5 ft. Boardcall reports every forecast in these plain-English terms instead of a bare number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe for a beginner to surf overhead waves?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Generally no \u2014 overhead waves (roughly 5 ft+ face height) call for real experience and strong paddle power. Boardcall's safety gate automatically caps that day's verdict and warns beginners when conditions exceed their stated skill level."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How cold does the water need to be before I need a wetsuit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most surfers want at least a spring suit below about 75\u00b0F and a full wetsuit well before 65\u00b0F, with real hypothermia risk climbing fast under 50\u00b0F. Boardcall reads actual water temperature at your spot and gives a direct wetsuit call."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a href="/" class="nav__brand"><img src="assets/images/icon-512.png" alt="Boardcall icon"> Boardcall</a>
+    <nav class="nav__links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#guides">Guides</a>
+      <a href="https://zachweston123.github.io/boardcall/blog/">Blog</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary btn--sm">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div>
+      <span class="eyebrow">Free surf forecast app for iPhone &amp; iPad</span>
+      <h1>Stop reading swell charts. Just find out which board to grab.</h1>
+      <p class="lede">Boardcall is the surf forecast app that ends the guessing: every morning it reads swell, wind and tide at your break and tells you — in plain English — whether it's worth going, and which board from <em>your own quiver</em> to bring.</p>
+      <div class="btn-row">
+        <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg>
+          Download on the App Store
+        </a>
+        <a href="#how-it-works" class="btn btn--ghost">See how it works</a>
+      </div>
+      <div class="badges">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Free, no account</span>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>243 spots worldwide</span>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>No location tracking</span>
+      </div>
+    </div>
+    <div class="hero__phone">
+      <img src="assets/images/01-today-captioned-web.png" alt="Boardcall app Today screen showing a plain-English surf briefing, a fire verdict badge, and the recommended board to bring" width="360" loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section--tight" id="download">
+  <div class="wrap text-center">
+    <span class="eyebrow">Get Boardcall</span>
+    <h2>One download. No account. Every board pick, every spot, free.</h2>
+    <p class="lede center">Boardcall is free on the App Store for iPhone and iPad — no subscription, no ads, no account required. Add your boards once, pick a home break from 243 spots worldwide, and get your first briefing in under a minute.</p>
+    <div class="btn-row" style="justify-content:center; margin-top:28px;">
+      <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg>
+          Download Boardcall — Free
+        </a>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="section" id="screenshots">
+  <div class="wrap">
+    <div class="text-center">
+      <span class="eyebrow">Inside the app</span>
+      <h2>Everything you need for a six-second decision</h2>
+      <p class="lede center">One screen for today's call, one for the week ahead, one for your quiver, one for the whole map. No dashboards to interpret.</p>
+    </div>
+    <div class="shots" role="list">
+      <figure class="shot" role="listitem"><img src="assets/images/01-today-captioned-web.png" alt="Today screen: plain-English surf briefing with a fire verdict and the board to bring" loading="lazy"></figure>
+      <figure class="shot" role="listitem"><img src="assets/images/02-boardpick-captioned-web.png" alt="Board pick screen showing the recommended surfboard from the user's own quiver with the reason why" loading="lazy"></figure>
+      <figure class="shot" role="listitem"><img src="assets/images/03-forecast-captioned-web.png" alt="Six-day surf forecast with a different recommended board for each day" loading="lazy"></figure>
+      <figure class="shot" role="listitem"><img src="assets/images/04-quiver-captioned-web.png" alt="Quiver screen listing the user's own surfboards with real dimensions and volume" loading="lazy"></figure>
+      <figure class="shot" role="listitem"><img src="assets/images/05-map-captioned-web.png" alt="Worldwide map of 243 surf spots ranked by current conditions" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works" style="background:var(--bg-elevated); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="text-center">
+      <span class="eyebrow">How it works</span>
+      <h2>Real board math, plain-English delivery</h2>
+      <p class="lede center">Boardcall isn't a generic wave-height widget. It runs your actual boards through the actual physics, then writes the answer like a friend who already checked would tell you.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <h3>Add your quiver</h3>
+        <p>Enter your boards' length, width, thickness, and type — or pick a real model from 216 built-in boards with sourced dimensions. No surfboard volume calculator or spreadsheet needed — Boardcall works it out for every board as you build your quiver.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <h3>Pick your spot</h3>
+        <p>Choose from 243 real surf spots — the full US coastline plus Great Lakes, Puerto Rico, and marquee breaks across ~30 countries. No GPS, no location permission.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <h3>Get today's call</h3>
+        <p>Every morning: swell, wind, and tide converted into a plain-English briefing, a straight verdict, and the one board from your own quiver to grab — with the reason why.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:64px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div>
+        <h3 style="font-size:22px;">A straight verdict, every day</h3>
+        <p>No forecast app tells you whether it's actually worth the drive. Boardcall does, in four words, with a safety gate that never oversells a day beyond your stated skill level.</p>
+        <div class="verdicts">
+          <span class="verdict verdict--fire">Fire</span>
+          <span class="verdict verdict--fun">Fun</span>
+          <span class="verdict verdict--marginal">Marginal</span>
+          <span class="verdict verdict--skip">Skip</span>
+        </div>
+        <p style="font-size:14.5px;">If it's bad, Boardcall says so plainly — no hype, no notifications engineered to get you to open the app.</p>
+      </div>
+      <div>
+        <h3 style="font-size:22px;">Board math, not a guess</h3>
+        <p>Most surf apps that suggest a board just say "grab your 5'8&quot;." Boardcall calculates real volume — length × width × thickness, shape-adjusted — for every board you own, weighs it against your size, skill, and today's wave face, period, and wind, and ranks them. Then it explains the pick in plain language.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDES (populated after keyword workflow) -->
+<section class="section" id="guides">
+  <div class="wrap">
+    <div class="text-center">
+      <span class="eyebrow">Guides</span>
+      <h2>Answers surfers actually search for</h2>
+      <p class="lede center">Real guidance on board sizing, wetsuit thickness, and reading a forecast — with a note on how Boardcall does each one automatically.</p>
+    </div>
+    <div class="cards" id="guides-grid">
+      <a class="card" href="guides/surfboard-recommendation-app.html"><span class="card__kicker">Guide</span><h3>What a Surfboard Recommendation App Should Actually Do</h3><p>A real surfboard recommendation app matches your actual board's volume to today's waves — not a quiz. See how Boardcall'&hellip;</p></a>
+<a class="card" href="guides/which-surfboard-should-i-ride-today.html"><span class="card__kicker">Guide</span><h3>Which Surfboard Should I Ride Today? A Surfer's Actual Decision Framework</h3><p>Which surfboard should I ride today? Use the actual wave face, period, wind and board volume method surfers rely on, the&hellip;</p></a>
+<a class="card" href="guides/surfboard-volume-chart-by-weight-and-skill-level.html"><span class="card__kicker">Guide</span><h3>Surfboard Volume Chart by Weight and Skill Level</h3><p>Use our surfboard volume chart by weight and skill level, then learn why wave size and period shift your target by 6-45%&hellip;</p></a>
+<a class="card" href="guides/signs-your-surfboard-has-wrong-volume.html"><span class="card__kicker">Guide</span><h3>Signs Your Surfboard Has Too Much or Too Little Volume</h3><p>The real signs your surfboard has too much or too little volume, plus how to calculate the exact volume you need and why&hellip;</p></a>
+<a class="card" href="guides/is-it-safe-for-beginners-to-surf-overhead-waves.html"><span class="card__kicker">Guide</span><h3>Is It Safe for a Beginner to Surf Overhead Waves?</h3><p>Is it safe for a beginner to surf overhead waves? The honest risk breakdown, plus how Boardcall caps your verdict to you&hellip;</p></a>
+<a class="card" href="guides/how-do-i-know-if-the-waves-are-too-big-for-me.html"><span class="card__kicker">Guide</span><h3>How Do I Know If the Waves Are Too Big for Me?</h3><p>How do I know if the waves are too big for me? A real self-check on the lineup, your recent sessions, and an honest skil&hellip;</p></a>
+<a class="card" href="guides/wave-height-guide-feet-to-body-parts.html"><span class="card__kicker">Guide</span><h3>How Many Feet Is Chest High, Waist High, and Shoulder High Surf?</h3><p>How many feet is chest high, waist high, or shoulder high? A clear, defensible feet-to-body-part table — plus a free app&hellip;</p></a>
+<a class="card" href="guides/surf-forecast-app-no-account.html"><span class="card__kicker">Guide</span><h3>The Case for a Surf Forecast App With No Account</h3><p>Want a real surf forecast app with no account, login, or password? See exactly what data Boardcall keeps on your phone (&hellip;</p></a>
+<a class="card" href="guides/free-surfline-alternative.html"><span class="card__kicker">Guide</span><h3>Free Surfline Alternative: What You Actually Get for $0</h3><p>Free Surfline alternative? See what Surfline actually paywalls, what's genuinely free elsewhere, and how Boardcall gives&hellip;</p></a>
+<a class="card" href="guides/how-cold-is-too-cold-to-surf-without-a-wetsuit.html"><span class="card__kicker">Guide</span><h3>How Cold Is Too Cold to Surf Without a Wetsuit?</h3><p>How cold is too cold to surf without a wetsuit? Real water-temp thresholds, hypothermia signs, and how Boardcall gives y&hellip;</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="background:var(--bg-elevated); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="text-center">
+      <span class="eyebrow">FAQ</span>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq" id="faq-list">
+      <details class="faq-item"><summary>Is Boardcall free to use?</summary><p>Yes — Boardcall is free to download, with unlimited daily briefings, the full board-pick engine across your whole quiver, the worldwide spot map, and the six-day forecast all included. Boardcall Pro ($6.99/mo or $54.99/yr) only raises the weekly cap on richer AI-written briefings from 4/week to unlimited and adds a weekly AI coaching note based on your own logged sessions.</p><p><a class="learn-more" href="#how-it-works">Learn more &rarr;</a></p></details>
+<details class="faq-item"><summary>Does Boardcall require an account or login?</summary><p>No. There's no signup, login, or password — your boards, spots, and profile are stored on your device, not in an account.</p><p><a class="learn-more" href="guides/surf-forecast-app-no-account.html">Learn more &rarr;</a></p></details>
+<details class="faq-item"><summary>How does Boardcall decide which surfboard to bring?</summary><p>It calculates real volume for every board in your quiver from length x width x thickness (adjusted for shape), matches it against today's wave face height, period, and wind plus your skill level and body weight, and names the one board that fits best — an AI model then writes the plain-English explanation.</p><p><a class="learn-more" href="guides/surfboard-recommendation-app.html">Learn more &rarr;</a></p></details>
+<details class="faq-item"><summary>What surfboard volume do I need for my weight and skill level?</summary><p>It depends on both — heavier and less experienced surfers generally need more volume — but wave size and period shift that target by another 10-45%, which is why a single fixed number is only a starting point.</p><p><a class="learn-more" href="guides/surfboard-volume-chart-by-weight-and-skill-level.html">Learn more &rarr;</a></p></details>
+<details class="faq-item"><summary>Is Boardcall a good alternative to Surfline?</summary><p>For checking conditions and getting a board recommendation, yes — Boardcall's free tier includes unlimited briefings, the full worldwide spot map, and board picks with no paywall, though it doesn't include Surfline's live surf-cam network.</p><p><a class="learn-more" href="guides/free-surfline-alternative.html">Learn more &rarr;</a></p></details>
+<details class="faq-item"><summary>What does 'chest high' or 'waist high' actually mean in feet?</summary><p>Roughly: knee-to-waist is 2-3 ft face height, waist-to-chest is 3-4 ft, and chest-to-shoulder is 4-5 ft. Boardcall reports every forecast in these plain-English terms instead of a bare number.</p><p><a class="learn-more" href="guides/wave-height-guide-feet-to-body-parts.html">Learn more &rarr;</a></p></details>
+<details class="faq-item"><summary>Is it safe for a beginner to surf overhead waves?</summary><p>Generally no — overhead waves (roughly 5 ft+ face height) call for real experience and strong paddle power. Boardcall's safety gate automatically caps that day's verdict and warns beginners when conditions exceed their stated skill level.</p><p><a class="learn-more" href="guides/is-it-safe-for-beginners-to-surf-overhead-waves.html">Learn more &rarr;</a></p></details>
+<details class="faq-item"><summary>How cold does the water need to be before I need a wetsuit?</summary><p>Most surfers want at least a spring suit below about 75°F and a full wetsuit well before 65°F, with real hypothermia risk climbing fast under 50°F. Boardcall reads actual water temperature at your spot and gives a direct wetsuit call.</p><p><a class="learn-more" href="guides/how-cold-is-too-cold-to-surf-without-a-wetsuit.html">Learn more &rarr;</a></p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Your next surf check should take six seconds.</h2>
+      <p class="lede center" style="color:rgba(255,255,255,0.85);">Free on the App Store. No account, no login, no location tracking — just your boards, your spot, and a straight answer every morning.</p>
+      <div class="btn-row" style="justify-content:center; margin-top:24px;">
+        <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg>
+          Download Boardcall — Free
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__col" style="max-width:280px;">
+        <div class="footer__brand"><img src="assets/images/icon-512.png" alt="Boardcall icon"> Boardcall</div>
+        <p style="font-size:14.5px; margin:0;">The surf forecast app that tells you which board to bring. Free on iPhone and iPad.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Product</h4>
+        <a href="#how-it-works">How it works</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://zachweston123.github.io/boardcall/blog/">Blog</a>
+        <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030">Download</a>
+      </div>
+      <div class="footer__col" id="footer-guides">
+        <h4>Guides</h4>
+        <a href="guides/surfboard-recommendation-app.html">What a Surfboard Recommendation App Should Actually Do</a>
+<a href="guides/which-surfboard-should-i-ride-today.html">Which Surfboard Should I Ride Today? A Surfer's Actual Decision Framework</a>
+<a href="guides/surfboard-volume-chart-by-weight-and-skill-level.html">Surfboard Volume Chart by Weight and Skill Level</a>
+<a href="guides/signs-your-surfboard-has-wrong-volume.html">Signs Your Surfboard Has Too Much or Too Little Volume</a>
+<a href="guides/is-it-safe-for-beginners-to-surf-overhead-waves.html">Is It Safe for a Beginner to Surf Overhead Waves?</a>
+<a href="guides/how-do-i-know-if-the-waves-are-too-big-for-me.html">How Do I Know If the Waves Are Too Big for Me?</a>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="https://zachweston123.github.io/boardcall/privacy">Privacy Policy</a>
+        <a href="https://zachweston123.github.io/boardcall/terms">Terms of Use</a>
+        <a href="https://zachweston123.github.io/boardcall/support">Support</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Boardcall. Not affiliated with Apple Inc.</span>
+      <span class="attribution">Wave and wind data from Open-Meteo (CC BY 4.0). Tide predictions from NOAA CO-OPS.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

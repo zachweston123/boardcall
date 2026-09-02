@@ -1,36 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/privacy/</loc>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/terms/</loc>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/support/</loc>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/blog/</loc>
-    <lastmod>2026-08-30</lastmod>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/blog/surfboard-volume-explained/</loc>
-    <lastmod>2026-08-30</lastmod>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/blog/why-big-waves-need-more-volume/</loc>
-    <lastmod>2026-08-30</lastmod>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/blog/surf-apps-that-recommend-a-board/</loc>
-    <lastmod>2026-08-30</lastmod>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/blog/boardcall-vs-surfline-vs-quiver/</loc>
-    <lastmod>2026-08-30</lastmod>
-  </url>
-  <url>
-    <loc>https://zachweston123.github.io/boardcall/blog/surf-forecast-verdict-fire-fun-marginal-skip/</loc>
-    <lastmod>2026-08-30</lastmod>
-  </url>
+  <!-- Core pages -->
+  <url><loc>https://zachweston123.github.io/boardcall/</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/privacy/</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/terms/</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/support/</loc></url>
+  <!-- Guides (new) -->
+  <url><loc>https://zachweston123.github.io/boardcall/guides/surfboard-recommendation-app.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/which-surfboard-should-i-ride-today.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/surfboard-volume-chart-by-weight-and-skill-level.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/signs-your-surfboard-has-wrong-volume.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/is-it-safe-for-beginners-to-surf-overhead-waves.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/how-do-i-know-if-the-waves-are-too-big-for-me.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/wave-height-guide-feet-to-body-parts.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/surf-forecast-app-no-account.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/free-surfline-alternative.html</loc></url>
+  <url><loc>https://zachweston123.github.io/boardcall/guides/how-cold-is-too-cold-to-surf-without-a-wetsuit.html</loc></url>
+  <!-- Blog -->
+  <url><loc>https://zachweston123.github.io/boardcall/blog/</loc><lastmod>2026-08-30</lastmod></url>
+  <url><loc>https://zachweston123.github.io/boardcall/blog/surfboard-volume-explained/</loc><lastmod>2026-08-30</lastmod></url>
+  <url><loc>https://zachweston123.github.io/boardcall/blog/why-big-waves-need-more-volume/</loc><lastmod>2026-08-30</lastmod></url>
+  <url><loc>https://zachweston123.github.io/boardcall/blog/surf-apps-that-recommend-a-board/</loc><lastmod>2026-08-30</lastmod></url>
+  <url><loc>https://zachweston123.github.io/boardcall/blog/boardcall-vs-surfline-vs-quiver/</loc><lastmod>2026-08-30</lastmod></url>
+  <url><loc>https://zachweston123.github.io/boardcall/blog/surf-forecast-verdict-fire-fun-marginal-skip/</loc><lastmod>2026-08-30</lastmod></url>
 </urlset>
