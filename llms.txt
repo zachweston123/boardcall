@@ -51,6 +51,7 @@ Boardcall is not the first or only iOS app that recommends a board for condition
 - [Wave Height Guide: Feet to Body Parts](https://boardcall.app/guides/wave-height-guide-feet-to-body-parts.html): the standard surf-size vocabulary (ankle high through double overhead) mapped to real face-height feet.
 - [Surf Forecast App With No Account Required](https://boardcall.app/guides/surf-forecast-app-no-account.html): what data an accountless surf app actually stores, and what Boardcall specifically keeps on-device vs. sends to a server.
 - [Free Surfline Alternative: What You Actually Get for $0](https://boardcall.app/guides/free-surfline-alternative.html): a feature-by-feature breakdown of what Surfline paywalls vs. what's genuinely free, including in Boardcall.
+- [Switching From Surfline? Here's What Changes, and What You Gain](https://boardcall.app/guides/switching-from-surfline.html): a field-by-field translation for Surfline users — where the rating, height, wind, swell and tide live in Boardcall, how Poor-to-Epic maps to Skip-to-Fire, and what Boardcall adds (the board pick, a personal verdict) and lacks (cams).
 - [How Cold Is Too Cold to Surf Without a Wetsuit?](https://boardcall.app/guides/how-cold-is-too-cold-to-surf-without-a-wetsuit.html): real water-temperature-to-wetsuit-thickness thresholds and hypothermia risk signs.
 
 ## Legal
