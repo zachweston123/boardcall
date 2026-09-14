@@ -156,10 +156,10 @@
   <header class="page-head">
     <span class="eyebrow">Boardcall</span>
     <h1>Privacy Policy</h1>
-    <p class="subtitle">Effective August 25, 2026</p>
+    <p class="subtitle">Effective September 14, 2026</p>
   </header>
 
-  <p>Boardcall ("the app," "we," "us") is a surf-briefing app for iPhone, built and maintained by an
+  <p>Boardcall ("the app," "we," "us") is a surf-briefing app for iPhone and iPad, built and maintained by an
   independent developer, Zach Weston. This policy describes, plainly, what the app does with data —
   what stays on your phone, what leaves it, who it goes to, and why. There is no legal team behind this
   app and no reason to hide anything, so this is meant to be read, not skimmed past.</p>
@@ -169,15 +169,20 @@
     <ul>
       <li>Boardcall has no accounts at all. There is no sign-up, no sign-in, and no password
       anywhere in the app.</li>
-      <li>Your profile, your boards, and your chosen surf spots are stored only on your iPhone.</li>
+      <li>Your profile, your boards, your chosen surf spots and any sessions you log are stored only on
+      your device.</li>
       <li>Boardcall never uses your location. You choose spots from a built-in list — there is no GPS
       access anywhere in the app.</li>
-      <li>Each morning's briefing text is written by a third-party AI service (Anthropic's Claude),
-      reached through our own small server. That request includes the day's conditions and your boards,
-      but our server does not log or store it. Anthropic holds it for up to 30 days on their own
-      systems as an anti-abuse measure.</li>
-      <li>Our server does keep one small, anonymous thing: a randomly generated ID plus a daily count,
-      used only to stop abuse of the AI briefing feature. It cannot be tied back to you as a person.</li>
+      <li>Checking the forecast sends the coordinates of a spot from that built-in list to our own small
+      server, which fetches and caches the wave and wind data. Nothing about you goes with it.</li>
+      <li>When you tap for an AI-written briefing, the text is written by a third-party AI service
+      (Anthropic's Claude), reached through our server. That request includes the day's conditions,
+      your skill level and weight, and your boards. Our server does not log or store it. Anthropic holds
+      it for up to 30 days on their own systems as an anti-abuse measure.</li>
+      <li>If you subscribe to Boardcall Pro and log sessions, a weekly coaching note is written the same
+      way, from a summary of those sessions and your three most recent session notes.</li>
+      <li>Our server does keep one small, anonymous kind of record: a randomly generated ID plus a daily
+      count, used only to stop abuse of the AI features. It cannot be tied back to you as a person.</li>
       <li>If you subscribe to Boardcall Pro, Apple handles the entire purchase and payment. We never see
       your card details or billing information.</li>
       <li>We do not use analytics, advertising trackers, or crash-reporting tools of any kind.</li>
@@ -191,29 +196,47 @@
   <div class="data-block">
     <span class="tag">Stored only on your device</span>
     <h3>Your profile, boards, spots, and app settings</h3>
-    <p>Boardcall keeps a private file on your iPhone — one only Boardcall can read — containing: your
-    surfer profile (skill level, weight, height, and your chosen notification time), the boards in your
-    quiver (nickname, brand/model, dimensions, volume, type, and fin setup), up to three saved surf
-    spots (chosen from our built-in catalog — never your GPS coordinates), whether you've completed
-    onboarding, a randomly generated device identifier (explained below), and a running weekly count of
-    how many AI-written briefings you've used. Boardcall also caches recent wave, wind, and tide data on
-    your device for up to 60 minutes per spot, along with the most recent briefing text for that spot,
-    purely to avoid re-fetching and re-generating it needlessly.</p>
+    <p>Boardcall keeps private files on your device — ones only Boardcall can read — containing: your
+    surfer profile (skill level, weight, height, and your reminder times), the boards in your quiver
+    (nickname, brand/model, dimensions, volume, type, and fin setup), up to three saved surf spots
+    (chosen from our built-in catalog — never your GPS coordinates), any sessions you log (the date,
+    spot, board, the conditions at the time, your rating, and any notes you type), any coaching notes
+    Boardcall Pro has written for you, whether you've completed onboarding and accepted the Terms, a
+    randomly generated device identifier (explained below), and counts of the AI-written briefings
+    you've used. Boardcall also caches recent wave, wind, tide and buoy data on your device, along with
+    the most recent briefing text for each spot, purely to avoid re-fetching and re-generating it
+    needlessly. It also keeps a small record comparing forecast wave heights with nearby buoy readings,
+    which never leaves your device.</p>
+    <p>If you add the Boardcall widget, the app keeps a copy of your profile, boards, sessions and home
+    spot in a storage area on your device shared only between the app and its widget, so the widget can
+    show today's call without opening the app. Share cards (a Boardcall Pro feature) are drawn on your
+    device and go only where you choose to send them.</p>
     <p class="muted">None of this is uploaded to iCloud or synced anywhere by us. (If you use Apple's own
     device backup features, that backup is between you and Apple, not something Boardcall controls.)
     Deleting the app deletes all of it, permanently, from your device.</p>
   </div>
 
   <div class="data-block">
+    <span class="tag">Sent to our server, nothing about you kept</span>
+    <h3>The forecast request</h3>
+    <p>When you check the forecast — on Today, Forecast, the Map, or the widget — the app sends our own
+    small server (built on Supabase, a cloud-hosting platform) the coordinates of a spot from the
+    built-in catalog and which kind of data it needs (waves or wind). Our server fetches that from
+    Open-Meteo using our own paid access, and keeps a copy of the result for up to a day so that everyone
+    checking the same spot shares one request. That copy is forecast data for a map coordinate. It
+    contains nothing about you, no device ID, and no record of who asked.</p>
+  </div>
+
+  <div class="data-block">
     <span class="tag">Sent to our server, not stored</span>
-    <h3>The daily briefing request</h3>
-    <p>When you open Today or Forecast, the app sends a request to our own small server (built on
-    Supabase, a cloud-hosting platform) containing the day's surf conditions at your chosen spot (wave
-    size, swell period, wind, tide, temperature), your skill level and weight, and your boards as ranked
-    by the app's own on-device physics engine. Our server forwards this to Anthropic's Claude — a
-    third-party AI service — to write the plain-English briefing, and returns the result to the app.
-    That content is not written to any database by our server, and on failure our server only logs a
-    generic error code, never the data itself.</p>
+    <h3>The AI briefing request</h3>
+    <p>Nothing is sent until you tap <strong>Get AI briefing</strong> on Today. When you do, the app
+    sends a request to our server containing the day's surf conditions at your chosen spot (wave size,
+    swell period, wind, tide, temperature), your skill level and weight, and your boards as ranked by the
+    app's own on-device physics engine. Our server forwards this to Anthropic's Claude — a third-party AI
+    service — to write the plain-English briefing, and returns the result to the app. That content is
+    not written to any database by our server, and on failure our server only logs a generic error code,
+    never the data itself.</p>
     <p>Per Anthropic's own API terms, this data is not used to train their models. Anthropic does hold
     the request and the briefing on their own systems for up to 30 days as an anti-abuse measure, and
     longer if a request is flagged for review under their usage policies. That retention is theirs, not
@@ -225,15 +248,35 @@
   </div>
 
   <div class="data-block">
+    <span class="tag">Sent to our server, not stored</span>
+    <h3>The Boardcall Pro coaching note</h3>
+    <p>If you subscribe to Boardcall Pro and have logged at least three sessions, the app asks our server
+    for a coaching note when you open Today — at most one note a week, and if a request fails, the app
+    tries again no sooner than a day later. The request contains your skill level, how many sessions
+    you've logged, a short summary of the patterns that repeat in them, and your three most recent
+    session notes, word for word. For each board and kind of conditions you've logged at least three
+    times, the summary gives the board's name (including any nickname you gave it), a plain description
+    such as "small, clean days," how many sessions that covers, and your median rating. It does not
+    include the dates or which spots you surfed. If nothing repeats often enough yet, nothing is
+    sent.</p>
+    <p>Our server forwards the request to Anthropic's Claude to write the note and returns the result.
+    As with the briefing request, it is not written to any database by our server, only generic error
+    codes are logged, and Anthropic's handling is the same as described above.</p>
+    <p class="muted">Session notes are free text you typed, so anything you write in them can end up in
+    this request — if there's something you'd rather not send, leave it out of your notes.</p>
+  </div>
+
+  <div class="data-block">
     <span class="tag">Sent to our server AND stored</span>
-    <h3>The anonymous rate-limit counter</h3>
-    <p>Alongside that request, the app sends a random identifier that was generated on your device the
-    first time you opened Boardcall — not your Apple ID, name, email address, advertising ID, or any
-    other identifier Apple or anyone else assigns you. Our server stores that random ID together with
-    the date and a count, and nothing else at the application level, purely to enforce a daily limit and
-    prevent abuse of the AI briefing feature. This is the only application-level record our
-    infrastructure retains. We delete these records once they are more than 30 days old. It cannot be
-    linked back to you as a person — it identifies a device-generated random number, not an
+    <h3>The anonymous rate-limit counters</h3>
+    <p>Alongside an AI briefing or coaching-note request, the app sends a random identifier that was
+    generated on your device the first time you opened Boardcall — not your Apple ID, name, email
+    address, advertising ID, or any other identifier Apple or anyone else assigns you. Our server stores
+    that random ID together with the date and a count — one record for briefings and a separate one for
+    coaching notes — and nothing else at the application level, purely to enforce daily limits and
+    prevent abuse of the AI features. These counters are the only application-level records about app
+    users that our infrastructure retains. We delete them once they are more than 30 days old. They
+    cannot be linked back to you as a person — they identify a device-generated random number, not an
     individual.</p>
     <p class="muted">Separately, our hosting provider may retain standard technical request logs (such as
     IP address) for a limited time as part of normal server operation, the way any web server does. We
@@ -256,11 +299,11 @@
     <thead><tr><th>Who</th><th>What they receive</th><th>Why</th></tr></thead>
     <tbody>
       <tr>
-        <td>Open-Meteo<br><span class="muted">marine-api.open-meteo.com, api.open-meteo.com</span></td>
-        <td>A fixed catalog spot's coordinates (never your device's real location) and the wave/wind
-        variables the app requests.</td>
-        <td>Free, keyless marine and weather forecast data. Used under Open-Meteo's CC BY 4.0
-        license.</td>
+        <td>Open-Meteo<br><span class="muted">reached through our server</span></td>
+        <td>A fixed catalog spot's coordinates and the wave or wind variables our server requests — sent
+        from our server, never directly from your phone.</td>
+        <td>Marine and weather forecast data, used under Open-Meteo's CC BY 4.0 license on a paid
+        commercial plan.</td>
       </tr>
       <tr>
         <td>NOAA CO-OPS<br><span class="muted">api.tidesandcurrents.noaa.gov</span></td>
@@ -270,10 +313,19 @@
         <td>Free tide-prediction data from the U.S. government.</td>
       </tr>
       <tr>
+        <td>NOAA National Data Buoy Center<br><span class="muted">www.ndbc.noaa.gov</span></td>
+        <td>A request for NOAA's public file of the latest buoy readings. It's the same file for
+        everyone, with nothing about you or your spots in the request.</td>
+        <td>Measured offshore wave data, shown next to the forecast.</td>
+      </tr>
+      <tr>
         <td>Anthropic<br><span class="muted">Claude API, a third-party AI service</span></td>
-        <td>The day's conditions, your skill level and weight, and your ranked boards — sent only from
-        our own server, never directly from your phone.</td>
-        <td>Writes the plain-English briefing and board-pick explanation you see on Today.</td>
+        <td>For an AI briefing: the day's conditions, your skill level and weight, and your ranked
+        boards. For a Pro coaching note: your skill level, a summary of patterns in your logged sessions,
+        and your three most recent session notes. Both are sent only from our own server, never directly
+        from your phone.</td>
+        <td>Writes the plain-English briefing and board-pick explanation on Today, and the weekly
+        coaching note.</td>
       </tr>
       <tr>
         <td>Apple / StoreKit</td>
@@ -285,9 +337,10 @@
   </table>
   </div>
   <p class="muted">One more note for completeness: opening the Map tab fetches live conditions for the
-  spots in our built-in catalog from Open-Meteo and NOAA, the same way described above and using each
-  spot's fixed catalog coordinates — never your device's location — and without including any of your
-  profile or board data in those particular requests.</p>
+  spots in our built-in catalog — wave and wind data through our server from Open-Meteo, and tides
+  from NOAA — the same way described above, using each spot's fixed catalog coordinates, never your
+  device's location, and without including any of your profile, board or session data in those
+  requests.</p>
 
   <h2>Location</h2>
   <p>Boardcall does not use Core Location, does not request location permission, and has no way to know
@@ -305,11 +358,11 @@
 
   <h2>Your rights and how to delete your data</h2>
   <p>Because almost everything Boardcall touches lives only on your device, deleting the app deletes
-  your profile, your boards, your saved spots, and all cached data completely — there is no separate
-  server-side copy of any of that to request or delete.</p>
-  <p>The one thing that does exist on our server is the anonymous rate-limit record described above: a
-  random device ID, a date, and a count. We have no way to trace that record back to you as a person,
-  and we delete these records once they are more than 30 days old, whether or not you ask.</p>
+  your profile, your boards, your saved spots, your logged sessions and coaching notes, and all cached
+  data completely — there is no separate server-side copy of any of that to request or delete.</p>
+  <p>The only records about you on our server are the anonymous rate-limit counters described above: a
+  random device ID, a date, and a count. We have no way to trace those records back to you as a person,
+  and we delete them once they are more than 30 days old, whether or not you ask.</p>
   <p>We do not sell your personal information, and we do not share it for cross-context behavioural
   advertising. There are no advertisers, data brokers, or analytics companies involved in this app at
   all.</p>
@@ -317,15 +370,16 @@
 
   <h2>Security</h2>
   <p>All network requests the app makes, to every service listed above, use HTTPS encryption in transit.
-  The rate-limit table described above is not readable by the public: it is reachable only by our own
-  server function, using credentials that never leave it.</p>
+  The rate-limit and forecast-cache tables described above are not readable by the public: they are
+  reachable only by our own server functions, using credentials that never leave them.</p>
 
   <h2>Where this data is handled</h2>
-  <p>Boardcall is run from the United States, and the services it depends on — our server host, the AI
-  provider, and the weather and tide sources — process data on servers in the United States. If you use
-  the app from outside the US, the briefing request described above is handled there. Given how little
-  is involved — no account, no name, no email, no location, and a random ID rather than an identifier
-  tied to you — this is the whole of the international picture.</p>
+  <p>Boardcall is run from the United States. Our server runs in a US data center, and the AI provider
+  is a US company. If you use the app from outside the US, the forecast, briefing and coaching-note
+  requests described above go to our server there. The forecast, tide and buoy sources receive only a
+  fixed spot's coordinates, a tide-station ID, or nothing at all — never your profile, boards or
+  sessions. Given how little is involved — no account, no name, no email, no location, and a random ID
+  rather than an identifier tied to you — this is the whole of the international picture.</p>
 
   <h2>Changes to this policy</h2>
   <p>If Boardcall's data practices change, we'll update this page and change the effective date at the
