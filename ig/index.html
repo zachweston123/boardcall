@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Today's call · Boardcall</title>
+<meta name="description" content="Today's Break of the Day, and the app that makes the call for your own break: whether it's worth going, and which board from your quiver to bring.">
+<link rel="canonical" href="https://boardcall.app/ig/">
+<!-- The Instagram bio link. Kept out of search so it never competes with the homepage. -->
+<meta name="robots" content="noindex, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boardcall">
+<meta property="og:title" content="Today's call · Boardcall">
+<meta property="og:description" content="Today's Break of the Day, and the call for your own break every morning. Free on iPhone.">
+<meta property="og:url" content="https://boardcall.app/ig/">
+<meta property="og:image" content="https://boardcall.app/assets/images/og-icon-1200.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/images/icon-180.png">
+<meta name="theme-color" content="#0B0F14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://erzfcqlnezmufmtyejvv.supabase.co" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>document.documentElement.className = "js";</script>
+<style>
+  .ig { max-width: 460px; margin: 0 auto; padding-inline: 20px; padding-block: 22px 40px; }
+  .ig__head { margin-bottom: 18px; }
+  .ig__brand { margin: 0; font-size: 20px; }
+  .ig__tagline { margin: 6px 0 0; font-size: 15px; line-height: 1.4; }
+  .ig__brand a { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+  .ig__brand a:hover { text-decoration: none; }
+  .ig__brand img { width: 36px; height: 36px; border-radius: 9px; }
+
+  /* Today's call. Hidden without JavaScript; while loading it holds its own
+     height so the button below doesn't jump when the call arrives. */
+  .call { display: none; background: var(--bg-elevated); border: 1px solid var(--border);
+          border-radius: var(--radius); padding: 20px 22px 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px; }
+  .js .call { display: block; }
+  .call .eyebrow { margin-bottom: 10px; font-size: 12px; }
+  .call__name { font-size: clamp(32px, 9vw, 42px); font-weight: 900; margin: 0; overflow-wrap: anywhere; }
+  .call__region { margin: 4px 0 14px; font-size: 15px; }
+  .call__verdict { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .call__verdict .verdict { letter-spacing: 0.08em; padding: 7px 14px 7px 12px; }
+  .call__verdict svg { width: 22px; height: 16px; flex-shrink: 0; }
+  .call__gloss { font-family: var(--font-head); font-weight: 800; font-size: 12px; letter-spacing: 0.12em;
+                 text-transform: uppercase; color: var(--ink-faint); }
+  .call__read { font-size: 18px; line-height: 1.45; color: var(--ink); margin: 0 0 14px; }
+  .call__facts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .call__facts li { font-size: 13.5px; font-weight: 600; color: var(--ink-soft); background: var(--teal-tint);
+                    border-radius: 100px; padding: 4px 12px; }
+  .call__facts li:empty { display: none; }
+
+  .call.is-loading [data-field] { color: transparent; border-radius: 8px;
+    background: color-mix(in srgb, var(--ink) 8%, transparent); }
+  .call.is-loading .call__name { width: 62%; min-height: 1.15em; }
+  .call.is-loading .call__region { width: 44%; min-height: 1.2em; }
+  .call.is-loading .call__read { min-height: 2.9em; }
+  .call.is-loading .verdict, .call.is-loading .call__facts { visibility: hidden; }
+  .call.is-loading .call__verdict { min-height: 36px; }
+  .call.is-loading .call__facts { min-height: 30px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .call.is-loading [data-field] { animation: breathe 1.4s ease-in-out infinite; }
+    @keyframes breathe { 50% { opacity: 0.55; } }
+  }
+
+  .pitch { margin-bottom: 26px; }
+  .pitch h2 { font-size: 24px; margin-bottom: 8px; }
+  .pitch p { margin: 0; }
+  .ig__cta { width: 100%; justify-content: center; font-size: 17px; padding-block: 16px; }
+  .ig__fine { text-align: center; font-size: 14px; color: var(--ink-faint); margin: 12px 0 34px; }
+  .ig__shot { margin: 0 auto; max-width: 250px; }
+  .ig__shot img { border-radius: 28px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+  .ig__foot { margin-top: 30px; text-align: center; font-size: 14px; color: var(--ink-faint); }
+  .ig__foot a { color: var(--ink-soft); font-weight: 600; }
+</style>
+</head>
+<body>
+<main class="ig">
+  <header class="ig__head">
+    <h1 class="ig__brand"><a href="https://boardcall.app/"><img src="../assets/images/icon-180.png" alt="" width="36" height="36">Boardcall</a></h1>
+    <p class="ig__tagline">Whether it's worth going, and which of your boards to bring.</p>
+  </header>
+
+  <section class="call is-loading" id="call" aria-live="polite" aria-busy="true">
+    <p class="eyebrow">Break of the Day<span data-field="day"></span></p>
+    <h2 class="call__name" data-field="name">Loading today's call</h2>
+    <p class="call__region" data-field="region"></p>
+    <div class="call__verdict">
+      <span class="verdict" data-field="pill"></span>
+      <span class="call__gloss" data-field="gloss"></span>
+    </div>
+    <p class="call__read" data-field="read"></p>
+    <ul class="call__facts">
+      <li data-field="size"></li>
+      <li data-field="hour"></li>
+      <li data-field="swell"></li>
+      <li data-field="wind"></li>
+    </ul>
+  </section>
+
+  <a class="btn btn--primary ig__cta" href="https://apps.apple.com/app/apple-store/id6798369030?pt=128972342&amp;ct=ig_bio&amp;mt=8">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg>
+    Get Boardcall on the App Store
+  </a>
+  <p class="ig__fine">Free on iPhone and iPad · No account · 336 breaks worldwide</p>
+
+  <section class="pitch">
+    <h2>The call for your own break, every morning</h2>
+    <p>Boardcall reads the swell, wind and tide at the break you surf, says plainly whether it's worth going, and picks the board from your own quiver to bring.</p>
+  </section>
+
+  <figure class="ig__shot">
+    <img src="../assets/images/01-today-captioned-web.png" width="331" height="720" loading="lazy"
+         alt="Boardcall's Today screen: a verdict badge, a plain-English briefing, and the board to bring">
+  </figure>
+
+  <footer class="ig__foot">
+    <a href="https://boardcall.app/">boardcall.app</a> · <a href="https://boardcall.app/privacy/">Privacy</a> · <a href="https://boardcall.app/terms/">Terms</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  // Today's Break of the Day, from supabase/functions/todays-call. The page is
+  // complete without it: if the call doesn't arrive, the card is removed.
+  var ENDPOINT = "https://erzfcqlnezmufmtyejvv.supabase.co/functions/v1/todays-call";
+  // Verdict words and wave amplitudes, as in the app (Verdict.gloss, VerdictWaveIcon).
+  var GLOSS = { fire: "Drop everything", fun: "Worth going", marginal: "Only if you're keen", skip: "Not today" };
+  var AMP = { skip: 0.08, marginal: 0.34, fun: 0.62, fire: 1 };
+
+  var card = document.getElementById("call");
+
+  function field(name) { return card.querySelector('[data-field="' + name + '"]'); }
+  function set(name, text) { field(name).textContent = text || ""; }
+
+  function wave(verdict) {
+    var h = 6 * AMP[verdict];
+    var d = "M1," + (9 - h) + " C5," + (9 - 2 * h) + " 9," + (9 + h) + " 13,9 S21," + (9 - 1.6 * h) + " 25,9";
+    var svg = '<svg viewBox="0 0 26 18" aria-hidden="true"><path d="' + d +
+      '" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>';
+    if (verdict === "fire") svg += '<circle cx="13" cy="' + (9 - h * 0.15) + '" r="1.9" fill="currentColor"/>';
+    return svg + "</svg>";
+  }
+
+  function dayLabel(iso) {
+    var p = String(iso).split("-").map(Number);
+    if (p.length !== 3 || p.some(isNaN)) return "";
+    return new Date(Date.UTC(p[0], p[1] - 1, p[2])).toLocaleDateString("en-US",
+      { weekday: "short", month: "short", day: "numeric", timeZone: "UTC" });
+  }
+
+  function capitalised(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ""; }
+
+  function show(c) {
+    var day = dayLabel(c.day);
+    set("day", day ? " · " + day : "");
+    set("name", c.name);
+    set("region", c.region);
+    var pill = field("pill");
+    pill.className = "verdict verdict--" + c.verdict;
+    pill.innerHTML = wave(c.verdict);
+    pill.appendChild(document.createTextNode(c.verdict.toUpperCase()));
+    set("gloss", GLOSS[c.verdict]);
+    set("read", c.read);
+    set("size", capitalised(c.sizeWords));
+    set("hour", c.hourLabel);
+    set("swell", c.periodS && c.swellDir ? c.periodS + " s " + c.swellDir + " swell" : "");
+    set("wind", capitalised(c.windWords));
+    card.classList.remove("is-loading");
+    card.removeAttribute("aria-busy");
+  }
+
+  function give_up() { card.remove(); }
+
+  var controller = "AbortController" in window ? new AbortController() : null;
+  var timer = setTimeout(function () { if (controller) controller.abort(); }, 5000);
+
+  fetch(ENDPOINT, { credentials: "omit", signal: controller ? controller.signal : undefined })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      var c = data && data.call;
+      if (c && GLOSS[c.verdict] && c.name) show(c); else give_up();
+    })
+    .catch(give_up)
+    .then(function () { clearTimeout(timer); });
+})();
+</script>
+</body>
+</html>

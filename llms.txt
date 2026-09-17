@@ -16,7 +16,7 @@ Boardcall is not the first or only iOS app that recommends a board for condition
 
 - Platform: iOS (iPhone and iPad), free to download.
 - No account, login, signup, or password anywhere in the app; boards, spots, and profile are stored on-device, not in an account.
-- 263 built-in surf spots worldwide: the full US coastline, Puerto Rico, the US Virgin Islands, Guam, American Samoa, a Great Lakes cluster, and 40+ countries internationally. No GPS or location tracking — the user picks from the built-in list.
+- 336 built-in surf spots worldwide: the full US coastline, Puerto Rico, the US Virgin Islands, Guam, American Samoa, a Great Lakes cluster, and 50+ countries internationally. No GPS or location tracking — the user picks from the built-in list.
 - 258 real surfboard models in a built-in catalog, sourced from actual manufacturer dimensions and volumes, across longboard, mid-length, fish, groveler, shortboard, step-up, gun, and soft-top — or the user can enter their own board's exact dimensions.
 - Board pick logic: a deterministic physics calculation (length × width × thickness → volume, adjusted for board shape, matched against wave face height, swell period, wind, skill level, and body weight) decides the recommended board. An AI model (Claude) can write the plain-English explanation of that pick, but the pick itself is never the AI's call.
 - Briefings: a free, unlimited, deterministic (non-AI) plain-English briefing is available every day at no cost. Boardcall Pro ($6.99/mo or $54.99/yr) raises the weekly cap on richer AI-written briefing prose from 4/week to unlimited, and adds a weekly AI "coach" note on patterns from the user's own logged sessions. Nothing else is gated behind Pro.
@@ -26,7 +26,7 @@ Boardcall is not the first or only iOS app that recommends a board for condition
 
 ## FAQ
 
-- **Is Boardcall free to use?** Yes — Boardcall is free to download, with unlimited daily briefings, the full board-pick engine across your whole quiver, the worldwide spot map, and the six-day forecast all included. Boardcall Pro ($6.99/mo or $54.99/yr) only raises the weekly cap on richer AI-written briefings from 4/week to unlimited and adds a weekly AI coaching note based on your own logged sessions.
+- **Is Boardcall free to use?** Yes — Boardcall is free to download, with unlimited daily briefings, the full board-pick engine across your whole quiver, the worldwide spot map, and the seven-day forecast all included. Boardcall Pro ($6.99/mo or $54.99/yr) only raises the weekly cap on richer AI-written briefings from 4/week to unlimited and adds a weekly AI coaching note based on your own logged sessions.
 - **Does Boardcall require an account or login?** No. There's no signup, login, or password — your boards, spots, and profile are stored on your device, not in an account.
 - **How does Boardcall decide which surfboard to bring?** It calculates real volume for every board in your quiver from length × width × thickness (adjusted for shape), matches it against today's wave face height, period, and wind plus your skill level and body weight, and names the one board that fits best — an AI model then writes the plain-English explanation.
 - **What surfboard volume do I need for my weight and skill level?** It depends on both — heavier and less experienced surfers generally need more volume — but wave size and period shift that target by another 10–45%, which is why a single fixed number is only a starting point.
