@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Surfboard Volume Calculator | Boardcall</title>
+<meta name="description" content="Free surfboard volume calculator. Get your target volume in litres from your weight, skill and today's actual conditions — then check whether the board you own matches.">
+<link rel="canonical" href="https://boardcall.app/tools/surfboard-volume-calculator.html">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boardcall">
+<meta property="og:title" content="Surfboard Volume Calculator | Boardcall">
+<meta property="og:description" content="Get your target surfboard volume from your weight, skill and today's conditions — then check the board you already own against it.">
+<meta property="og:url" content="https://boardcall.app/tools/surfboard-volume-calculator.html">
+<meta property="og:image" content="https://boardcall.app/assets/images/og-icon-1200.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Surfboard Volume Calculator | Boardcall">
+<meta name="twitter:description" content="Get your target surfboard volume from your weight, skill and today's conditions — then check the board you already own against it.">
+
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/images/icon-180.png">
+<meta name="theme-color" content="#0B0F14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Surfboard Volume Calculator",
+      "url": "https://boardcall.app/tools/surfboard-volume-calculator.html",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Any",
+      "description": "Calculates a target surfboard volume in litres from rider weight, skill level, wave face height and swell period, and estimates the volume of a board from its dimensions.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "Boardcall", "url": "https://boardcall.app/" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much volume do I need on a surfboard?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start from your body weight in kilograms and multiply by a skill coefficient: about 0.95 for a beginner, 0.60 for an intermediate, 0.42 for an advanced surfer and 0.35 for an expert. Then adjust for the day: short-period weak swell needs up to 12% more foam, and long-period clean swell about 10% less. Small waves under three feet need about 8% more, and big waves need more again, not less."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do bigger waves need more or less volume?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "More. This is the single most common mistake. You need paddle power to get into a big wave early, which is why a big-wave gun is longer and more voluminous than an everyday shortboard, not smaller. Volume only comes down in the middle of the range, around three to six feet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I work out the volume of a board if it isn't stamped on it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply length by width by thickness in inches, multiply by 0.0163871 to get litres, then multiply by a shape factor for the board type — roughly 0.58 for a longboard, 0.55 for a mid-length, 0.54 for a fish, 0.50 for a shortboard and 0.47 for a gun. It is an estimate, typically within a litre or two of a stamped figure."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  .calc { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.10);
+          border-radius: 16px; padding: 22px; margin: 22px 0; }
+  .calc h3 { margin: 0 0 4px; }
+  .calc .hint { opacity: .70; font-size: .92rem; margin: 0 0 18px; }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-weight: 700; margin-bottom: 6px; font-size: .95rem; }
+  .field .val { float: right; font-weight: 800; opacity: .85; }
+  .field input[type=range] { width: 100%; accent-color: #1F6F78; }
+  .field input[type=number], .field select {
+      width: 100%; padding: 10px 12px; border-radius: 10px; font: inherit;
+      background: rgba(255,255,255,.06); color: inherit;
+      border: 1px solid rgba(255,255,255,.16); }
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .seg button { flex: 1 1 auto; min-width: 84px; padding: 9px 10px; border-radius: 10px;
+      font: inherit; font-weight: 700; cursor: pointer; color: inherit;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.16); }
+  .seg button[aria-pressed=true] { background: #1F6F78; border-color: #1F6F78; color: #fff; }
+  .readout { text-align: center; padding: 20px 12px; border-radius: 14px;
+      background: rgba(31,111,120,.14); border: 1px solid rgba(31,111,120,.40); }
+  .readout .big { font-family: Nunito, system-ui, sans-serif; font-weight: 900;
+      font-size: clamp(2.4rem, 9vw, 3.4rem); line-height: 1; }
+  .readout .cap { opacity: .80; font-size: .92rem; margin-top: 8px; }
+  .verdictline { margin-top: 14px; font-weight: 700; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+  table.vol { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: .95rem; }
+  table.vol th, table.vol td { text-align: left; padding: 8px 6px;
+      border-bottom: 1px solid rgba(255,255,255,.10); }
+  table.vol th { opacity: .70; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a href="../index.html" class="nav__brand"><img src="../assets/images/icon-512.png" alt="Boardcall icon"> Boardcall</a>
+    <nav class="nav__links">
+      <a href="../index.html#how-it-works">How it works</a>
+      <a href="../index.html#screenshots">Screenshots</a>
+      <a href="../index.html#guides">Guides</a>
+      <a href="https://boardcall.app/blog/">Blog</a>
+      <a href="../index.html#faq">FAQ</a>
+      <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary btn--sm">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article class="section">
+  <div class="wrap">
+
+    <p class="breadcrumb"><a href="../index.html">Boardcall</a> → Surfboard volume calculator</p>
+    <h1>Surfboard volume calculator</h1>
+    <p class="lede">Volume is the number that decides whether a board works for you. Most surfers
+    never check it, and most of the ones who do check it against their weight alone — which is only
+    half the answer, because the right volume changes with the waves.</p>
+
+    <p>This runs the same arithmetic the Boardcall app runs every morning. Set your weight and
+    skill, then set the day. The target moves.</p>
+
+    <!-- ── Calculator 1 ─────────────────────────────────────────── -->
+    <div class="calc">
+      <h3>1. What volume should I be on?</h3>
+      <p class="hint">Your weight and ability set the baseline. The conditions move it.</p>
+
+      <div class="grid2">
+        <div>
+          <div class="field">
+            <label for="unit">Weight</label>
+            <div class="seg" role="group" aria-label="Weight unit">
+              <button type="button" id="u-kg" aria-pressed="true">Kilograms</button>
+              <button type="button" id="u-lb" aria-pressed="false">Pounds</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="weight">Your weight <span class="val"><span id="weight-v">75</span> <span id="weight-u">kg</span></span></label>
+            <input type="range" id="weight" min="40" max="130" step="1" value="75">
+          </div>
+
+          <div class="field">
+            <label>Skill level</label>
+            <div class="seg" role="group" aria-label="Skill level">
+              <button type="button" data-skill="0.95">Beginner</button>
+              <button type="button" data-skill="0.60" aria-pressed="true">Intermediate</button>
+              <button type="button" data-skill="0.42">Advanced</button>
+              <button type="button" data-skill="0.35">Expert</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="field">
+            <label for="face">Wave face height <span class="val"><span id="face-v">4</span> ft</span></label>
+            <input type="range" id="face" min="1" max="15" step="0.5" value="4">
+            <p class="hint" id="face-words" style="margin:6px 0 0"></p>
+          </div>
+
+          <div class="field">
+            <label for="period">Swell period <span class="val"><span id="period-v">12</span> s</span></label>
+            <input type="range" id="period" min="5" max="20" step="1" value="12">
+            <p class="hint" id="period-words" style="margin:6px 0 0"></p>
+          </div>
+
+          <div class="readout">
+            <div class="big"><span id="target">45</span> L</div>
+            <div class="cap">target volume for this day</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="vol">
+        <thead><tr><th>On a flat day</th><th>Today</th><th>Difference</th></tr></thead>
+        <tbody><tr>
+          <td><span id="base">45</span> L</td>
+          <td><span id="target2">45</span> L</td>
+          <td><span id="delta">the same</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <!-- ── Calculator 2 ─────────────────────────────────────────── -->
+    <div class="calc">
+      <h3>2. Is the board I already own the right one?</h3>
+      <p class="hint">If the volume is stamped on your deck, use that. If it isn't, put the
+      dimensions in and this will estimate it.</p>
+
+      <div class="grid2">
+        <div>
+          <div class="field">
+            <label for="btype">Board type</label>
+            <select id="btype">
+              <option value="0.58">Longboard</option>
+              <option value="0.60">Soft-top</option>
+              <option value="0.55">Mid-length</option>
+              <option value="0.54">Fish</option>
+              <option value="0.53">Groveler</option>
+              <option value="0.50" selected>Shortboard</option>
+              <option value="0.49">Step-up</option>
+              <option value="0.47">Gun</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="len">Length</label>
+            <div class="grid2">
+              <input type="number" id="ft" min="4" max="12" step="1" value="6" aria-label="Feet">
+              <input type="number" id="in" min="0" max="11.5" step="0.5" value="0" aria-label="Inches">
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="field">
+            <label for="wid">Width (inches)</label>
+            <input type="number" id="wid" min="16" max="25" step="0.125" value="19.5">
+          </div>
+          <div class="field">
+            <label for="thk">Thickness (inches)</label>
+            <input type="number" id="thk" min="1.75" max="4" step="0.0625" value="2.5">
+          </div>
+        </div>
+      </div>
+
+      <div class="readout">
+        <div class="big"><span id="boardvol">28.8</span> L</div>
+        <div class="cap">estimated volume of this board</div>
+        <div class="verdictline" id="fit">—</div>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <h2>How the number is worked out</h2>
+      <p>Start with body weight in kilograms and multiply by a coefficient for ability. A beginner
+      needs close to their own weight in litres; an expert needs about a third of it. That single
+      step is most of the answer:</p>
+
+      <table class="vol">
+        <thead><tr><th>Skill</th><th>Multiplier</th><th>75&nbsp;kg rider</th></tr></thead>
+        <tbody>
+          <tr><td>Beginner</td><td>0.95</td><td>71 L</td></tr>
+          <tr><td>Intermediate</td><td>0.60</td><td>45 L</td></tr>
+          <tr><td>Advanced</td><td>0.42</td><td>32 L</td></tr>
+          <tr><td>Expert</td><td>0.35</td><td>26 L</td></tr>
+        </tbody>
+      </table>
+
+      <p>Then the day moves it. Short-period wind swell has very little energy in it, so you need
+      more foam just to get into the wave — up to 12% more under nine seconds. Long-period
+      groundswell does the work for you, so you can drop about 10%.</p>
+
+      <h2>The part almost everyone gets backwards</h2>
+      <p><strong>Big waves need more volume, not less.</strong> It feels wrong, because the boards
+      look thinner. But you need paddle power to get into an overhead wave early, and being late is
+      how people get hurt. That is exactly why a big-wave gun is longer and more voluminous than the
+      shortboard the same person rides on a Tuesday — not smaller.</p>
+      <p>Volume only comes down through the middle of the range, roughly three to six feet, where
+      the wave has enough push to carry you and a thinner rail starts to earn its keep.</p>
+
+      <h2>Estimating volume from dimensions</h2>
+      <p>Length × width × thickness in inches, times 0.0163871 to get litres, times a shape factor
+      for the outline — a longboard fills its box far more completely than a gun does. The estimate
+      usually lands within a litre or two of a stamped figure. A 6'0" × 19½" × 2½" shortboard comes
+      out at about 28.8 L, which is what that board really is.</p>
+
+      <h2>What this calculator can't do</h2>
+      <p>It doesn't know what the waves are doing at your break this morning — you have to tell it.
+      That is the honest limit of any calculator on a web page, and it is the reason the app exists:
+      Boardcall reads the swell, wind and tide at your break, works out the face height itself, and
+      then runs this same arithmetic against the boards you actually own — so instead of a number,
+      you get a board.</p>
+    </div>
+
+    <div class="cta-band">
+      <h2>Your next surf check should take six seconds.</h2>
+      <p class="lede center" style="color:rgba(255,255,255,0.85);">Boardcall runs this same arithmetic every morning &mdash; for your break, against the boards you actually own &mdash; so instead of a number you get a board. 336 breaks. No account, no login, no location tracking.</p>
+      <div class="btn-row" style="justify-content:center; margin-top:24px;">
+        <a href="https://apps.apple.com/us/app/boardcall-surf-briefing/id6798369030" class="btn btn--primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.15 1.92-.75 3.29-.68 1.64.13 2.87.78 3.68 1.95-3.32 1.99-2.78 6.35.56 7.62-.61 1.55-1.4 3.08-2.6 3.28ZM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.19-2.03 4.42-3.74 4.25Z"/></svg> Download Boardcall &mdash; Free</a>
+      </div>
+    </div>
+
+    <div class="related">
+      <span class="eyebrow">Keep reading</span>
+      <div class="cards">
+        <a class="card" href="../guides/surfboard-volume-chart-by-weight-and-skill-level.html"><span class="card__kicker">Guide</span><h3>Surfboard Volume Chart by Weight and Skill Level</h3><p>The chart behind the calculator, and why wave size and period shift your target by 6&ndash;45%.</p></a>
+<a class="card" href="../guides/signs-your-surfboard-has-wrong-volume.html"><span class="card__kicker">Guide</span><h3>Signs Your Surfboard Has Too Much or Too Little Volume</h3><p>What being under-volumed actually feels like in the water, and how to tell it apart from being rusty.</p></a>
+<a class="card" href="../guides/which-surfboard-should-i-ride-today.html"><span class="card__kicker">Guide</span><h3>Which Surfboard Should I Ride Today?</h3><p>The decision framework this calculator is one step of &mdash; face height, period, wind and your own rack.</p></a>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <img src="../assets/images/icon-512.png" alt="Boardcall icon" width="40" height="40">
+      <p>Boardcall — the surf call, and the board.</p>
+    </div>
+    <div class="footer__col">
+      <a href="https://boardcall.app/privacy/">Privacy</a>
+      <a href="https://boardcall.app/terms/">Terms</a>
+      <a href="https://boardcall.app/support/">Support</a>
+    </div>
+  </div>
+  <div class="wrap footer__bottom">
+    <p class="attribution">Wave and wind data from Open-Meteo (CC BY 4.0). Tide predictions from NOAA CO-OPS.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var LB_PER_KG = 2.20462;
+  var state = { kg: 75, skill: 0.60, face: 4, period: 12, unit: 'kg' };
+
+  function $(id) { return document.getElementById(id); }
+
+  // ── the engine, ported verbatim from the app's BoardEngine ──────────────
+  function periodFactor(p) {
+    if (p < 9)  return 1.12;
+    if (p < 11) return 1.05;
+    if (p < 14) return 1.00;
+    if (p < 17) return 0.94;
+    return 0.90;
+  }
+  function faceFactor(f) {
+    if (f < 3)  return 1.08;
+    if (f < 6)  return 1.00;
+    if (f < 9)  return 1.08;
+    if (f < 12) return 1.25;
+    return 1.45;
+  }
+  function targetVolume(kg, skill, face, period) {
+    return kg * skill * periodFactor(period) * faceFactor(face);
+  }
+  function estimateVolume(lengthIn, widthIn, thickIn, shape) {
+    return lengthIn * widthIn * thickIn * 0.0163871 * shape;
+  }
+
+  // Size buckets, same wording the app uses out loud.
+  function sizeWords(f) {
+    if (f < 1)  return 'flat';
+    if (f < 2)  return 'ankle to knee high';
+    if (f < 3)  return 'knee to waist high';
+    if (f < 4)  return 'waist to chest high';
+    if (f < 5)  return 'chest to shoulder high';
+    if (f < 7)  return 'shoulder to head high';
+    if (f < 9)  return 'overhead';
+    if (f < 12) return 'well overhead';
+    return 'double overhead plus';
+  }
+  function periodWords(p) {
+    if (p < 9)  return 'short-period wind swell — very little push';
+    if (p < 11) return 'mid-period swell';
+    if (p < 14) return 'decent groundswell';
+    if (p < 17) return 'long-period groundswell — plenty of push';
+    return 'very long-period groundswell';
+  }
+
+  function render() {
+    var kg = state.kg;
+
+    $('weight-v').textContent = state.unit === 'kg'
+      ? Math.round(kg) : Math.round(kg * LB_PER_KG);
+    $('weight-u').textContent = state.unit;
+
+    $('face-v').textContent   = state.face;
+    $('period-v').textContent = state.period;
+    $('face-words').textContent   = sizeWords(state.face);
+    $('period-words').textContent = periodWords(state.period);
+
+    var t    = targetVolume(kg, state.skill, state.face, state.period);
+    var base = kg * state.skill;          // before the day's adjustments
+    $('target').textContent  = t.toFixed(1);
+    $('target2').textContent = t.toFixed(1);
+    $('base').textContent    = base.toFixed(1);
+
+    var d = t - base;
+    $('delta').textContent = Math.abs(d) < 0.35
+      ? 'the same'
+      : (d > 0 ? '+' : '−') + Math.abs(d).toFixed(1) + ' L '
+        + (d > 0 ? 'more foam today' : 'less foam today');
+
+    renderBoard(t);
+  }
+
+  function renderBoard(target) {
+    var ft  = parseFloat($('ft').value)  || 0;
+    var inc = parseFloat($('in').value)  || 0;
+    var w   = parseFloat($('wid').value) || 0;
+    var th  = parseFloat($('thk').value) || 0;
+    var shape = parseFloat($('btype').value);
+
+    var vol = estimateVolume(ft * 12 + inc, w, th, shape);
+    $('boardvol').textContent = vol.toFixed(1);
+
+    var diff = vol - target;
+    var el = $('fit');
+    if (!isFinite(vol) || vol <= 0) { el.textContent = '—'; return; }
+
+    // Under-volumed is worse than over — you simply don't catch the wave.
+    if (diff < -3) {
+      el.textContent = Math.abs(diff).toFixed(1) + ' L under target — you’ll be working hard for every wave today.';
+    } else if (diff > 8) {
+      el.textContent = diff.toFixed(1) + ' L over target — plenty of float, harder to put on a rail.';
+    } else if (diff > 3) {
+      el.textContent = diff.toFixed(1) + ' L over target — a little extra float, which is rarely a problem.';
+    } else {
+      el.textContent = 'This board is right in range for today.';
+    }
+  }
+
+  // ── wiring ──────────────────────────────────────────────────────────────
+  $('weight').addEventListener('input', function () {
+    var raw = parseFloat(this.value);
+    state.kg = state.unit === 'kg' ? raw : raw / LB_PER_KG;
+    render();
+  });
+
+  function setUnit(unit) {
+    if (unit === state.unit) return;
+    state.unit = unit;
+    $('u-kg').setAttribute('aria-pressed', String(unit === 'kg'));
+    $('u-lb').setAttribute('aria-pressed', String(unit === 'lb'));
+    var s = $('weight');
+    if (unit === 'lb') { s.min = 88; s.max = 287; s.step = 1; s.value = Math.round(state.kg * LB_PER_KG); }
+    else               { s.min = 40; s.max = 130; s.step = 1; s.value = Math.round(state.kg); }
+    render();
+  }
+  $('u-kg').addEventListener('click', function () { setUnit('kg'); });
+  $('u-lb').addEventListener('click', function () { setUnit('lb'); });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-skill]'), function (b) {
+    b.addEventListener('click', function () {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-skill]'), function (o) {
+        o.setAttribute('aria-pressed', 'false');
+      });
+      b.setAttribute('aria-pressed', 'true');
+      state.skill = parseFloat(b.dataset.skill);
+      render();
+    });
+  });
+
+  $('face').addEventListener('input',   function () { state.face   = parseFloat(this.value); render(); });
+  $('period').addEventListener('input', function () { state.period = parseFloat(this.value); render(); });
+
+  ['btype', 'ft', 'in', 'wid', 'thk'].forEach(function (id) {
+    $(id).addEventListener('input', function () {
+      renderBoard(targetVolume(state.kg, state.skill, state.face, state.period));
+    });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
