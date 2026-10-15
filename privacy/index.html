@@ -156,7 +156,7 @@
   <header class="page-head">
     <span class="eyebrow">Boardcall</span>
     <h1>Privacy Policy</h1>
-    <p class="subtitle">Effective September 14, 2026</p>
+    <p class="subtitle">Effective October 15, 2026</p>
   </header>
 
   <p>Boardcall ("the app," "we," "us") is a surf-briefing app for iPhone and iPad, built and maintained by an
@@ -177,7 +177,8 @@
       server, which fetches and caches the wave and wind data. Nothing about you goes with it.</li>
       <li>When you tap for an AI-written briefing, the text is written by a third-party AI service
       (Anthropic's Claude), reached through our server. That request includes the day's conditions,
-      your skill level and weight, and your boards. Our server does not log or store it. Anthropic holds
+      your skill level and weight, your boards, and your phone's language setting and chosen units (so
+      the briefing comes back in your language and measurements). Our server does not log or store it. Anthropic holds
       it for up to 30 days on their own systems as an anti-abuse measure.</li>
       <li>If you subscribe to Boardcall Pro and log sessions, a weekly coaching note is written the same
       way, from a summary of those sessions and your three most recent session notes.</li>
@@ -232,8 +233,10 @@
     <h3>The AI briefing request</h3>
     <p>Nothing is sent until you tap <strong>Get AI briefing</strong> on Today. When you do, the app
     sends a request to our server containing the day's surf conditions at your chosen spot (wave size,
-    swell period, wind, tide, temperature), your skill level and weight, and your boards as ranked by the
-    app's own on-device physics engine. Our server forwards this to Anthropic's Claude — a third-party AI
+    swell period, wind, tide, temperature), your skill level and weight, your boards as ranked by the
+    app's own on-device physics engine, and your phone's preferred language and the units you've chosen
+    (feet or metres, °F or °C), so the briefing can be written in that language with those measurements.
+    Our server forwards this to Anthropic's Claude — a third-party AI
     service — to write the plain-English briefing, and returns the result to the app. That content is
     not written to any database by our server, and on failure our server only logs a generic error code,
     never the data itself.</p>
@@ -320,8 +323,8 @@
       </tr>
       <tr>
         <td>Anthropic<br><span class="muted">Claude API, a third-party AI service</span></td>
-        <td>For an AI briefing: the day's conditions, your skill level and weight, and your ranked
-        boards. For a Pro coaching note: your skill level, a summary of patterns in your logged sessions,
+        <td>For an AI briefing: the day's conditions, your skill level and weight, your ranked
+        boards, and your language and unit settings. For a Pro coaching note: your skill level, a summary of patterns in your logged sessions,
         and your three most recent session notes. Both are sent only from our own server, never directly
         from your phone.</td>
         <td>Writes the plain-English briefing and board-pick explanation on Today, and the weekly
