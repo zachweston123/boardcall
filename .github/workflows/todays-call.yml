@@ -4,18 +4,29 @@
 # LLM browse tools generally cannot read a JSON endpoint -- they come back empty.
 # This turns it into a plain static page on GitHub Pages, which anything can fetch.
 #
-# Timing: the pick is written at 13:30 UTC, so this runs at 14:05 UTC to leave the
-# run room to finish. If the feed is unreachable the script exits non-zero and
-# nothing is committed, so the previous day's page stays up rather than going blank.
+# Timing: the pick is written at 13:30 UTC. This runs at 14:05 and twice more, an
+# hour either side, because GitHub's scheduled runs are best-effort -- they get
+# delayed under load and are occasionally dropped altogether. Each later run is a
+# no-op once the page is current, so the retries cost nothing and mean one dropped
+# run doesn't leave whoever is posting looking at yesterday's break.
+#
+# If the feed is unreachable the script exits non-zero and nothing is committed, so
+# the previous day's page stays up rather than going blank. The page carries its own
+# date, so a stale page is visibly stale rather than quietly wrong.
 name: Today's call
 
 on:
   schedule:
     - cron: "5 14 * * *"
+    - cron: "35 14 * * *"
+    - cron: "20 15 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  # Needed by the rebuild step below. Without it the commit lands and the live
+  # site never changes.
+  pages: write
 
 concurrency:
   group: todays-call
@@ -31,13 +42,30 @@ jobs:
         run: python3 scripts/build-today-page.py
 
       - name: Commit if it changed
+        id: commit
         run: |
           if git diff --quiet -- today/index.html; then
             echo "no change"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name  "boardcall-bot"
           git config user.email "noreply@boardcall.app"
           git add today/index.html
           git commit -m "Today's call: $(date -u +%Y-%m-%d)"
+          # A hand-push landing in the same minute would otherwise reject this and
+          # the page would sit out the day until the next run.
+          git pull --rebase --autostash origin main
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Ask Pages to rebuild
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Not belt-and-braces. A push made with GITHUB_TOKEN does not trigger
+          # workflow runs, and the Pages build IS a workflow -- so relying on the
+          # push alone can leave the commit in the repo with the live page never
+          # rebuilt. Asking for the build explicitly removes the question.
+          gh api --method POST "repos/${{ github.repository }}/pages/builds" --silent
