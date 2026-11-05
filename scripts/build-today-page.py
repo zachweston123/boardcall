@@ -17,8 +17,16 @@ that trap deliberately.
 Run from the repo root. Writes today/index.html. Exits non-zero and writes
 nothing if the feed is unreachable or has no pick, so a bad run leaves
 yesterday's page up rather than publishing a blank one.
+
+With --require-today it also exits non-zero when the feed's newest pick is not
+today's. That is the quiet failure worth catching: if the upstream job never
+wrote a row, the feed deliberately serves yesterday's, this script would rebuild
+a byte-identical page, nothing would change, and the run would go green while
+the page sat a day behind. Pass the flag on the last run of the morning only --
+on the earlier ones the pick may simply not be written yet, and failing then
+would cry wolf every day.
 """
-import html, json, pathlib, sys, urllib.request
+import datetime, html, json, pathlib, sys, urllib.request
 
 FEED = "https://erzfcqlnezmufmtyejvv.supabase.co/functions/v1/todays-call"
 OUT = pathlib.Path("today/index.html")
@@ -44,6 +52,21 @@ def main():
     name = (call.get("name") or "").strip()
     if not name:
         print("no pick in feed; leaving the existing page alone", file=sys.stderr)
+        return 1
+
+    # The feed stamps its day in America/Los_Angeles, so compare against that
+    # rather than UTC. At the times this runs the two agree anyway; being explicit
+    # keeps it correct if the schedule ever moves.
+    try:
+        import zoneinfo
+        today = datetime.datetime.now(zoneinfo.ZoneInfo("America/Los_Angeles")).date().isoformat()
+    except Exception:                            # noqa: BLE001 - no tzdata: UTC is right at 14:05
+        today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+
+    feed_day = (call.get("day") or "").strip()
+    if "--require-today" in sys.argv and feed_day != today:
+        print(f"feed's newest pick is {feed_day or 'missing'}, not {today} -- "
+              "the upstream job has not written today's row", file=sys.stderr)
         return 1
 
     e = lambda v: html.escape(str(v)) if v not in (None, "") else ""
@@ -131,6 +154,9 @@ button,a.btn{{font:600 16px/1 ui-rounded,system-ui,sans-serif;border:0;border-ra
  text-decoration:none;margin:0 .5rem .5rem 0}}
 button:focus-visible,a.btn:focus-visible{{outline:3px solid #1F6F78;outline-offset:2px}}
 .warn{{background:rgba(232,115,74,.15);border-radius:10px;padding:.9rem 1rem}}
+.stale{{background:rgba(232,115,74,.2);border:2px solid var(--fire);border-radius:10px;
+ padding:1rem;margin:0 0 1.5rem}}
+.stale strong{{display:block;margin-bottom:.35rem}}
 footer{{margin-top:2.5rem;padding-top:1rem;border-top:1px solid rgba(128,128,128,.3);
  font-size:.85rem;opacity:.7}}
 </style>
@@ -168,6 +194,7 @@ Rebuilt daily; this page carries no other content.</p>
 
 <script src="card.js"></script>
 <script>
+var BAKED_DAY = {json.dumps(call.get("day") or "")};
 var DATA = {json.dumps({
     "name": name, "region": call.get("region"), "verdict": verdict,
     "faceFt": face, "sizeWords": call.get("sizeWords"), "periodS": period,
@@ -205,6 +232,45 @@ var DATA = {json.dumps({
   }} else if (copy) {{
     copy.remove();
   }}
+}})();
+
+// Freshness check. This page is baked once a morning by a scheduled job, and if
+// that job stops running -- a dropped schedule, a disabled workflow, an upstream
+// miss -- nothing else here would say so: the page would quietly keep showing an
+// older break, and whoever is posting would post the wrong one in good faith.
+// So the page checks itself against the feed and says plainly when it is behind.
+//
+// It deliberately does NOT rewrite the post. The markup stays the single source
+// of truth for anything fetching this page, so a mismatch gets surfaced rather
+// than papered over -- and the two would otherwise disagree with nobody knowing,
+// since a fetcher reading the HTML runs none of this.
+(function () {{
+  if (!window.fetch || !BAKED_DAY) return;
+  var ctl = ("AbortController" in window) ? new AbortController() : null;
+  if (ctl) setTimeout(function () {{ ctl.abort(); }}, 6000);
+  fetch({json.dumps(FEED)}, ctl ? {{signal: ctl.signal}} : undefined)
+    .then(function (r) {{ return r.ok ? r.json() : null; }})
+    .then(function (j) {{
+      var c = j && j.call;
+      // ISO dates compare correctly as strings. Only a strictly newer pick counts:
+      // an equal or older one means this page is current, or the feed is behind,
+      // and neither is cause to alarm anyone.
+      if (!c || !c.day || !c.name || !(c.day > BAKED_DAY)) return;
+      var n = document.createElement("div");
+      n.className = "stale";
+      var head = document.createElement("strong");
+      head.textContent = "Do not post this — the page is a day behind.";
+      var rest = document.createElement("span");
+      rest.textContent = "It was built for " + BAKED_DAY + " and today's pick is " +
+        c.name + (c.region ? " (" + c.region + ")" : "") + ". The card, caption " +
+        "and conditions below are still yesterday's, so the research prompt will " +
+        "name the wrong break too. Tell Zach the rebuild stopped.";
+      n.appendChild(head);
+      n.appendChild(rest);
+      document.body.insertBefore(n, document.body.firstChild);
+      document.title = "Out of date · " + document.title;
+    }})
+    .catch(function () {{}});   // a failed check changes nothing on the page
 }})();
 </script>
 </body>
