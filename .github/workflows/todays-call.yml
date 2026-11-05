@@ -1,0 +1,43 @@
+# Rebuilds /today/ each morning with the Break of the Day name baked into the HTML.
+#
+# The pick itself comes from a Supabase edge function that answers in JSON, and
+# LLM browse tools generally cannot read a JSON endpoint -- they come back empty.
+# This turns it into a plain static page on GitHub Pages, which anything can fetch.
+#
+# Timing: the pick is written at 13:30 UTC, so this runs at 14:05 UTC to leave the
+# run room to finish. If the feed is unreachable the script exits non-zero and
+# nothing is committed, so the previous day's page stays up rather than going blank.
+name: Today's call
+
+on:
+  schedule:
+    - cron: "5 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: todays-call
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build today/index.html
+        run: python3 scripts/build-today-page.py
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- today/index.html; then
+            echo "no change"
+            exit 0
+          fi
+          git config user.name  "boardcall-bot"
+          git config user.email "noreply@boardcall.app"
+          git add today/index.html
+          git commit -m "Today's call: $(date -u +%Y-%m-%d)"
+          git push
