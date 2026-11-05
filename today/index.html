@@ -6,30 +6,108 @@
 <title>Break of the Day: Todos Santos (San Pedrito) &middot; Boardcall</title>
 <meta name="description" content="Boardcall's Break of the Day for 2026-11-04: Todos Santos (San Pedrito), El Pescadero, Baja California Sur, Mexico. Verdict FIRE.">
 <style>
-:root{color-scheme:light dark}
-body{font:17px/1.6 system-ui,-apple-system,sans-serif;max-width:40rem;margin:0 auto;padding:2.5rem 1.25rem}
-h1{font-size:1.6rem;margin:.2rem 0 .3rem}
-p.region{margin:0 0 1.2rem;opacity:.75}
-.verdict{font-weight:700;letter-spacing:.06em}
-ul{padding-left:1.1rem}
-footer{margin-top:2rem;font-size:.85rem;opacity:.7}
+:root{color-scheme:light dark;--fire:#E8734A;--fun:#1F6F78;--marginal:#8A74BF;--skip:#6B7280}
+*{box-sizing:border-box}
+body{font:17px/1.6 ui-rounded,system-ui,-apple-system,sans-serif;max-width:40rem;
+ margin:0 auto;padding:2rem 1.15rem 4rem}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin:0 0 .5rem}
+h1{font-size:1.75rem;line-height:1.15;margin:0 0 .2rem;text-wrap:balance}
+p.region{margin:0 0 1rem;opacity:.75}
+.verdict{display:inline-block;color:#fff;font-weight:700;font-size:.78rem;letter-spacing:.09em;
+ text-transform:uppercase;padding:.3rem .7rem;border-radius:999px;background:var(--fire)}
+.read{font-size:1.1rem;margin:.9rem 0 1.4rem}
+dl{margin:0 0 1.6rem;border-top:1px solid rgba(128,128,128,.3)}
+.row{display:flex;gap:1rem;padding:.5rem 0;border-bottom:1px solid rgba(128,128,128,.3)}
+dt{flex:0 0 7.5rem;opacity:.65;margin:0}
+dd{margin:0}
+h2{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;opacity:.6;margin:2rem 0 .6rem}
+canvas{width:100%;height:auto;border-radius:12px;display:block}
+pre{white-space:pre-wrap;word-wrap:break-word;font:15px/1.55 ui-monospace,Menlo,monospace;
+ background:rgba(128,128,128,.12);border-radius:12px;padding:1rem;margin:0 0 .75rem}
+button,a.btn{font:600 16px/1 ui-rounded,system-ui,sans-serif;border:0;border-radius:10px;
+ padding:.85rem 1.2rem;background:#1F6F78;color:#fff;cursor:pointer;display:inline-block;
+ text-decoration:none;margin:0 .5rem .5rem 0}
+button:focus-visible,a.btn:focus-visible{outline:3px solid #1F6F78;outline-offset:2px}
+.warn{background:rgba(232,115,74,.15);border-radius:10px;padding:.9rem 1rem}
+footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid rgba(128,128,128,.3);
+ font-size:.85rem;opacity:.7}
 </style>
 </head>
 <body>
-<p>Boardcall &middot; Break of the Day &middot; 2026-11-04</p>
+
+<p class="eyebrow">Boardcall &middot; Break of the Day &middot; 2026-11-04</p>
 <h1>Todos Santos (San Pedrito)</h1>
 <p class="region">El Pescadero, Baja California Sur, Mexico</p>
-<p>Verdict: <span class="verdict">FIRE</span>. Glassy head-high lines peeling off the reef at first light.</p>
-<ul>
-<li>Face height: 6.1 ft</li>
-<li>Swell: 14 s from the WSW</li>
-<li>Wind: offshore, glassy</li>
-<li>Best at 6am local</li>
-</ul>
+<p><span class="verdict">fire</span></p>
+<p class="read">Glassy head-high lines peeling off the reef at first light.</p>
+
+<dl>
+    <div class="row"><dt>Size</dt><dd>6.1 ft &middot; shoulder to head high</dd></div>
+    <div class="row"><dt>Swell</dt><dd>14 s from the WSW</dd></div>
+    <div class="row"><dt>Wind</dt><dd>4 kt &middot; glassy</dd></div>
+    <div class="row"><dt>Best window</dt><dd>Best at 6am local</dd></div>
+</dl>
+
+<h2>The card</h2>
+<canvas id="card" width="1080" height="1350" aria-label="Break of the Day card for Todos Santos (San Pedrito)"></canvas>
+<p style="margin:.8rem 0 0">
+  <a class="btn" id="save" download="boardcall-2026-11-04.png" href="#">Save the card</a>
+</p>
+<p style="font-size:.85rem;opacity:.7;margin:.4rem 0 0">
+  On an iPhone you can also press and hold the card and choose Save to Photos.
+</p>
+
+<h2>The caption</h2>
+<pre id="caption">Break of the Day: San Pedrito Reef Lines Up at Dawn
+
+San Pedrito is a reef break near El Pescadero in Baja California Sur, Mexico. At dawn it&#x27;s running shoulder to head high on a mid-period groundswell out of the WSW, with light offshore wind holding the faces glassy and clean. Trunks are enough for the water temp, which says plenty about how comfortable the session is. This is a day worth a drive, with the dawn window the one to catch before anything changes.
+
+Verdict: FIRE
+Wave and wind data: Open-Meteo (CC BY 4.0).
+
+#surf #surfreport #surfforecast #boardcall</pre>
+<button id="copy">Copy the caption</button>
+
 <footer>
-<p>This page names one break, the one Boardcall ranked best across its whole catalogue
-this morning. It is rebuilt daily and carries no other content.</p>
+<p>One break, the one Boardcall ranked best across its whole catalogue this morning.
+Rebuilt daily; this page carries no other content.</p>
 <p>Wave and wind data: Open-Meteo (CC BY 4.0).</p>
 </footer>
+
+<script src="card.js"></script>
+<script>
+var DATA = {"name": "Todos Santos (San Pedrito)", "region": "El Pescadero, Baja California Sur, Mexico", "verdict": "fire", "faceFt": 6.1, "sizeWords": "shoulder to head high", "periodS": 14, "swellDir": "WSW", "windKt": 4, "windWords": "glassy", "hourLabel": "Best at 6am local", "read": "Glassy head-high lines peeling off the reef at first light."};
+(function () {
+  var cv = document.getElementById("card");
+  var save = document.getElementById("save");
+  function paint() {
+    try {
+      drawCard(cv, DATA);
+      save.href = cv.toDataURL("image/png");
+    } catch (err) {
+      save.textContent = "Card could not be drawn";
+      save.removeAttribute("href");
+    }
+  }
+  paint();
+  // The footer logo is an Image(); redraw once it decodes.
+  if (typeof ICON_IMG !== "undefined" && !ICON_IMG.complete) ICON_IMG.onload = paint;
+
+  var pre = document.getElementById("caption");
+  var copy = document.getElementById("copy");
+  if (pre && copy) {
+    copy.addEventListener("click", function () {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        copy.textContent = "Copied";
+        setTimeout(function () { copy.textContent = "Copy the caption"; }, 1800);
+      }, function () {
+        copy.textContent = "Select it and copy by hand";
+      });
+    });
+  } else if (copy) {
+    copy.remove();
+  }
+})();
+</script>
 </body>
 </html>
