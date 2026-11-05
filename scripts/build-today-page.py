@@ -42,6 +42,58 @@ def fetch():
         return json.loads(r.read().decode())
 
 
+def hour_label(local_iso):
+    """`2026-11-05T17:00` -> `5pm`. The feed stamps the break's own local time."""
+    try:
+        hh = int(str(local_iso).split("T")[1].split(":")[0])
+    except (IndexError, ValueError, AttributeError):
+        return ""
+    suffix = "am" if hh < 12 else "pm"
+    h = hh % 12 or 12
+    return f"{h}{suffix}"
+
+
+def alternates_block(call, e):
+    """The runners-up, for the morning the day's break has no usable footage.
+
+    Rendered as text in the markup like every other fact on this page, so the
+    research prompt reads the names with no JavaScript. Absent entirely when
+    the feed sends none -- an empty heading would read as a broken section, and
+    on a day when nothing else is fun-or-better there is genuinely nowhere to
+    send anyone.
+    """
+    alts = call.get("alternates")
+    if not isinstance(alts, list) or not alts:
+        return ""
+    rows = []
+    for a in alts:
+        name = e(a.get("name"))
+        if not name:
+            continue
+        bits = []
+        if a.get("faceFt") is not None:
+            bits.append(f"{a['faceFt']} ft")
+        if a.get("verdict"):
+            bits.append(e(a["verdict"]))
+        hour = hour_label(a.get("hour"))
+        if hour:
+            bits.append(f"best {hour}")
+        rows.append(
+            f'    <div class="row"><dt>{name}</dt>'
+            f'<dd>{e(a.get("region"))}{" &middot; " if a.get("region") and bits else ""}'
+            f'{" &middot; ".join(bits)}</dd></div>'
+        )
+    if not rows:
+        return ""
+    return (
+        '\n<h2>If this one is thin</h2>\n'
+        '<p style="margin:0 0 .9rem">No footage worth reposting from the break above? '
+        'These were next on this morning\u2019s list, so they are the same call, not a guess. '
+        'Run the research prompt again on whichever one you pick.</p>\n'
+        '<dl>\n' + "\n".join(rows) + "\n</dl>\n"
+    )
+
+
 def main():
     try:
         call = (fetch() or {}).get("call") or {}
@@ -185,6 +237,7 @@ footer{{margin-top:2.5rem;padding-top:1rem;border-top:1px solid rgba(128,128,128
 <h2>The caption</h2>
 {caption_block}
 <button id="copy">Copy the caption</button>
+{alternates_block(call, e)}
 
 <footer>
 <p>One break, the one Boardcall ranked best across its whole catalogue this morning.
