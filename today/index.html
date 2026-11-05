@@ -29,6 +29,9 @@ button,a.btn{font:600 16px/1 ui-rounded,system-ui,sans-serif;border:0;border-rad
  text-decoration:none;margin:0 .5rem .5rem 0}
 button:focus-visible,a.btn:focus-visible{outline:3px solid #1F6F78;outline-offset:2px}
 .warn{background:rgba(232,115,74,.15);border-radius:10px;padding:.9rem 1rem}
+.stale{background:rgba(232,115,74,.2);border:2px solid var(--fire);border-radius:10px;
+ padding:1rem;margin:0 0 1.5rem}
+.stale strong{display:block;margin-bottom:.35rem}
 footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid rgba(128,128,128,.3);
  font-size:.85rem;opacity:.7}
 </style>
@@ -76,6 +79,7 @@ Rebuilt daily; this page carries no other content.</p>
 
 <script src="card.js"></script>
 <script>
+var BAKED_DAY = "2026-11-04";
 var DATA = {"name": "Todos Santos (San Pedrito)", "region": "El Pescadero, Baja California Sur, Mexico", "verdict": "fire", "faceFt": 6.1, "sizeWords": "shoulder to head high", "periodS": 14, "swellDir": "WSW", "windKt": 4, "windWords": "glassy", "hourLabel": "Best at 6am local", "read": "Glassy head-high lines peeling off the reef at first light."};
 (function () {
   var cv = document.getElementById("card");
@@ -107,6 +111,45 @@ var DATA = {"name": "Todos Santos (San Pedrito)", "region": "El Pescadero, Baja 
   } else if (copy) {
     copy.remove();
   }
+})();
+
+// Freshness check. This page is baked once a morning by a scheduled job, and if
+// that job stops running -- a dropped schedule, a disabled workflow, an upstream
+// miss -- nothing else here would say so: the page would quietly keep showing an
+// older break, and whoever is posting would post the wrong one in good faith.
+// So the page checks itself against the feed and says plainly when it is behind.
+//
+// It deliberately does NOT rewrite the post. The markup stays the single source
+// of truth for anything fetching this page, so a mismatch gets surfaced rather
+// than papered over -- and the two would otherwise disagree with nobody knowing,
+// since a fetcher reading the HTML runs none of this.
+(function () {
+  if (!window.fetch || !BAKED_DAY) return;
+  var ctl = ("AbortController" in window) ? new AbortController() : null;
+  if (ctl) setTimeout(function () { ctl.abort(); }, 6000);
+  fetch("https://erzfcqlnezmufmtyejvv.supabase.co/functions/v1/todays-call", ctl ? {signal: ctl.signal} : undefined)
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) {
+      var c = j && j.call;
+      // ISO dates compare correctly as strings. Only a strictly newer pick counts:
+      // an equal or older one means this page is current, or the feed is behind,
+      // and neither is cause to alarm anyone.
+      if (!c || !c.day || !c.name || !(c.day > BAKED_DAY)) return;
+      var n = document.createElement("div");
+      n.className = "stale";
+      var head = document.createElement("strong");
+      head.textContent = "Do not post this — the page is a day behind.";
+      var rest = document.createElement("span");
+      rest.textContent = "It was built for " + BAKED_DAY + " and today's pick is " +
+        c.name + (c.region ? " (" + c.region + ")" : "") + ". The card, caption " +
+        "and conditions below are still yesterday's, so the research prompt will " +
+        "name the wrong break too. Tell Zach the rebuild stopped.";
+      n.appendChild(head);
+      n.appendChild(rest);
+      document.body.insertBefore(n, document.body.firstChild);
+      document.title = "Out of date · " + document.title;
+    })
+    .catch(function () {});   // a failed check changes nothing on the page
 })();
 </script>
 </body>
