@@ -29,6 +29,10 @@ would cry wolf every day.
 import datetime, html, json, pathlib, sys, urllib.request
 
 FEED = "https://erzfcqlnezmufmtyejvv.supabase.co/functions/v1/todays-call"
+# The story's link sticker. ct=ig_story is what lets App Store Connect count
+# installs from stories separately (Analytics > Sources > Campaigns). The same
+# URL is in marketing/make-story-call.py.
+STICKER = "https://apps.apple.com/app/apple-store/id6798369030?pt=128972342&amp;ct=ig_story&amp;mt=8"
 OUT = pathlib.Path("today/index.html")
 
 
@@ -165,6 +169,25 @@ def main():
         f'    <div class="row"><dt>{k}</dt><dd>{v}</dd></div>' for k, v in rows
     )
 
+    # The story is drawn by card.js from these. Same fields and the same
+    # clean-up as marketing/make-story-call.py's from_endpoint(), so the page and
+    # the script draw the same story for the same pick.
+    try:
+        day_label = datetime.date.fromisoformat(call.get("day") or "").strftime("%a %b %-d")
+    except ValueError:
+        day_label = ""
+    best = (call.get("hourLabel") or "").strip()
+    if best.startswith("Best at "):
+        best = best[len("Best at "):]
+    best = best.replace(" local", "")
+    story = {
+        "name": name, "region": call.get("region"), "verdict": verdict,
+        "faceFt": face, "sizeWords": call.get("sizeWords"),
+        "windKt": windkt, "windWords": call.get("windWords"),
+        "best": best, "read": call.get("read"), "safety": None,
+        "dayLabel": day_label,
+    }
+
     # The caption goes in the markup as text so a fetcher reads it without
     # running anything, and into the clipboard button from that same element --
     # one copy on the page, so the two can never disagree.
@@ -199,6 +222,8 @@ dt{{flex:0 0 7.5rem;opacity:.65;margin:0}}
 dd{{margin:0}}
 h2{{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;opacity:.6;margin:2rem 0 .6rem}}
 canvas{{width:100%;height:auto;border-radius:12px;display:block}}
+img.story{{width:min(100%,20rem);height:auto;border-radius:12px;display:block;background:#375960}}
+code.link{{font:13px/1.5 ui-monospace,Menlo,monospace;word-break:break-all;opacity:.75}}
 pre{{white-space:pre-wrap;word-wrap:break-word;font:15px/1.55 ui-monospace,Menlo,monospace;
  background:rgba(128,128,128,.12);border-radius:12px;padding:1rem;margin:0 0 .75rem}}
 button,a.btn{{font:600 16px/1 ui-rounded,system-ui,sans-serif;border:0;border-radius:10px;
@@ -237,6 +262,21 @@ footer{{margin-top:2.5rem;padding-top:1rem;border-top:1px solid rgba(128,128,128
 <h2>The caption</h2>
 {caption_block}
 <button id="copy">Copy the caption</button>
+
+<h2>The story</h2>
+<p style="margin:0 0 .9rem">For the Boardcall story, once the post is up. It is for
+{e(name)} only: if you post one of the other breaks below instead, skip it.</p>
+<img class="story" id="story" width="1080" height="1920"
+  alt="Instagram story: Break of the Day, {e(name)}, {verdict.upper()}">
+<p style="margin:.8rem 0 0">
+  <button id="saveStory">Save the story</button>
+  <button id="copyLink">Copy the sticker link</button>
+</p>
+<p style="font-size:.85rem;opacity:.7;margin:.4rem 0 0">
+  On an iPhone, Save opens the share sheet: choose Save Image. Then add it as a
+  story in Instagram, put a Link sticker in the open space under the arrow, and paste the link.
+</p>
+<p style="margin:.4rem 0 0"><code class="link" id="stickerLink">{STICKER}</code></p>
 {alternates_block(call, e)}
 
 <footer>
@@ -248,6 +288,7 @@ Rebuilt daily; this page carries no other content.</p>
 <script src="card.js"></script>
 <script>
 var BAKED_DAY = {json.dumps(call.get("day") or "")};
+var STORY = {json.dumps(story)};
 var DATA = {json.dumps({
     "name": name, "region": call.get("region"), "verdict": verdict,
     "faceFt": face, "sizeWords": call.get("sizeWords"), "periodS": period,
@@ -267,9 +308,56 @@ var DATA = {json.dumps({
       save.removeAttribute("href");
     }}
   }}
-  paint();
+
+  // The story is drawn on a canvas and shown as an <img>, because on an iPhone
+  // a press and hold on an image offers Save to Photos and on a canvas does not.
+  // The file for the share sheet is made ahead of time: iOS only lets share()
+  // open from inside the tap, and making the PNG inside the tap can miss it.
+  var storyImg = document.getElementById("story");
+  var saveStory = document.getElementById("saveStory");
+  var storyFile = null, storyURL = "";
+  var storyName = "boardcall-story-" + (BAKED_DAY || "today") + ".png";
+  function paintStory() {{
+    try {{
+      var sc = document.createElement("canvas");
+      drawStory(sc, STORY);
+      storyURL = sc.toDataURL("image/png");
+      storyImg.src = storyURL;
+      storyFile = null;
+      if (sc.toBlob && window.File) sc.toBlob(function (b) {{
+        if (b) storyFile = new File([b], storyName, {{type: "image/png"}});
+      }}, "image/png");
+    }} catch (err) {{
+      saveStory.textContent = "Story could not be drawn";
+      saveStory.disabled = true;
+    }}
+  }}
+  saveStory.addEventListener("click", function () {{
+    if (storyFile && navigator.canShare && navigator.canShare({{files: [storyFile]}})) {{
+      navigator.share({{files: [storyFile]}}).catch(function () {{}});
+      return;
+    }}
+    if (!storyURL) return;
+    var a = document.createElement("a");
+    a.href = storyURL; a.download = storyName;
+    document.body.appendChild(a); a.click(); a.remove();
+  }});
+
+  var link = document.getElementById("stickerLink");
+  var copyLink = document.getElementById("copyLink");
+  copyLink.addEventListener("click", function () {{
+    navigator.clipboard.writeText(link.textContent.trim()).then(function () {{
+      copyLink.textContent = "Copied";
+      setTimeout(function () {{ copyLink.textContent = "Copy the sticker link"; }}, 1800);
+    }}, function () {{
+      copyLink.textContent = "Select the link below and copy it";
+    }});
+  }});
+
+  function paintAll() {{ paint(); paintStory(); }}
+  paintAll();
   // The footer logo is an Image(); redraw once it decodes.
-  if (typeof ICON_IMG !== "undefined" && !ICON_IMG.complete) ICON_IMG.onload = paint;
+  if (typeof ICON_IMG !== "undefined" && !ICON_IMG.complete) ICON_IMG.onload = paintAll;
 
   var pre = document.getElementById("caption");
   var copy = document.getElementById("copy");
@@ -315,8 +403,8 @@ var DATA = {json.dumps({
       head.textContent = "Do not post this — the page is a day behind.";
       var rest = document.createElement("span");
       rest.textContent = "It was built for " + BAKED_DAY + " and today's pick is " +
-        c.name + (c.region ? " (" + c.region + ")" : "") + ". The card, caption " +
-        "and conditions below are still yesterday's, so the research prompt will " +
+        c.name + (c.region ? " (" + c.region + ")" : "") + ". The card, caption, " +
+        "story and conditions below are still yesterday's, so the research prompt will " +
         "name the wrong break too. Tell Zach the rebuild stopped.";
       n.appendChild(head);
       n.appendChild(rest);

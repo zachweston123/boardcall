@@ -114,3 +114,142 @@ function drawCard(cv,p){
   c.fillText(dt,W-M-c.measureText(dt).width,fy-Math.round(W*.052*.20));
 }
 
+
+// ---------------------------------------------------------------- the story
+// The day's call as an Instagram story, 1080x1920, with room for a link sticker.
+// A port of marketing/make-story-call.py's _story(): the same numbers in the
+// same order, so a change there has an obvious counterpart here. It reuses the
+// card's palette, glyph and helpers above, so the two can't disagree about
+// colour or shape.
+//
+// Instagram draws its progress bar and profile row over the top ~220px of a
+// story and the reply bar over the bottom ~200px, so nothing goes there.
+
+// Verdict.gloss in Shared/Models/Briefing.swift, word for word.
+const STORY_GLOSS={fire:'Drop everything',fun:'Worth going',marginal:"Only if you're keen",skip:'Not today'};
+
+function drawStory(cv,p){
+  // Full type first; step down only when a long name and a long read would run
+  // into the numbers. The last pass trims the read rather than overlap.
+  for(const k of [1,.92,.85,.78]) if(storyPass(cv,p,k,false)) return;
+  storyPass(cv,p,.78,true);
+}
+
+function storyPass(cv,p,k,force){
+  const W=1080,H=1920; cv.width=W; cv.height=H;
+  const c=cv.getContext('2d'); c.textBaseline='top';
+  const v=(p.verdict||'fun').toLowerCase(), vcol=VCOL[v]||VCOL.fun;
+  const R='ui-rounded,-apple-system,system-ui,sans-serif';
+  const F=(px,w)=>{c.font=(w||700)+' '+Math.floor(px)+'px '+R;};
+
+  const g=c.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,'rgb('+GRAD_TOP+')'); g.addColorStop(1,'rgb('+GRAD_BOT+')');
+  c.fillStyle=g; c.fillRect(0,0,W,H);
+  [[.050,.88,'rgba(110,119,122,.69)'],[.038,.96,'rgba(128,136,139,.55)']].forEach(([amp,yo,col])=>{
+    c.fillStyle=col; c.beginPath(); c.moveTo(0,H);
+    for(let x=0;x<=W;x+=4)c.lineTo(x,H*yo-Math.sin(x/W*Math.PI*1.15+0.6)*H*amp);
+    c.lineTo(W,H); c.closePath(); c.fill();});
+
+  const M=Math.floor(W*.093), TOP=240, BOTTOM=H-230;
+
+  // eyebrow
+  F(34,600); c.fillStyle=MUTED;
+  tracked(c,M,TOP,'BREAK OF THE DAY  ·  '+(p.dayLabel||'').toUpperCase(),8);
+  let y=TOP+58;
+
+  // break name
+  let ns=Math.floor(116*k); F(ns);
+  let lines=wrap(c,p.name||'',W-M*2);
+  if(lines.length>2){ns=Math.floor(88*k);F(ns);lines=wrap(c,p.name||'',W-M*2).slice(0,3);}
+  c.fillStyle=CREAM; for(const l of lines){c.fillText(l,M,y);y+=Math.floor(ns*1.06);}
+  y+=8;
+  F(42,500); c.fillStyle=MUTED; c.fillText(p.region||'',M,y); y+=82;
+
+  // verdict capsule, with the app's own gloss beside it
+  const fv=60; F(fv);
+  const word=v.toUpperCase(), tw=trackedW(c,word,5);
+  const gw=98,gh=54,padx=40,pady=22,gap=26;
+  const capW=Math.floor(padx*2+gw+gap+tw), capH=fv+pady*2;
+  c.fillStyle=vcol; c.beginPath(); c.roundRect(M,y,capW,capH,capH/2); c.fill();
+  waveGlyph(c,M+padx,y+(capH-gh)/2,gw,gh,VAMP[v]??.66,7,v==='fire');
+  c.fillStyle='#fff'; F(fv);
+  tracked(c,M+padx+gw+gap,y+Math.floor((capH-fv)/2)-7,word,5);
+  const gloss=STORY_GLOSS[v]||'', gx=M+capW+28;
+  let gs=44; F(gs,600);
+  while(c.measureText(gloss).width>W-M-gx&&gs>30){gs-=2;F(gs,600);}
+  c.fillStyle=CREAM; c.fillText(gloss,gx,y+Math.floor((capH-gs)/2)-6);
+  const readTop=y+capH+50;
+
+  // bottom up: footer, sticker space, call to action, numbers
+  const ih=60, fy=BOTTOM-ih;
+  if(ICON_IMG&&ICON_IMG.complete)c.drawImage(ICON_IMG,M,fy,ih,ih);
+  F(50,600); c.fillStyle=CREAM; c.fillText('Boardcall',M+ih+20,fy+Math.floor((ih-50)/2)-6);
+  F(28,500); c.fillStyle='rgba(255,255,255,.47)';
+  const attr='Open-Meteo (CC BY 4.0)';
+  c.fillText(attr,W-M-c.measureText(attr).width,fy+Math.floor((ih-28)/2)-2);
+
+  // Open water for the link sticker, and a chevron pointing into it.
+  const stickerTop=fy-40-160, cx=W/2, cy=stickerTop-24;
+  c.strokeStyle=CREAM; c.lineWidth=7; c.lineCap='round'; c.lineJoin='round';
+  c.beginPath(); c.moveTo(cx-28,cy-13); c.lineTo(cx,cy+13); c.lineTo(cx+28,cy-13); c.stroke();
+
+  // Lines set by hand so "Free on iPhone." never wraps to a lone word.
+  const honest=(v==='marginal'||v==='skip');
+  const l1=honest?["It says so when it isn't worth it."]:['Any break, every morning.'];
+  const l2=honest?['The same call for any break, every morning.','Free on iPhone.']
+                 :['Worth it or not, and which board to bring.','Free on iPhone.'];
+  const f1=52,f2=36;
+  const block=l1.length*Math.floor(f1*1.2)+12+l2.length*Math.floor(f2*1.3);
+  const ctaTop=cy-40-block; let ty=ctaTop;
+  F(f1,600); c.fillStyle=CREAM;
+  for(const l of l1){c.fillText(l,Math.floor((W-c.measureText(l).width)/2),ty);ty+=Math.floor(f1*1.2);}
+  ty+=12; F(f2,500); c.fillStyle=MUTED;
+  for(const l of l2){c.fillText(l,Math.floor((W-c.measureText(l).width)/2),ty);ty+=Math.floor(f2*1.3);}
+
+  // Numbers sit above the call to action. Raw feet live here, never in the read.
+  const sy=ctaTop-200;
+
+  // The read, placed in the band between the capsule and the numbers.
+  const fh=Math.floor(56*k), lhR=Math.floor(fh*1.26), fsafe=34, lhS=Math.floor(fsafe*1.3);
+  F(fsafe,500); const safeLines=p.safety?wrap(c,p.safety,W-M*2).slice(0,3):[];
+  F(fh,600);
+  const readAll=wrap(c,p.read||'',W-M*2);
+  let readLines=readAll.slice(0,3);
+  // A read that runs past its lines ends on an ellipsis, never mid-sentence
+  // as if that were the whole thought.
+  const ellipsize=()=>{let last=readLines[readLines.length-1]||'';
+    while(last&&c.measureText(last+'…').width>W-M*2)last=last.replace(/\s*\S+$/,'');
+    readLines[readLines.length-1]=last.replace(/[\s,.;:]+$/,'')+'…';};
+  if(readAll.length>3)ellipsize();
+  const band=(sy-56)-readTop;
+  const need=()=>readLines.length*lhR+(safeLines.length?8+safeLines.length*lhS:0);
+  if(need()>band){
+    if(!force) return false;
+    // Last resort: shorten the read. A safety line is never the one dropped.
+    while(readLines.length>1&&need()>band){readLines.pop();ellipsize();}
+  }
+  y=readTop+Math.floor((band-need())*0.4);
+  F(fh,600); c.fillStyle=CREAM;
+  for(const l of readLines){c.fillText(l,M,y);y+=lhR;}
+  if(safeLines.length){
+    y+=8; F(fsafe,500); c.fillStyle=MUTED;
+    for(const l of safeLines){c.fillText(l,M,y);y+=lhS;}
+  }
+
+  c.strokeStyle='rgba(255,255,255,.18)'; c.lineWidth=2; c.lineCap='butt';
+  c.beginPath(); c.moveTo(M,sy-36); c.lineTo(W-M,sy-36); c.stroke();
+  const f=Number(p.faceFt);
+  const cols=[
+    ['SIZE',isFinite(f)?f.toFixed(1)+' ft':'—',p.sizeWords||(isFinite(f)?sizeWords(f):'')],
+    ['WIND',p.windKt!=null?Math.round(p.windKt)+' kt':'—',p.windWords||''],
+    ['BEST',p.best||'—',p.best?'local time':'no window worth it']];
+  const cw=Math.floor((W-M*2)/3);
+  cols.forEach(([key,val,sub],i)=>{
+    const x=M+cw*i;
+    F(28,600); c.fillStyle=MUTED; tracked(c,x,sy,key,8);
+    let vs=54; F(vs); while(c.measureText(val).width>cw-16&&vs>34){vs-=2;F(vs);}
+    c.fillStyle=CREAM; c.fillText(val,x,sy+42);
+    let ss=32; F(ss,500); while(c.measureText(sub).width>cw-16&&ss>24){ss-=2;F(ss,500);}
+    c.fillStyle=MUTED; c.fillText(sub,x,sy+112);});
+  return true;
+}

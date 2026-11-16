@@ -22,6 +22,8 @@ dt{flex:0 0 7.5rem;opacity:.65;margin:0}
 dd{margin:0}
 h2{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;opacity:.6;margin:2rem 0 .6rem}
 canvas{width:100%;height:auto;border-radius:12px;display:block}
+img.story{width:min(100%,20rem);height:auto;border-radius:12px;display:block;background:#375960}
+code.link{font:13px/1.5 ui-monospace,Menlo,monospace;word-break:break-all;opacity:.75}
 pre{white-space:pre-wrap;word-wrap:break-word;font:15px/1.55 ui-monospace,Menlo,monospace;
  background:rgba(128,128,128,.12);border-radius:12px;padding:1rem;margin:0 0 .75rem}
 button,a.btn{font:600 16px/1 ui-rounded,system-ui,sans-serif;border:0;border-radius:10px;
@@ -71,6 +73,21 @@ Wave and wind data: Open-Meteo (CC BY 4.0).
 #surf #surfreport #surfforecast #boardcall</pre>
 <button id="copy">Copy the caption</button>
 
+<h2>The story</h2>
+<p style="margin:0 0 .9rem">For the Boardcall story, once the post is up. It is for
+Stinson Beach only: if you post one of the other breaks below instead, skip it.</p>
+<img class="story" id="story" width="1080" height="1920"
+  alt="Instagram story: Break of the Day, Stinson Beach, FIRE">
+<p style="margin:.8rem 0 0">
+  <button id="saveStory">Save the story</button>
+  <button id="copyLink">Copy the sticker link</button>
+</p>
+<p style="font-size:.85rem;opacity:.7;margin:.4rem 0 0">
+  On an iPhone, Save opens the share sheet: choose Save Image. Then add it as a
+  story in Instagram, put a Link sticker in the open space under the arrow, and paste the link.
+</p>
+<p style="margin:.4rem 0 0"><code class="link" id="stickerLink">https://apps.apple.com/app/apple-store/id6798369030?pt=128972342&amp;ct=ig_story&amp;mt=8</code></p>
+
 <h2>If this one is thin</h2>
 <p style="margin:0 0 .9rem">No footage worth reposting from the break above? These were next on this morning’s list, so they are the same call, not a guess. Run the research prompt again on whichever one you pick.</p>
 <dl>
@@ -89,6 +106,7 @@ Rebuilt daily; this page carries no other content.</p>
 <script src="card.js"></script>
 <script>
 var BAKED_DAY = "2026-11-16";
+var STORY = {"name": "Stinson Beach", "region": "Marin County, CA", "verdict": "fire", "faceFt": 9, "sizeWords": "well overhead", "windKt": 5, "windWords": "offshore, clean", "best": "6am", "read": "Well overhead and clean at dawn before the wind turns onshore.", "safety": null, "dayLabel": "Mon Nov 16"};
 var DATA = {"name": "Stinson Beach", "region": "Marin County, CA", "verdict": "fire", "faceFt": 9, "sizeWords": "well overhead", "periodS": 14, "swellDir": "WNW", "windKt": 5, "windWords": "offshore, clean", "hourLabel": "Best at 6am local", "read": "Well overhead and clean at dawn before the wind turns onshore."};
 (function () {
   var cv = document.getElementById("card");
@@ -102,9 +120,56 @@ var DATA = {"name": "Stinson Beach", "region": "Marin County, CA", "verdict": "f
       save.removeAttribute("href");
     }
   }
-  paint();
+
+  // The story is drawn on a canvas and shown as an <img>, because on an iPhone
+  // a press and hold on an image offers Save to Photos and on a canvas does not.
+  // The file for the share sheet is made ahead of time: iOS only lets share()
+  // open from inside the tap, and making the PNG inside the tap can miss it.
+  var storyImg = document.getElementById("story");
+  var saveStory = document.getElementById("saveStory");
+  var storyFile = null, storyURL = "";
+  var storyName = "boardcall-story-" + (BAKED_DAY || "today") + ".png";
+  function paintStory() {
+    try {
+      var sc = document.createElement("canvas");
+      drawStory(sc, STORY);
+      storyURL = sc.toDataURL("image/png");
+      storyImg.src = storyURL;
+      storyFile = null;
+      if (sc.toBlob && window.File) sc.toBlob(function (b) {
+        if (b) storyFile = new File([b], storyName, {type: "image/png"});
+      }, "image/png");
+    } catch (err) {
+      saveStory.textContent = "Story could not be drawn";
+      saveStory.disabled = true;
+    }
+  }
+  saveStory.addEventListener("click", function () {
+    if (storyFile && navigator.canShare && navigator.canShare({files: [storyFile]})) {
+      navigator.share({files: [storyFile]}).catch(function () {});
+      return;
+    }
+    if (!storyURL) return;
+    var a = document.createElement("a");
+    a.href = storyURL; a.download = storyName;
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  var link = document.getElementById("stickerLink");
+  var copyLink = document.getElementById("copyLink");
+  copyLink.addEventListener("click", function () {
+    navigator.clipboard.writeText(link.textContent.trim()).then(function () {
+      copyLink.textContent = "Copied";
+      setTimeout(function () { copyLink.textContent = "Copy the sticker link"; }, 1800);
+    }, function () {
+      copyLink.textContent = "Select the link below and copy it";
+    });
+  });
+
+  function paintAll() { paint(); paintStory(); }
+  paintAll();
   // The footer logo is an Image(); redraw once it decodes.
-  if (typeof ICON_IMG !== "undefined" && !ICON_IMG.complete) ICON_IMG.onload = paint;
+  if (typeof ICON_IMG !== "undefined" && !ICON_IMG.complete) ICON_IMG.onload = paintAll;
 
   var pre = document.getElementById("caption");
   var copy = document.getElementById("copy");
@@ -150,8 +215,8 @@ var DATA = {"name": "Stinson Beach", "region": "Marin County, CA", "verdict": "f
       head.textContent = "Do not post this — the page is a day behind.";
       var rest = document.createElement("span");
       rest.textContent = "It was built for " + BAKED_DAY + " and today's pick is " +
-        c.name + (c.region ? " (" + c.region + ")" : "") + ". The card, caption " +
-        "and conditions below are still yesterday's, so the research prompt will " +
+        c.name + (c.region ? " (" + c.region + ")" : "") + ". The card, caption, " +
+        "story and conditions below are still yesterday's, so the research prompt will " +
         "name the wrong break too. Tell Zach the rebuild stopped.";
       n.appendChild(head);
       n.appendChild(rest);
