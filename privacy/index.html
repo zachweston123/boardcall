@@ -156,7 +156,7 @@
   <header class="page-head">
     <span class="eyebrow">Boardcall</span>
     <h1>Privacy Policy</h1>
-    <p class="subtitle">Effective November 1, 2026</p>
+    <p class="subtitle">Effective November 27, 2026</p>
   </header>
 
   <p>Boardcall ("the app," "we," "us") is a surf-briefing app for iPhone and iPad, built and maintained by an
@@ -186,7 +186,10 @@
       count, used only to stop abuse of the AI features. It cannot be tied back to you as a person.</li>
       <li>If you subscribe to Boardcall Pro, Apple handles the entire purchase and payment. We never see
       your card details or billing information.</li>
-      <li>We do not use analytics, advertising trackers, or crash-reporting tools of any kind.</li>
+      <li>From version 1.0.15 the app counts which of its features get used (for example, how many
+      times the Week tab was opened) and sends those counts to our server with no identifier of any
+      kind. You can turn this off in the Me tab. We use no third-party analytics, advertising trackers,
+      or crash-reporting tools.</li>
     </ul>
   </div>
 
@@ -277,13 +280,32 @@
     address, advertising ID, or any other identifier Apple or anyone else assigns you. Our server stores
     that random ID together with the date and a count — one record for briefings and a separate one for
     coaching notes — and nothing else at the application level, purely to enforce daily limits and
-    prevent abuse of the AI features. These counters are the only application-level records about app
-    users that our infrastructure retains. We delete them once they are more than 30 days old. They
+    prevent abuse of the AI features. Apart from the anonymous feature counts described next, these
+    counters are the only application-level records our infrastructure retains. We delete them once they are more than 30 days old. They
     cannot be linked back to you as a person — they identify a device-generated random number, not an
     individual.</p>
     <p class="muted">Separately, our hosting provider may retain standard technical request logs (such as
     IP address) for a limited time as part of normal server operation, the way any web server does. We
     don't access or use those logs for anything beyond troubleshooting an outage.</p>
+  </div>
+
+  <div class="data-block">
+    <span class="tag">Sent to our server AND stored, with no identifier</span>
+    <h3>Anonymous feature counts</h3>
+    <p>From version 1.0.15, the app keeps a tally on your phone of how often you use each of its
+    features (opening the Week tab, tapping a chart, opening the paywall, finishing a setup page, and
+    so on) and sends those tallies to our own server when you leave the app. Each report carries only
+    the day, the counts, the app version, whether you have Boardcall Pro, the skill level you chose,
+    and roughly how long ago you installed the app (a band such as "2 to 6 days"). It carries no
+    device ID, no account, nothing about which break, board or conditions were involved, and nothing
+    that links one report to another. Our server adds the numbers into daily totals, so what we keep
+    reads like "on November 27, 3 phones opened the tide chart, 5 times in all", and we never see
+    what any one person did. We keep these totals with no set deletion date, because comparing one
+    month with another is what they are for. They are collected by us alone: no third-party analytics
+    company or SDK is involved.</p>
+    <p>Nothing is sent before you accept the terms in setup. To turn the counts off, switch off
+    <strong>Share anonymous usage counts</strong> in the Me tab; anything not yet sent is deleted from
+    your phone at that moment. The App Clip counts nothing.</p>
   </div>
 
   <div class="data-block">
@@ -365,7 +387,9 @@
   data completely — there is no separate server-side copy of any of that to request or delete.</p>
   <p>The only records about you on our server are the anonymous rate-limit counters described above: a
   random device ID, a date, and a count. We have no way to trace those records back to you as a person,
-  and we delete them once they are more than 30 days old, whether or not you ask.</p>
+  and we delete them once they are more than 30 days old, whether or not you ask. The anonymous feature
+  counts are not records about you: they carry no identifier, so there is nothing in them we could find
+  or delete for one person. You can stop sending them at any time in the Me tab.</p>
   <p>We do not sell your personal information, and we do not share it for cross-context behavioural
   advertising. There are no advertisers, data brokers, or analytics companies involved in this app at
   all.</p>
@@ -373,7 +397,7 @@
 
   <h2>Security</h2>
   <p>All network requests the app makes, to every service listed above, use HTTPS encryption in transit.
-  The rate-limit and forecast-cache tables described above are not readable by the public: they are
+  The rate-limit, feature-count and forecast-cache tables described above are not readable by the public: they are
   reachable only by our own server functions, using credentials that never leave them.</p>
 
   <h2>Where this data is handled</h2>
