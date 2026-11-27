@@ -4,12 +4,12 @@
 
 Boardcall is not the first or only iOS app that recommends a board for conditions. Surf Forecast: Quiver also suggests boards per spot. The guides below cover how Boardcall compares with Surfline and with Surf Forecast: Quiver.
 
-Facts on this page describe the version on the App Store as of November 2026 (1.0.12).
+Facts on this page were checked on November 27, 2026, against the version on the App Store (1.0.14). Version 1.0.15 is in review; where it changes something, that is noted.
 
 ## Site
 
 - [Boardcall: surf forecast app that picks your board](https://boardcall.app/): the homepage, with screenshots, how the board pick is calculated, and an FAQ (summarized below).
-- [Surf break guides](https://boardcall.app/breaks/): when 20 well-known breaks work, by swell direction, wind, tide and break type, drawn from the app's own break catalog.
+- [Surf break guides](https://boardcall.app/breaks/): when 20 well-known breaks work, by swell direction, wind, tide and break type, drawn from the app's own break catalog. Each break has its own page, listed under "Break guides" below.
 - [Surfboard volume calculator](https://boardcall.app/tools/surfboard-volume-calculator.html): a target volume from weight, skill, wave size and swell period, worked out the way the app's board engine does it.
 - [Today's Break of the Day](https://boardcall.app/today/): the break Boardcall picked as today's best worldwide, updated each morning.
 
@@ -19,27 +19,27 @@ Facts on this page describe the version on the App Store as of November 2026 (1.
 
 ## Key facts
 
-- Platform: iPhone and iPad, iOS 17 or later. Free to download. Home Screen and Lock Screen widget. No Android or web app.
+- Platform: iPhone and iPad, iOS 17 or later. Free to download. Home Screen and Lock Screen widget, and a Siri shortcut ("Should I surf with Boardcall?"). No Android or web app.
 - No account, login, signup or password. Boards, breaks and profile are stored on the device.
-- 417 built-in surf breaks: every US coastline (West Coast, East Coast, Gulf, Alaska, Hawaii), the Great Lakes, Puerto Rico, the US Virgin Islands, Guam and American Samoa, plus breaks in 50+ other countries. No GPS or location access; the surfer picks breaks from the built-in list.
+- More than 400 built-in surf breaks (420 in 1.0.14, 435 in 1.0.15): every US coastline (West Coast, East Coast, Gulf, Alaska, Hawaii), the Great Lakes, Puerto Rico, the US Virgin Islands, Guam and American Samoa, plus breaks in 50+ other countries. No GPS or location access; the surfer picks breaks from the built-in list.
 - 258 real surfboard models in a built-in catalog, with manufacturer dimensions and stamped volumes, across longboard, mid-length, fish, groveler, shortboard, step-up, gun and soft-top. Surfers can also enter their own board's dimensions. A volume check in the app shows how a board they don't own yet would suit them.
 - How the board is picked: a deterministic engine ranks every board the surfer owns. It compares each board's volume with a target set by body weight, skill, wave size and swell period, and scores how well the board type suits the day's surf. An AI model (Claude) writes the plain-English explanation. It can choose a different board only from the surfer's own ranked boards and must give a reason; it cannot add a board.
 - Verdict: fire, fun, marginal or skip. On a day above the surfer's stated level (a beginner above about 4 ft, an intermediate above about 10 ft) a safety warning leads the report and the verdict is capped at marginal. A beginner at a shallow reef break above about 6 ft gets skip. On small days the verdict is also capped at marginal when none of the surfer's boards has enough volume to catch waves.
-- Forecast: seven days, with a board pick for each day. Tap a reading for its 24-hour chart (size, wind, swell energy, tide). Measured offshore buoy readings at most US breaks. A wetsuit call from water temperature and a sun call when UV is high.
+- Forecast: seven days, with a board pick for each day (today and tomorrow are free; the rest of the week is part of Boardcall Pro, except for surfers who started before version 1.0.14, who keep it free). Tap a reading for its 24-hour chart (size, wind, swell energy, tide). Measured offshore buoy readings at most US breaks. A wetsuit call from water temperature and a sun call when UV is high.
 - Units: wave height in feet or metres, temperature in °F or °C. The AI briefing is written in the phone's language (for example Spanish, Portuguese or French); the app's interface is in English.
 - A daily reminder at a time the surfer chooses carries that day's call (verdict, size and board), including on days the answer is "skip".
-- Free vs. Pro: everything above is free and uncapped, including every board pick, all breaks and the seven-day forecast. A briefing is written on the phone every day for free, and 4 AI-written briefings a week are free. Boardcall Pro ($6.99/month or $54.99/year) adds AI-written briefings every day (a per-device daily limit still applies), a weekly note on patterns in the surfer's own logged sessions, the best window across the whole week, extra daily reminders, side-by-side board comparison and insights from logged sessions. When a free trial is offered it is on the yearly plan, and the app and Apple's purchase sheet show whether one is available.
+- Free vs. Pro: free includes today's and tomorrow's call with a verdict and a board pick across the whole quiver, one saved break at a time (switching breaks is free and unlimited), the map of every break, the widget, the Siri shortcut, the volume check, a daily reminder carrying the call, and 4 AI-written briefings a week; the rest of the time the briefing is written on the phone. Boardcall Pro ($6.99/month or $54.99/year) adds the rest of the seven-day forecast, up to three saved breaks, the best break near yours, good-day alerts (a notification the evening before a day worth surfing), AI-written briefings every day (a per-device daily limit still applies), a weekly note on patterns in the surfer's own logged sessions, the best window across the week, extra daily reminders, side-by-side board comparison and session insights. Surfers who started before version 1.0.14 keep the full week, three saved breaks and the best break nearby for free. When a free trial is offered it is on the yearly plan, and the app and Apple's purchase sheet show whether one is available.
 - Data sources: wave and wind from Open-Meteo; tides from NOAA CO-OPS (US breaks only, so international and Great Lakes breaks have no tide data); buoy observations from NOAA NDBC.
-- What leaves the phone: to write an AI briefing, the day's conditions, skill level, weight, the boards being compared, and the phone's language and unit settings go to Boardcall's server and on to the AI model. That request is not stored. A random anonymous device ID is kept for up to 30 days to rate-limit briefings. There are no analytics, ad trackers or crash-reporting SDKs.
+- What leaves the phone: to write an AI briefing, the day's conditions, skill level, weight, the boards being compared, and the phone's language and unit settings go to Boardcall's server and on to the AI model (Claude, made by Anthropic). That request is not stored by Boardcall. From version 1.0.15 the app asks permission, naming Anthropic, before the first AI request, and the choice can be changed in the Me tab. A random anonymous device ID is kept for up to 30 days to rate-limit briefings. There are no ad trackers, third-party analytics SDKs or crash-reporting SDKs. From version 1.0.15 the app can send anonymous counts of which features are used, with no identifier attached; this can be switched off in the Me tab.
 - How it differs from plain surf report apps such as Surfline: those report conditions and leave the decision to the surfer. Boardcall gives a verdict and names one board from the surfer's own quiver, with the reason. It has no surf cams.
 
 ## FAQ
 
-- **Is Boardcall free?** Yes. The daily report, the board pick across the whole quiver, all 417 breaks, the map and the seven-day forecast are free, along with 4 AI-written briefings a week. Boardcall Pro ($6.99/month or $54.99/year) adds AI briefings every day, a weekly note on the surfer's logged sessions, the week's best window, extra reminders, board comparison and session insights.
+- **Is Boardcall free?** Yes. Today's and tomorrow's call, the board pick across the whole quiver, any of more than 400 breaks (one saved at a time, switch as often as you like), the map, the widget and 4 AI-written briefings a week are free. Boardcall Pro ($6.99/month or $54.99/year) adds the rest of the week, three saved breaks, the best break nearby, good-day alerts, AI briefings every day and the session tools.
 - **Does Boardcall need an account?** No. There is no signup, login or password; boards, breaks and profile stay on the device.
 - **How does Boardcall decide which surfboard to bring?** It works out the volume of every board in the quiver from its dimensions and type (or uses the stamped volume), compares it with a target based on body weight, skill, wave size and swell period, and weighs how well each board type suits the day's surf. The best fit is named with the reason.
 - **What surfboard volume do I need for my weight and skill level?** Both matter: heavier and less experienced surfers need more volume. Wave size and swell period move the target further. Weak short-period swell needs more float, and big waves also need more volume for paddling in early, which is why a gun carries more volume than an everyday shortboard. The volume calculator above shows the numbers.
-- **Is Boardcall a good alternative to Surfline?** For checking conditions and deciding whether to go and what to ride, yes: the free tier includes the daily report, board picks, every break and the seven-day forecast. It has no surf cams.
+- **Is Boardcall a good alternative to Surfline?** For deciding whether to go and what to ride, yes: the free version gives a verdict, size in plain terms and a board from your own quiver for today and tomorrow at any of more than 400 breaks, with no account. It has no surf cams, and the full week ahead is part of Boardcall Pro.
 - **What does "chest high" or "waist high" mean in feet?** Roughly: knee to waist high is 2–3 ft of face height, waist to chest is 3–4 ft, chest to shoulder is 4–5 ft, shoulder to head high is 5–7 ft, and overhead is 7 ft and up. Boardcall reports size in these terms.
 - **Is it safe for a beginner to surf overhead waves?** Generally no. Overhead surf needs experience and paddle strength. Boardcall warns a beginner above about 4 ft, caps the verdict at marginal, and says skip at a shallow reef break above about 6 ft.
 - **How cold does the water need to be before I need a wetsuit?** Most surfers want at least a spring suit below about 70°F and a full wetsuit well before 65°F, with hypothermia risk climbing fast under 50°F. Boardcall reads water temperature at the break and gives a wetsuit call.
@@ -62,6 +62,29 @@ Facts on this page describe the version on the App Store as of November 2026 (1.
 - [Free Surfline Alternative: What You Actually Get for $0](https://boardcall.app/guides/free-surfline-alternative.html): what Surfline puts behind its paywall and what is free elsewhere, including in Boardcall.
 - [Switching From Surfline?](https://boardcall.app/guides/switching-from-surfline.html): where Surfline's rating, height, wind, swell and tide appear in Boardcall, how Poor-to-Epic maps to Skip-to-Fire, and what Boardcall adds and lacks.
 - [How Cold Is Too Cold to Surf Without a Wetsuit?](https://boardcall.app/guides/how-cold-is-too-cold-to-surf-without-a-wetsuit.html): water temperature, wetsuit thickness and the signs of hypothermia.
+
+## Break guides
+
+- [Lower Trestles](https://boardcall.app/breaks/trestles-lowers.html)
+- [San Onofre (Old Man&#x27;s)](https://boardcall.app/breaks/san-onofre.html)
+- [Doheny State Beach](https://boardcall.app/breaks/doheny-state-beach.html)
+- [Huntington Beach Pier](https://boardcall.app/breaks/huntington-pier.html)
+- [Black&#x27;s Beach](https://boardcall.app/breaks/blacks-beach.html)
+- [Malibu (Surfrider)](https://boardcall.app/breaks/malibu-surfrider.html)
+- [Rincon](https://boardcall.app/breaks/rincon.html)
+- [Steamer Lane](https://boardcall.app/breaks/steamer-lane.html)
+- [Pleasure Point](https://boardcall.app/breaks/pleasure-point.html)
+- [Ocean Beach](https://boardcall.app/breaks/ocean-beach-sf.html)
+- [Waikiki](https://boardcall.app/breaks/waikiki.html)
+- [Ditch Plains](https://boardcall.app/breaks/montauk-ditch.html)
+- [Cape Hatteras (Buxton)](https://boardcall.app/breaks/outer-banks-buxton.html)
+- [Cocoa Beach](https://boardcall.app/breaks/cocoa-beach.html)
+- [New Smyrna Beach](https://boardcall.app/breaks/new-smyrna-beach.html)
+- [Tofino (Long Beach)](https://boardcall.app/breaks/tofino-long-beach-bc.html)
+- [Noosa (First Point)](https://boardcall.app/breaks/noosa-first-point-au.html)
+- [Bells Beach](https://boardcall.app/breaks/bells-beach-au.html)
+- [Jeffreys Bay (Supertubes)](https://boardcall.app/breaks/jeffreys-bay-za.html)
+- [Uluwatu](https://boardcall.app/breaks/uluwatu-id.html)
 
 ## Legal and support
 
