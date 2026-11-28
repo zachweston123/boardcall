@@ -175,8 +175,11 @@
       <li>If you turn on <strong>Import surf sessions from Apple Health</strong>, Boardcall reads your
       surf workouts from Apple Health (time, heart rate, calories, water temperature, and, only if you
       also turn on <strong>Include GPS</strong>, the workout's route). That data is used on your phone
-      to fill in and score your sessions. It is never sent to our server, to Anthropic, or anywhere
-      else, and it is never used for advertising.</li>
+      to fill in and score your sessions. It stays on your phone, with one exception you choose: a Pro
+      subscriber who turns on <strong>Ride and paddle stats in coaching notes</strong> sends a short
+      per-session summary (time in the water, waves, ride lengths, paddling time) with the coaching-note
+      request. Heart rate, calories and your route are never sent, and none of it is ever used for
+      advertising.</li>
       <li>Checking the forecast sends the coordinates of a spot from that built-in list to our own small
       server, which fetches and caches the wave and wind data. Nothing about you goes with it.</li>
       <li>When you tap for an AI-written briefing, the text is written by a third-party AI service
@@ -187,8 +190,8 @@
       <li>If you subscribe to Boardcall Pro and log sessions, a weekly coaching note is written the same
       way, from your five most recent sessions (how long ago, the kind of surf, the board, your rating
       and the session score), patterns across your log, and your three most recent session notes. No
-      Apple Health data is included. The app asks your permission before either kind of AI request is
-      sent.</li>
+      Apple Health data is included unless you turn on ride and paddle stats. The app asks your
+      permission before either kind of AI request is sent.</li>
       <li>Our server does keep one small, anonymous kind of record: a randomly generated ID plus a daily
       count, used only to stop abuse of the AI features. It cannot be tied back to you as a person.</li>
       <li>If you subscribe to Boardcall Pro, Apple handles the entire purchase and payment. We never see
@@ -244,10 +247,17 @@
     heart rate, and a short summary (calories, water temperature, distance, top speed, wave count and
     longest ride). Heart-rate samples and GPS points are read from Apple Health each time you open a
     session and are never saved by Boardcall.</p>
-    <p>Health data never leaves your device. It is not sent to our server, it is not part of any AI
-    briefing or coaching-note request, it is not shared with the widget's copy of your data, and it is
-    not included in the anonymous feature counts. We never use it for advertising or marketing, and we
-    never sell it or give it to anyone. You can withdraw Boardcall's access at any time in the iPhone's
+    <p>Health data stays on your device, with one exception that is off until you turn it on. If you
+    subscribe to Boardcall Pro and switch on <strong>Ride and paddle stats in coaching notes</strong>
+    (in the Me tab, or from the offer under a coaching note), the coaching-note request also carries,
+    for each of your recent imported sessions, its time in the water, number of waves, longest and
+    average ride, and minutes spent riding and paddling, plus the same figures summed per board. That
+    goes through our server to Anthropic so the note can comment on your rides and paddling, and is
+    handled exactly like the rest of that request (described below). Heart rate, calories, water
+    temperature, speed, distance and your route are never sent, with or without the switch. Health data
+    is not part of any AI briefing, is not shared with the widget's copy of your data, and is not
+    included in the anonymous feature counts. We never use it for advertising or marketing, and we never
+    sell it or give it to anyone. You can withdraw Boardcall's access at any time in the iPhone's
     Settings app, under Health, Data Access &amp; Devices, Boardcall; turning the import off in the Me
     tab stops Boardcall reading it.</p>
   </div>
@@ -299,8 +309,11 @@
     carries your 30-day average score and your best-scoring board. For each board and kind of
     conditions you've logged at least three times, the summary gives the board's name, the kind of
     conditions, how many sessions that covers, and your median rating. It does not include calendar
-    dates, which spots you surfed, or anything read from Apple Health, and the session scores it
-    carries are worked out without the time-in-the-water figure that comes from Apple Health.</p>
+    dates or which spots you surfed, and the session scores it carries are worked out without the
+    time-in-the-water figure that comes from Apple Health. It includes nothing read from Apple Health
+    unless you turn on <strong>Ride and paddle stats in coaching notes</strong>, in which case it adds
+    the time in the water, waves, ride lengths and paddling time described in the Apple Health section
+    above.</p>
     <p>Our server forwards the request to Anthropic's Claude to write the note and returns the result.
     As with the briefing request, it is not written to any database by our server, only generic error
     codes are logged, and Anthropic's handling is the same as described above.</p>
@@ -384,8 +397,9 @@
         <td>For an AI briefing: the day's conditions, your skill level and weight, your ranked
         boards, and your language and unit settings. For a Pro coaching note: your skill level, your
         five most recent sessions with their scores, a summary of patterns in your logged sessions, and
-        your three most recent session notes. Never anything from Apple Health. Both are sent only from
-        our own server, never directly from your phone.</td>
+        your three most recent session notes, and, only if you turn on ride and paddle stats, each
+        recent session's time in the water, waves, ride lengths and paddling time from Apple Health.
+        Both are sent only from our own server, never directly from your phone.</td>
         <td>Writes the plain-English briefing and board-pick explanation on Today, and the weekly
         coaching note.</td>
       </tr>
@@ -411,7 +425,8 @@
   turn on <strong>Include GPS</strong> for imported sessions and allow it in the Health permission
   sheet, Boardcall reads the GPS route of a surf workout your watch recorded, to draw that session and
   count its waves. That route is read on your phone, is never saved by Boardcall, and never leaves your
-  device.</p>
+  device; even with ride and paddle stats turned on, only the counts and times worked out from it are
+  sent, never the route itself.</p>
 
   <h2>Children's privacy</h2>
   <p>Boardcall is a surf-forecasting tool for surfers and is not designed for or directed to children.
