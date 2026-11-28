@@ -171,8 +171,12 @@
       anywhere in the app.</li>
       <li>Your profile, your boards, your chosen surf spots and any sessions you log are stored only on
       your device.</li>
-      <li>Boardcall never uses your location. You choose spots from a built-in list — there is no GPS
-      access anywhere in the app.</li>
+      <li>Boardcall never asks for your location. You choose spots from a built-in list.</li>
+      <li>If you turn on <strong>Import surf sessions from Apple Health</strong>, Boardcall reads your
+      surf workouts from Apple Health (time, heart rate, calories, water temperature, and, only if you
+      also turn on <strong>Include GPS</strong>, the workout's route). That data is used on your phone
+      to fill in and score your sessions. It is never sent to our server, to Anthropic, or anywhere
+      else, and it is never used for advertising.</li>
       <li>Checking the forecast sends the coordinates of a spot from that built-in list to our own small
       server, which fetches and caches the wave and wind data. Nothing about you goes with it.</li>
       <li>When you tap for an AI-written briefing, the text is written by a third-party AI service
@@ -181,7 +185,10 @@
       the briefing comes back in your language and measurements). Our server does not log or store it. Anthropic holds
       it for up to 30 days on their own systems as an anti-abuse measure.</li>
       <li>If you subscribe to Boardcall Pro and log sessions, a weekly coaching note is written the same
-      way, from a summary of those sessions and your three most recent session notes.</li>
+      way, from your five most recent sessions (how long ago, the kind of surf, the board, your rating
+      and the session score), patterns across your log, and your three most recent session notes. No
+      Apple Health data is included. The app asks your permission before either kind of AI request is
+      sent.</li>
       <li>Our server does keep one small, anonymous kind of record: a randomly generated ID plus a daily
       count, used only to stop abuse of the AI features. It cannot be tied back to you as a person.</li>
       <li>If you subscribe to Boardcall Pro, Apple handles the entire purchase and payment. We never see
@@ -204,7 +211,8 @@
     surfer profile (skill level, weight, height, and your reminder times), the boards in your quiver
     (nickname, brand/model, dimensions, volume, type, and fin setup), up to three saved surf spots
     (chosen from our built-in catalog — never your GPS coordinates), any sessions you log (the date,
-    spot, board, the conditions at the time, your rating, and any notes you type), any coaching notes
+    spot, board, the conditions at the time, your rating, any notes you type, and, for a session
+    imported from Apple Health, a summary described in the next section), any coaching notes
     Boardcall Pro has written for you, whether you've completed onboarding and accepted the Terms, a
     randomly generated device identifier (explained below), and counts of the AI-written briefings
     you've used. Boardcall also caches recent wave, wind, tide and buoy data on your device, along with
@@ -218,6 +226,30 @@
     <p class="muted">None of this is uploaded to iCloud or synced anywhere by us. (If you use Apple's own
     device backup features, that backup is between you and Apple, not something Boardcall controls.)
     Deleting the app deletes all of it, permanently, from your device.</p>
+  </div>
+
+  <div class="data-block">
+    <span class="tag">Read from Apple Health, kept on your device</span>
+    <h3>Surf sessions from Apple Health</h3>
+    <p>This is off until you turn on <strong>Import surf sessions from Apple Health</strong> in the Me
+    tab, and iOS then asks you which kinds of Health data Boardcall may read. Boardcall only reads; it
+    never writes anything to Apple Health. It reads surf workouts (such as one recorded by an Apple
+    Watch, or copied into Apple Health by another watch's app) from about the last day and a half, and
+    for each one: when it started and ended, your heart rate during it, active calories, and water
+    temperature. If you also turn on <strong>Include GPS</strong>, it reads the workout's route, which
+    it uses to estimate how many waves you caught, your longest ride, top speed and distance, and to
+    draw the session on a map.</p>
+    <p>Nothing is added to your log until you review a session and tap Save. What Boardcall then keeps,
+    in its own files on your device, is the workout's start time and length, your average and highest
+    heart rate, and a short summary (calories, water temperature, distance, top speed, wave count and
+    longest ride). Heart-rate samples and GPS points are read from Apple Health each time you open a
+    session and are never saved by Boardcall.</p>
+    <p>Health data never leaves your device. It is not sent to our server, it is not part of any AI
+    briefing or coaching-note request, it is not shared with the widget's copy of your data, and it is
+    not included in the anonymous feature counts. We never use it for advertising or marketing, and we
+    never sell it or give it to anyone. You can withdraw Boardcall's access at any time in the iPhone's
+    Settings app, under Health, Data Access &amp; Devices, Boardcall; turning the import off in the Me
+    tab stops Boardcall reading it.</p>
   </div>
 
   <div class="data-block">
@@ -256,15 +288,19 @@
   <div class="data-block">
     <span class="tag">Sent to our server, not stored</span>
     <h3>The Boardcall Pro coaching note</h3>
-    <p>If you subscribe to Boardcall Pro and have logged at least three sessions, the app asks our server
-    for a coaching note when you open Today — at most one note a week, and if a request fails, the app
-    tries again no sooner than a day later. The request contains your skill level, how many sessions
-    you've logged, a short summary of the patterns that repeat in them, and your three most recent
-    session notes, word for word. For each board and kind of conditions you've logged at least three
-    times, the summary gives the board's name (including any nickname you gave it), a plain description
-    such as "small, clean days," how many sessions that covers, and your median rating. It does not
-    include the dates or which spots you surfed. If nothing repeats often enough yet, nothing is
-    sent.</p>
+    <p>If you subscribe to Boardcall Pro, have logged at least two sessions, and have allowed AI
+    writing, the app asks our server for a coaching note — at most one note a week, and if a request
+    fails, the app tries again no sooner than a day later. The request contains your skill level, how
+    many sessions you've logged, your five most recent sessions, a short summary of the patterns that
+    repeat in your log, and your three most recent session notes, word for word. Each of the five
+    sessions is described by how many days ago it was, a plain description of the surf such as "small,
+    clean days," the day's call, the board you rode (including any nickname you gave it), the board
+    Boardcall would have picked if different, your rating, and the session score; the request also
+    carries your 30-day average score and your best-scoring board. For each board and kind of
+    conditions you've logged at least three times, the summary gives the board's name, the kind of
+    conditions, how many sessions that covers, and your median rating. It does not include calendar
+    dates, which spots you surfed, or anything read from Apple Health, and the session scores it
+    carries are worked out without the time-in-the-water figure that comes from Apple Health.</p>
     <p>Our server forwards the request to Anthropic's Claude to write the note and returns the result.
     As with the briefing request, it is not written to any database by our server, only generic error
     codes are logged, and Anthropic's handling is the same as described above.</p>
@@ -346,9 +382,10 @@
       <tr>
         <td>Anthropic<br><span class="muted">Claude API, a third-party AI service</span></td>
         <td>For an AI briefing: the day's conditions, your skill level and weight, your ranked
-        boards, and your language and unit settings. For a Pro coaching note: your skill level, a summary of patterns in your logged sessions,
-        and your three most recent session notes. Both are sent only from our own server, never directly
-        from your phone.</td>
+        boards, and your language and unit settings. For a Pro coaching note: your skill level, your
+        five most recent sessions with their scores, a summary of patterns in your logged sessions, and
+        your three most recent session notes. Never anything from Apple Health. Both are sent only from
+        our own server, never directly from your phone.</td>
         <td>Writes the plain-English briefing and board-pick explanation on Today, and the weekly
         coaching note.</td>
       </tr>
@@ -368,9 +405,13 @@
   requests.</p>
 
   <h2>Location</h2>
-  <p>Boardcall does not use Core Location, does not request location permission, and has no way to know
-  where your device physically is. Every surf spot in the app — on Today, Forecast, or the Map tab — is
-  a fixed point chosen from a built-in catalog, never a GPS reading.</p>
+  <p>Boardcall does not use Core Location and never asks iOS for location permission. Every surf spot
+  in the app — on Today, Week, or the map — is a fixed point chosen from a built-in catalog, never a
+  GPS reading. The one exception is optional and comes from Apple Health, not from the app: if you
+  turn on <strong>Include GPS</strong> for imported sessions and allow it in the Health permission
+  sheet, Boardcall reads the GPS route of a surf workout your watch recorded, to draw that session and
+  count its waves. That route is read on your phone, is never saved by Boardcall, and never leaves your
+  device.</p>
 
   <h2>Children's privacy</h2>
   <p>Boardcall is a surf-forecasting tool for surfers and is not designed for or directed to children.
@@ -384,7 +425,9 @@
   <h2>Your rights and how to delete your data</h2>
   <p>Because almost everything Boardcall touches lives only on your device, deleting the app deletes
   your profile, your boards, your saved spots, your logged sessions and coaching notes, and all cached
-  data completely — there is no separate server-side copy of any of that to request or delete.</p>
+  data completely — there is no separate server-side copy of any of that to request or delete. Data in
+  Apple Health itself belongs to Apple Health, not Boardcall: deleting Boardcall doesn't remove your
+  workouts from it, and you manage them in the Health app.</p>
   <p>The only records about you on our server are the anonymous rate-limit counters described above: a
   random device ID, a date, and a count. We have no way to trace those records back to you as a person,
   and we delete them once they are more than 30 days old, whether or not you ask. The anonymous feature
